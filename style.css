@@ -14,3 +14,22 @@ header {
 section {
     padding: 20px;
 }
+
+nav {
+    background: #1f2a38;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li {
+    cursor: pointer;
+}
