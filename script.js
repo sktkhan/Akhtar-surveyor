@@ -9,3 +9,15 @@ function calculateRL() {
     document.getElementById("result").innerText =
         "HI: " + hi + " | RL: " + rl;
 }
+
+<script>
+function calculateSlope() {
+    let rise = document.getElementById("rise").value;
+    let distance = document.getElementById("distance").value;
+
+    let slope = rise / distance;
+
+    document.getElementById("slopeResult").innerText =
+        "Slope: " + slope;
+}
+</script>
