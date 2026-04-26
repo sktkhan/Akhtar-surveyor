@@ -59,25 +59,3 @@ nav a:hover {
     transform: translateY(-5px);
 }
 
-.tool-box h3 {
-    margin-bottom: 10px;
-}
-
-.tool-box input {
-    width: 90%;
-    padding: 10px;
-    margin: 5px 0;
-}
-
-.tool-box button {
-    padding: 10px;
-    background: #2c3e50;
-    color: white;
-    border: none;
-    width: 100%;
-    cursor: pointer;
-}
-
-.tool-box button:hover {
-    background: #34495e;
-}
