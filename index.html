@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Surveyor Website</title>
+    <title>Akhtar Surveyor</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
-    <header>
-        <h1>Engineering Surveyor Guide</h1>
-        <p>Learn Surveying, Calculations & Tools</p>
-    </header>
-    <nav>
+
+<!-- NAV -->
+<nav>
     <h2>Akhtar Surveyor</h2>
     <ul>
         <li>Home</li>
@@ -18,35 +16,35 @@
         <li>Articles</li>
         <li>Contact</li>
     </ul>
-    </nav>
+</nav>
 
-    <section>
-        <h2>Welcome</h2>
-        <p>This website helps surveyors solve real problems like RL, leveling, and calculations.</p>
+<!-- HERO -->
+<header>
+    <h1>Engineering Surveyor Guide</h1>
+    <p>Tools, Calculations & Real Solutions</p>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+
+    <!-- TOOLS SECTION -->
+    <section id="tools">
+        <h2>Survey Tools</h2>
+
+        <!-- Future tools yahin add honge -->
+        <p>Tools coming soon...</p>
+
     </section>
 
-    <h3>RL Calculator (HI Method)</h3>
+    <!-- ARTICLES SECTION -->
+    <section id="articles">
+        <h2>Articles</h2>
+        <p>Articles coming soon...</p>
+    </section>
 
-<input type="number" id="bm" placeholder="Benchmark (BM)">
-<input type="number" id="bs" placeholder="Back Sight (BS)">
-<input type="number" id="fs" placeholder="Fore Sight (FS)">
+</main>
 
-<button onclick="calculateRL()">Calculate</button>
+<script src="script.js"></script>
 
-<p id="result"></p>
-
-    <script>
-function calculateRL() {
-    let bm = parseFloat(document.getElementById("bm").value);
-    let bs = parseFloat(document.getElementById("bs").value);
-    let fs = parseFloat(document.getElementById("fs").value);
-
-    let hi = bm + bs;
-    let rl = hi - fs;
-
-    document.getElementById("result").innerText =
-        "HI: " + hi + " | RL: " + rl;
-}
-    </script>
 </body>
 </html>
