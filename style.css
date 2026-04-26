@@ -31,3 +31,16 @@ header {
 section {
     padding: 20px;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #00adb5;
+}
