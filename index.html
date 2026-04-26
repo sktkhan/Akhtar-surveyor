@@ -24,46 +24,68 @@
     <p>Tools, Calculations & Real Solutions</p>
 </header>
 
-<!-- MAIN CONTENT -->
 <main>
 
-    <!-- TOOLS SECTION -->
-    <section id="tools">
-        <h2>Survey Tools</h2>
+<section id="tools">
+    <h2>Survey Tools</h2>
 
-        <!-- Future tools yahin add honge -->
-        <p><div class="tool-box">
-    <h3>RL Calculator</h3>
+    <!-- RL TOOL -->
+    <div class="tool-box">
+        <h3>RL Calculator</h3>
 
-    <input type="number" id="bm" placeholder="BM">
-    <input type="number" id="bs" placeholder="BS">
-    <input type="number" id="fs" placeholder="FS">
+        <input type="number" id="bm" placeholder="BM">
+        <input type="number" id="bs" placeholder="BS">
+        <input type="number" id="fs" placeholder="FS">
 
-    <button onclick="calculateRL()">Calculate</button>
+        <button onclick="calculateRL()">Calculate</button>
 
-    <p id="result"></p>
-        </div></p>
+        <p id="result"></p>
+    </div>
 
+    <!-- SLOPE TOOL -->
+    <div class="tool-box">
         <h3>Slope Calculator</h3>
 
-<input type="number" id="rise" placeholder="Rise">
-<input type="number" id="distance" placeholder="Distance">
+        <input type="number" id="rise" placeholder="Rise">
+        <input type="number" id="distance" placeholder="Distance">
 
-<button onclick="calculateSlope()">Calculate</button>
+        <button onclick="calculateSlope()">Calculate</button>
 
-<p id="slopeResult"></p>
-        
-    </section>
+        <p id="slopeResult"></p>
+    </div>
 
-    <!-- ARTICLES SECTION -->
-    <section id="articles">
-        <h2>Articles</h2>
-        <p>Articles coming soon...</p>
-    </section>
+</section>
+
+<section id="articles">
+    <h2>Articles</h2>
+    <p>Articles coming soon...</p>
+</section>
 
 </main>
 
-<script src="script.js"></script>
+<script>
+function calculateRL() {
+    let bm = parseFloat(document.getElementById("bm").value);
+    let bs = parseFloat(document.getElementById("bs").value);
+    let fs = parseFloat(document.getElementById("fs").value);
+
+    let hi = bm + bs;
+    let rl = hi - fs;
+
+    document.getElementById("result").innerText =
+        "HI: " + hi + " | RL: " + rl;
+}
+
+function calculateSlope() {
+    let rise = document.getElementById("rise").value;
+    let distance = document.getElementById("distance").value;
+
+    let slope = rise / distance;
+
+    document.getElementById("slopeResult").innerText =
+        "Slope: " + slope;
+}
+</script>
 
 </body>
 </html>
