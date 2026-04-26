@@ -4,23 +4,12 @@ body {
     background: #f4f4f4;
 }
 
-header {
-    background: #2c3e50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-section {
-    padding: 20px;
-}
-
+/* NAV */
 nav {
     background: #1f2a38;
     color: white;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 15px;
 }
 
@@ -30,6 +19,15 @@ nav ul {
     gap: 15px;
 }
 
-nav ul li {
-    cursor: pointer;
+/* HEADER */
+header {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+/* SECTIONS */
+section {
+    padding: 20px;
 }
