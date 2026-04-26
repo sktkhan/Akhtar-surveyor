@@ -25,5 +25,28 @@
         <p>This website helps surveyors solve real problems like RL, leveling, and calculations.</p>
     </section>
 
+    <h3>RL Calculator (HI Method)</h3>
+
+<input type="number" id="bm" placeholder="Benchmark (BM)">
+<input type="number" id="bs" placeholder="Back Sight (BS)">
+<input type="number" id="fs" placeholder="Fore Sight (FS)">
+
+<button onclick="calculateRL()">Calculate</button>
+
+<p id="result"></p>
+
+    <script>
+function calculateRL() {
+    let bm = parseFloat(document.getElementById("bm").value);
+    let bs = parseFloat(document.getElementById("bs").value);
+    let fs = parseFloat(document.getElementById("fs").value);
+
+    let hi = bm + bs;
+    let rl = hi - fs;
+
+    document.getElementById("result").innerText =
+        "HI: " + hi + " | RL: " + rl;
+}
+    </script>
 </body>
 </html>
