@@ -33,36 +33,49 @@
         <section id="home" class="section active">
             <div class="hero-card">
                 <h1>Engineering Excellence</h1>
-                <p>Welcome to the ultimate hub for Professional Surveyors. Accurate tools and expert learning at your fingertips.</p>
-                <div class="stats">
-                    <div class="stat-item"><span>100%</span> Accuracy</div>
-                    <div class="stat-item"><span>24/7</span> Field Access</div>
-                </div>
+                <p>Welcome to <b>Akhtar Surveyor</b>. The ultimate digital toolkit for Civil Surveyors in the field.</p>
+                <button class="action-btn" style="width:auto; padding:10px 30px;" onclick="showSection('tools')">Explore Tools</button>
             </div>
         </section>
 
         <section id="tools" class="section">
-            <h2 class="title">Surveying Toolkits</h2>
+            <h2 class="title">Active Engineering Tools</h2>
             <div class="tool-grid">
+                
                 <div class="tool-card">
                     <h3>HI & RL Calculator</h3>
                     <input type="number" id="bm_rl" placeholder="Bench Mark RL">
                     <input type="number" id="bs_val" placeholder="Backsight (BS)">
                     <input type="number" id="fs_val" placeholder="Foresight (FS)">
-                    <button class="action-btn" onclick="calcRL()">Calculate Now</button>
+                    <button class="action-btn" onclick="calcRL()">Calculate RL</button>
                     <div id="rl_res" class="result"></div>
                 </div>
 
-                <div class="tool-card disabled">
-                    <h3>Road Curve Calculator</h3>
-                    <div class="badge">Coming Soon</div>
-                    <p>Advanced horizontal and vertical curve calculations.</p>
+                <div class="tool-card">
+                    <h3>Slope Calculator (%)</h3>
+                    <input type="number" id="rise" placeholder="Rise (Vertical)">
+                    <input type="number" id="run" placeholder="Run (Horizontal)">
+                    <button class="action-btn" onclick="calcSlope()">Calculate Slope</button>
+                    <div id="slope_res" class="result"></div>
+                </div>
+
+                <div class="tool-card">
+                    <h3>Unit Converter</h3>
+                    <input type="number" id="feet_val" placeholder="Enter Feet">
+                    <button class="action-btn" onclick="convertUnit()">To Meters</button>
+                    <div id="conv_res" class="result"></div>
                 </div>
 
                 <div class="tool-card disabled">
-                    <h3>Earthwork Volume</h3>
+                    <h3>Curve Setting Tool</h3>
                     <div class="badge">Coming Soon</div>
-                    <p>Calculate Cut & Fill using average area method.</p>
+                    <p>Calculation for Offset from Long Chord.</p>
+                </div>
+
+                <div class="tool-card disabled">
+                    <h3>Volume (Cut/Fill)</h3>
+                    <div class="badge">Coming Soon</div>
+                    <p>Earthwork calculations for Road Projects.</p>
                 </div>
             </div>
 
@@ -75,27 +88,26 @@
         </section>
 
         <section id="learning" class="section">
-            <h2 class="title">Learning Center</h2>
+            <h2 class="title">Engineering Articles</h2>
             <div class="article-list">
                 <div class="article-card">
-                    <h3>Proper Bench Mark Establishment</h3>
-                    <p>Learn how to transfer RL from TBM with zero error...</p>
-                    <span class="date">Added Today</span>
+                    <h3>How to Transfer Levels on Site</h3>
+                    <p>A step-by-step guide for setting up Bench Marks...</p>
+                    <button class="action-btn" style="padding:5px;">Read More</button>
                 </div>
                 <div class="article-card disabled">
-                    <h3>Sewerage Slope Management</h3>
+                    <h3>GPS Surveying Basics</h3>
                     <div class="badge">Coming Soon</div>
                 </div>
             </div>
         </section>
 
         <section id="payment" class="section">
-            <div class="premium-box">
-                <h2>Unlock Premium Reports</h2>
-                <p>Generate PDF reports for your site work. This feature will be available after registration.</p>
-                <div class="bank-details" style="display:none;">
-                    </div>
-                <button class="action-btn disabled">Coming Soon</button>
+            <div class="premium-box" style="text-align:center; background:white; padding:40px; border-radius:20px;">
+                <h2>Premium Membership</h2>
+                <p>Get PDF reports and advanced coordinate tools.</p>
+                <div class="badge" style="position:relative; display:inline-block; margin-bottom:20px;">Coming Soon</div>
+                <p style="color:gray;">Bank details and subscription will be active in the next phase.</p>
             </div>
         </section>
 
