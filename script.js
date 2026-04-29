@@ -1,23 +1,35 @@
-function calculateRL() {
-    let bm = parseFloat(document.getElementById("bm").value);
-    let bs = parseFloat(document.getElementById("bs").value);
-    let fs = parseFloat(document.getElementById("fs").value);
+// Function to switch between pages
+function showSection(id) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(sec => sec.classList.remove('active'));
+
+    // Show the targeted section
+    const target = document.getElementById(id);
+    target.classList.add('active');
+
+    // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// RL Calculator Logic
+function calcRL() {
+    let bm = parseFloat(document.getElementById('bm_rl').value);
+    let bs = parseFloat(document.getElementById('bs_val').value);
+    let fs = parseFloat(document.getElementById('fs_val').value);
+
+    if (isNaN(bm) || isNaN(bs) || isNaN(fs)) {
+        alert("Please enter all field values.");
+        return;
+    }
 
     let hi = bm + bs;
     let rl = hi - fs;
 
-    document.getElementById("result").innerText =
-        "HI: " + hi + " | RL: " + rl;
+    document.getElementById('rl_res').innerHTML = `
+        <p>HI: ${hi.toFixed(3)}</p>
+        <p>New RL: ${rl.toFixed(3)}</p>
+    `;
 }
 
-<script>
-function calculateSlope() {
-    let rise = document.getElementById("rise").value;
-    let distance = document.getElementById("distance").value;
-
-    let slope = rise / distance;
-
-    document.getElementById("slopeResult").innerText =
-        "Slope: " + slope;
-}
-</script>
+// More functions for daily updates will be added below this line
