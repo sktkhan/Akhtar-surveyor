@@ -4,138 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akhtar Surveyor | Professional Engineering Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- CSS File Link -->
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">Akhtar <span>Surveyor</span></div>
-        <nav>
-    <ul class="nav-links">
-        <li><a href="#" onclick="showSection('home')">Home</a></li>
-        <li><a href="#" onclick="showSection('tools')">Calculators</a></li>
-        <li><a href="#" onclick="showSection('learning')">Articles</a></li>
-        <li><a href="#" onclick="showSection('payment')">Premium</a></li>
-        <!-- Ye raha wo button jo show nahi ho raha tha -->
-        <li><a href="#" onclick="showSection('legal')" style="color: #38bdf8; font-weight: bold;">Privacy Policy</a></li>
-    </ul>
-</nav>
+    <header>
+        <div class="nav-container">
+            <div class="logo">AKHTAR <span>SURVEYOR</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="show('home')">HOME</a></li>
+                    <li><a href="#" onclick="show('apps')">MOBILE APPS</a></li>
+                    <li><a href="#" onclick="show('tools')">CALCULATORS</a></li>
+                    <li><a href="#" onclick="show('articles')">ARTICLES</a></li>
+                    <li><a href="#" onclick="show('privacy')">PRIVACY</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <div class="ad-center">
-        <script type="text/javascript">
-            atOptions = { 'key' : 'b639695771c7939b8fffd4a6dff9998d', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
-        </script>
-        <script type="text/javascript" src="https://www.highperformanceformat.com/b639695771c7939b8fffd4a6dff9998d/invoke.js"></script>
+    <!-- TRENDING SLIDER -->
+    <div class="hero-slider">
+        <div class="slider-content">
+            <h1>Site Engineering Simplified</h1>
+            <p>Advanced Tools for Professional Surveyors</p>
+            <!-- [IDHAR TRENDING ITEMS DALO] -->
+        </div>
     </div>
 
-    <main class="container">
-        
+    <div class="container">
+        <!-- HOME SECTION -->
         <section id="home" class="section active">
-            <div class="hero-card">
-                <h1>Engineering Excellence</h1>
-                <p>Welcome to <b>Akhtar Surveyor</b>. The ultimate digital toolkit for Civil Surveyors in the field.</p>
-                <button class="action-btn" style="width:auto; padding:10px 30px;" onclick="showSection('tools')">Explore Tools</button>
+            <div class="title-block"><h2>Welcome back, Akhtar</h2></div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Latest Site Updates</h3>
+                    <p>New Bench Mark data and calculation methods added.</p>
+                </div>
             </div>
         </section>
 
+        <!-- APPS SECTION -->
+        <section id="apps" class="section">
+            <div class="title-block"><h2>Professional Android Apps</h2></div>
+            <div class="grid">
+                <div class="card" style="text-align: center;">
+                    <h3>Surveyor Pro App</h3>
+                    <p>Offline calculations for site work.</p>
+                    <a href="YOUR_APK_LINK_HERE" class="btn btn-download">Download APK v1.0</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOOLS SECTION -->
         <section id="tools" class="section">
-            <h2 class="title">Active Engineering Tools</h2>
-            <div class="tool-grid">
-                
-                <div class="tool-card">
-                    <h3>HI & RL Calculator</h3>
-                    <input type="number" id="bm_rl" placeholder="Bench Mark RL">
-                    <input type="number" id="bs_val" placeholder="Backsight (BS)">
-                    <input type="number" id="fs_val" placeholder="Foresight (FS)">
-                    <button class="action-btn" onclick="calcRL()">Calculate RL</button>
-                    <div id="rl_res" class="result"></div>
-                </div>
-
-                <div class="tool-card">
-                    <h3>Slope Calculator (%)</h3>
-                    <input type="number" id="rise" placeholder="Rise (Vertical)">
-                    <input type="number" id="run" placeholder="Run (Horizontal)">
-                    <button class="action-btn" onclick="calcSlope()">Calculate Slope</button>
-                    <div id="slope_res" class="result"></div>
-                </div>
-
-                <div class="tool-card">
-                    <h3>Unit Converter</h3>
-                    <input type="number" id="feet_val" placeholder="Enter Feet">
-                    <button class="action-btn" onclick="convertUnit()">To Meters</button>
-                    <div id="conv_res" class="result"></div>
-                </div>
-
-                <div class="tool-card disabled">
-                    <h3>Curve Setting Tool</h3>
-                    <div class="badge">Coming Soon</div>
-                    <p>Calculation for Offset from Long Chord.</p>
-                </div>
-
-                <div class="tool-card disabled">
-                    <h3>Volume (Cut/Fill)</h3>
-                    <div class="badge">Coming Soon</div>
-                    <p>Earthwork calculations for Road Projects.</p>
-                </div>
-            </div>
-
-            <div class="ad-center">
-                <script type="text/javascript">
-                    atOptions = { 'key' : 'fa085f009e658d4fed5c43ee4051065b', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-                </script>
-                <script type="text/javascript" src="https://www.highperformanceformat.com/fa085f009e658d4fed5c43ee4051065b/invoke.js"></script>
-            </div>
-        </section>
-
-        <section id="learning" class="section">
-            <h2 class="title">Engineering Articles</h2>
-            <div class="article-list">
-                <div class="article-card">
-                    <h3>How to Transfer Levels on Site</h3>
-                    <p>A step-by-step guide for setting up Bench Marks...</p>
-                    <button class="action-btn" style="padding:5px;">Read More</button>
-                </div>
-                <div class="article-card disabled">
-                    <h3>GPS Surveying Basics</h3>
-                    <div class="badge">Coming Soon</div>
+            <div class="title-block"><h2>Calculators</h2></div>
+            <div class="grid">
+                <div class="card">
+                    <h3>RL Calculator</h3>
+                    <input type="number" id="bm_input" placeholder="Enter BM RL">
+                    <input type="number" id="bs_input" placeholder="Enter BS">
+                    <input type="number" id="fs_input" placeholder="Enter FS">
+                    <button class="btn btn-primary" onclick="calcRL()">Calculate Now</button>
+                    <div id="rl_result" class="result-box"></div>
                 </div>
             </div>
         </section>
 
-        <section id="payment" class="section">
-            <div class="premium-box" style="text-align:center; background:white; padding:40px; border-radius:20px;">
-                <h2>Premium Membership</h2>
-                <p>Get PDF reports and advanced coordinate tools.</p>
-                <div class="badge" style="position:relative; display:inline-block; margin-bottom:20px;">Coming Soon</div>
-                <p style="color:gray;">Bank details and subscription will be active in the next phase.</p>
-            </div>
+        <!-- ARTICLES SECTION -->
+        <section id="articles" class="section">
+            <div class="title-block"><h2>Engineering Articles</h2></div>
+            <article class="article-content">
+                <h3>[ARTICLE TITLE IDHAR LIKHO]</h3>
+                <img src="site-image.jpg" class="article-image" alt="Surveying">
+                <p>Aapka technical article yahan shuru hota hai...</p>
+            </article>
         </section>
 
-        <section id="legal" class="section">
-    <h2 class="title">Privacy Policy & About Us</h2>
-    
-    <div class="tool-card">
-        <h3 style="color: #38bdf8;">About Akhtar Surveyor</h3>
-        <p><b>Akhtar Surveyor</b> aik professional engineering platform hai. Hamara maqsad Civil Surveyors aur Engineers ko field mein kaam ke doran asan aur 100% accurate tools muhayya karna hai. Ye platform khas tor par Saudi Arabia (KSA) ke construction standards ko samne rakh kar banaya gaya hai.</p>
+        <!-- PRIVACY SECTION -->
+        <section id="privacy" class="section">
+            <div class="title-block"><h2>Privacy & Terms</h2></div>
+            <div class="card"><p>Hamari privacy policy aur terms...</p></div>
+        </section>
     </div>
 
-    <div class="tool-card">
-        <h3 style="color: #38bdf8;">Privacy Policy</h3>
-        <p>Hum aapki privacy ka pura khayal rakhte hain. Hamari website par koi bhi personal data collect nahi kiya jata. Hum Adsterra aur Google AdSense jaise partners ke ads dikhate hain jo cookies ka istemal karte hain taake aapko relevant ads dikhaye ja saken.</p>
-    </div>
+    <div class="scroll-down" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})">↓</div>
 
-    <div class="tool-card">
-        <h3 style="color: #38bdf8;">Terms & Disclaimer</h3>
-        <p>Tamam calculators aur formulas engineering standards ke mutabiq hain. Magar critical site work ke liye results ko aik baar manual check zaroori hai. Akhtar Surveyor kisi bhi field error ka zimmedar nahi hoga.</p>
-    </div>
-        </section>
-
-    </main>
-
-    <div id="container-b706819116652b2e7fd7e161cbe6f7be"></div>
-
+    <!-- JavaScript File Link -->
     <script src="script.js"></script>
 </body>
 </html>
