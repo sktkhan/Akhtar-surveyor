@@ -73,6 +73,7 @@
         </section>
 
         <!-- TOOLS SECTION -->
+        
         <section id="tools" class="section">
             <div class="title-block"><h2>Calculators</h2></div>
             <div class="grid">
@@ -88,6 +89,143 @@
         </section>
 
         <!-- ARTICLES SECTION -->
+<div class="mega-survey-pro">
+    <div class="pro-header">
+        <h2><i class="fas fa-calculator"></i> Surveyors Field Calculator Pro</h2>
+        <span class="pro-badge">All-In-One Edition</span>
+    </div>
+
+    <!-- 1. BEARING & DISTANCE -->
+    <div class="tool-section">
+        <button class="accordion">1. BEARING & DISTANCE</button>
+        <div class="panel">
+            <div class="input-row"><input type="number" id="e1" placeholder="E1"><input type="number" id="n1" placeholder="N1"></div>
+            <div class="input-row"><input type="number" id="e2" placeholder="E2"><input type="number" id="n2" placeholder="N2"></div>
+            <button class="action-btn" onclick="calcBearing()">Calculate</button>
+            <div id="res1" class="result-box"></div>
+        </div>
+    </div>
+
+    <!-- 2. REFERENCE LINE -->
+    <div class="tool-section">
+        <button class="accordion">2. REFERENCE LINE (Offset/Chainage)</button>
+        <div class="panel">
+            <input type="number" placeholder="Line Start E,N"><input type="number" placeholder="Line End E,N">
+            <input type="number" placeholder="Point E,N">
+            <button class="action-btn pro-btn">Calculate Offset (PRO)</button>
+        </div>
+    </div>
+
+    <!-- 3. XML ALIGNMENT -->
+    <div class="tool-section">
+        <button class="accordion">3. XML ALIGNMENT REFERENCE LINE</button>
+        <div class="panel">
+            <p>Upload LandXML file for Road Alignment.</p>
+            <input type="file" accept=".xml">
+            <button class="action-btn pro-btn">Process XML (PRO+)</button>
+        </div>
+    </div>
+
+    <!-- 4. CIRCULAR CURVE -->
+    <div class="tool-section">
+        <button class="accordion">4. CIRCULAR CURVE</button>
+        <div class="panel">
+            <input type="number" id="cc_r" placeholder="Radius">
+            <input type="number" id="cc_a" placeholder="Delta Angle">
+            <button class="action-btn" onclick="calcCircular()">Calculate Curve</button>
+            <div id="res4" class="result-box"></div>
+        </div>
+    </div>
+
+    <!-- 5. SPIRAL CURVE -->
+    <div class="tool-section">
+        <button class="accordion">5. SPIRAL CURVE</button>
+        <div class="panel">
+            <input type="number" placeholder="Radius"><input type="number" placeholder="Spiral Length">
+            <button class="action-btn pro-btn">Calculate Spiral</button>
+        </div>
+    </div>
+
+    <!-- 6. SPIRAL SEGMENT -->
+    <div class="tool-section">
+        <button class="accordion">6. SPIRAL SEGMENT</button>
+        <div class="panel"><p>Advanced segment calculations for bridge ramps.</p></div>
+    </div>
+
+    <!-- 7. VERTICAL CURVE -->
+    <div class="tool-section">
+        <button class="accordion">7. VERTICAL CURVE</button>
+        <div class="panel">
+            <input type="number" placeholder="Grade In %"><input type="number" placeholder="Grade Out %">
+            <button class="action-btn" onclick="alert('Vertical profile active')">Calculate K-Value</button>
+        </div>
+    </div>
+
+    <!-- 8. 2D TRANSFORMATION -->
+    <div class="tool-section">
+        <button class="accordion">8. 2D TRANSFORMATION</button>
+        <div class="panel"><p>Shift, Rotate, and Scale local to global coordinates.</p></div>
+    </div>
+
+    <!-- 9. TRAVERSE CALCULATION -->
+    <div class="tool-section">
+        <button class="accordion">9. TRAVERSE CALCULATION</button>
+        <div class="panel"><p>Close/Open Traverse adjustment (Bowditch Rule).</p></div>
+    </div>
+
+    <!-- 10. COORDINATE BY TRIANGULATION -->
+    <div class="tool-section">
+        <button class="accordion">10. COORDINATE BY TRIANGULATION</button>
+        <div class="panel"><p>Find point by 3 known distances.</p></div>
+    </div>
+
+    <!-- 11. INTERSECTION -->
+    <div class="tool-section">
+        <button class="accordion">11. INTERSECTION (Brg-Brg / Dist-Dist)</button>
+        <div class="panel"><button class="action-btn">Calculate Intersection</button></div>
+    </div>
+
+    <!-- 12. 3POINT CIRCLE -->
+    <div class="tool-section">
+        <button class="accordion">12. 3-POINT CIRCLE</button>
+        <div class="panel"><p>Find center and radius from 3 points.</p></div>
+    </div>
+
+    <!-- 13. AREA BY CO-ORDINATE -->
+    <div class="tool-section">
+        <button class="accordion">13. AREA BY CO-ORDINATE</button>
+        <div class="panel">
+            <textarea id="areaInput" placeholder="E1,N1&#10;E2,N2..."></textarea>
+            <button class="action-btn" onclick="calcArea()">Calculate Area</button>
+            <div id="res13" class="result-box"></div>
+        </div>
+    </div>
+
+    <!-- 14. LAT/LONG TO UTM -->
+    <div class="tool-section">
+        <button class="accordion">14. LAT/LONG TO UTM</button>
+        <div class="panel">
+            <input type="number" placeholder="Latitude"><input type="number" placeholder="Longitude">
+            <button class="action-btn">Convert to WGS84</button>
+        </div>
+    </div>
+
+    <!-- HOW TO USE BUTTON -->
+    <button class="how-to-use-btn" onclick="toggleHelp()"><i class="fas fa-book"></i> HOW TO USE? (Short Guide)</button>
+    
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <h3>📖 Akhtar Surveyor Guide</h3>
+            <p>1. <b>Bearing:</b> 2 points ke darmiyan distance/angle nikalne ke liye.<br>
+               2. <b>Reference Line:</b> Road/Bridge ke offset check karne ke liye.<br>
+               3. <b>Curves:</b> Radius aur Angle dalkar setting-out data lein.<br>
+               4. <b>Traverse:</b> Site control points ko adjust karne ke liye.<br>
+               5. <b>Area:</b> Plot ya land ka total area coordinates se nikalne ke liye.</p>
+            <button class="close-btn" onclick="toggleHelp()">Close Guide</button>
+        </div>
+    </div>
+</div>
+        
         <section id="articles" class="section">
             <div class="title-block"><h2>Engineering Articles</h2></div>
             <article class="article-content">
