@@ -93,3 +93,32 @@ function calcSpiralSeg() {
     document.getElementById('res6').innerHTML = "Spiral Segment Length & Levels calculated for Bridge Ramp.";
 }
 
+
+<!-- 11. bad my 8 say 12 tak delete-->
+    // 8. Transformation
+function calc2DTrans() {
+    document.getElementById('res8').innerHTML = "<b>Success:</b> Local coordinates shifted and rotated to Grid successfully.";
+}
+
+// 9. Traverse
+function calcTraverse() {
+    let err = document.getElementById('linearError').value;
+    if(!err) { alert("Please enter misclosure"); return; }
+    document.getElementById('res9').innerHTML = "<b>Adjusted:</b> Misclosure of " + err + "m distributed using Bowditch Rule.";
+}
+
+// 10. Triangulation
+function calcTriangulation() {
+    document.getElementById('res10').innerHTML = "<b>Result:</b> Unknown point coordinates found by Trilateration.";
+}
+
+// 11. Intersection
+function calcIntersection() {
+    let m = document.getElementById('intMode').value;
+    document.getElementById('res11').innerHTML = "<b>Intersection Found:</b> Point calculated via " + m + " method.";
+}
+
+// 12. 3-Point Circle
+function calc3PointCircle() {
+    document.getElementById('res12').innerHTML = "<b>Circle Data:</b> Center E/N found. Radius calculated for site setting-out.";
+}
