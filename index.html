@@ -164,33 +164,66 @@
     <!-- 8. 2D TRANSFORMATION -->
     <div class="tool-section">
         <button class="accordion">8. 2D TRANSFORMATION</button>
-        <div class="panel"><p>Shift, Rotate, and Scale local to global coordinates.</p></div>
+        <div class="panel">
+            <p style="font-size:12px; color:gray;">Shift, Rotate, and Scale local coordinates to Project Grid.</p>
+            <div class="input-row">
+                <input type="number" id="transE" placeholder="Shift Easting">
+                <input type="number" id="transN" placeholder="Shift Northing">
+            </div>
+            <button class="action-btn pro-btn" onclick="calc2DTrans()">Apply Transformation</button>
+            <div id="res8" class="result-box"></div>
+        </div>
     </div>
 
     <!-- 9. TRAVERSE CALCULATION -->
     <div class="tool-section">
         <button class="accordion">9. TRAVERSE CALCULATION</button>
-        <div class="panel"><p>Close/Open Traverse adjustment (Bowditch Rule).</p></div>
+        <div class="panel">
+            <p style="font-size:12px; color:gray;">Adjustment of Close/Open Traverse (Bowditch Method).</p>
+            <input type="number" id="linearError" placeholder="Linear Misclosure (m)">
+            <button class="action-btn pro-btn" onclick="calcTraverse()">Adjust Traverse</button>
+            <div id="res9" class="result-box"></div>
+        </div>
     </div>
 
     <!-- 10. COORDINATE BY TRIANGULATION -->
     <div class="tool-section">
         <button class="accordion">10. COORDINATE BY TRIANGULATION</button>
-        <div class="panel"><p>Find point by 3 known distances.</p></div>
+        <div class="panel">
+            <p style="font-size:12px; color:gray;">Find unknown point coordinates using 3 distances.</p>
+            <div class="input-row">
+                <input type="number" placeholder="Dist to P1">
+                <input type="number" placeholder="Dist to P2">
+            </div>
+            <button class="action-btn pro-btn" onclick="calcTriangulation()">Calculate Point</button>
+            <div id="res10" class="result-box"></div>
+        </div>
     </div>
 
     <!-- 11. INTERSECTION -->
     <div class="tool-section">
         <button class="accordion">11. INTERSECTION (Brg-Brg / Dist-Dist)</button>
-        <div class="panel"><button class="action-btn">Calculate Intersection</button></div>
+        <div class="panel">
+            <p style="font-size:12px; color:gray;">Find point where two lines or distances meet.</p>
+            <select id="intMode">
+                <option value="brg">Bearing - Bearing</option>
+                <option value="dist">Distance - Distance</option>
+            </select>
+            <button class="action-btn pro-btn" onclick="calcIntersection()">Find Intersection</button>
+            <div id="res11" class="result-box"></div>
+        </div>
     </div>
 
-    <!-- 12. 3POINT CIRCLE -->
+    <!-- 12. 3-POINT CIRCLE -->
     <div class="tool-section">
         <button class="accordion">12. 3-POINT CIRCLE</button>
-        <div class="panel"><p>Find center and radius from 3 points.</p></div>
+        <div class="panel">
+            <p style="font-size:12px; color:gray;">Find Center and Radius using 3 known points.</p>
+            <textarea placeholder="Point 1: E,N&#10;Point 2: E,N&#10;Point 3: E,N"></textarea>
+            <button class="action-btn pro-btn" onclick="calc3PointCircle()">Get Circle Data</button>
+            <div id="res12" class="result-box"></div>
+        </div>
     </div>
-
     <!-- 13. AREA BY CO-ORDINATE -->
     <div class="tool-section">
         <button class="accordion">13. AREA BY CO-ORDINATE</button>
