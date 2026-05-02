@@ -100,4 +100,19 @@ input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; bor
 .article-content { background: var(--card-bg); padding: 20px; border-radius: 15px; }
 .article-image { width: 100%; border-radius: 10px; margin: 15px 0; }
 .result-box { margin-top: 15px; padding: 10px; background: #0f172a; border-radius: 5px; color: var(--primary); font-weight: bold; }
-.scroll-down { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: black; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.scroll-down { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: black; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
+             }
+
+
+.mega-survey-pro { max-width: 600px; margin: 20px auto; background: #f8fafc; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+.pro-header { background: #1e293b; color: #fbbf24; text-align: center; padding: 20px; border-bottom: 3px solid #fbbf24; }
+.accordion { background: #ffffff; color: #334155; cursor: pointer; padding: 15px; width: 100%; text-align: left; border: none; border-bottom: 1px solid #e2e8f0; font-weight: 700; transition: 0.3s; font-size: 14px; }
+.accordion:hover { background: #f1f5f9; color: #2563eb; }
+.panel { display: none; padding: 15px; background: white; border-bottom: 1px solid #e2e8f0; }
+.input-row { display: flex; gap: 10px; margin-bottom: 10px; }
+input, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; }
+.action-btn { width: 100%; padding: 12px; background: #059669; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+.pro-btn { background: #2563eb; }
+.how-to-use-btn { width: 100%; background: #0f172a; color: #fbbf24; padding: 15px; border: none; font-weight: bold; cursor: pointer; }
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+.modal-content { background: white; width: 85%; margin: 20% auto; padding: 20px; border-radius: 10px; line-height: 1.6; }
