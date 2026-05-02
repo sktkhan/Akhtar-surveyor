@@ -21,3 +21,29 @@ function calcRL() {
         resultBox.innerHTML = "❌ Please enter valid data!";
     }
 }
+
+// Accordion Toggle
+var acc = document.getElementsByClassName("accordion");
+for (var i = 0; i < acc.length; i++) {
+    acc[i].onclick = function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        panel.style.display = (panel.style.display === "block") ? "none" : "block";
+    }
+}
+
+function toggleHelp() {
+    var m = document.getElementById("helpModal");
+    m.style.display = (m.style.display === "block") ? "none" : "block";
+}
+
+// Basic Math Example
+function calcBearing() {
+    let e1 = parseFloat(document.getElementById('e1').value);
+    let n1 = parseFloat(document.getElementById('n1').value);
+    let e2 = parseFloat(document.getElementById('e2').value);
+    let n2 = parseFloat(document.getElementById('n2').value);
+    let dE = e2 - e1, dN = n2 - n1;
+    let dist = Math.sqrt(dE*dE + dN*dN).toFixed(3);
+    document.getElementById('res1').innerHTML = "Distance: " + dist + " m";
+}
