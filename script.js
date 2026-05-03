@@ -634,7 +634,7 @@ function shareOnWhatsApp() {
 //  BLOG
 // ══════════════════════════════════════════════
 var BLOG_ARTICLES = [
-    {id:1,cat:'survey',title:'Understanding Whole Circle Bearing (WCB)',summary:'A complete guide to WCB — how it is calculated from coordinates, when to use DMS format, and common mistakes surveyors make in bearing calculations.',icon:'🧭',color:'#06b6d4',date:'15 Apr 2026',read:'5 min'},
+    {id:1,cat:'survey',title:'What is Surveying? A Complete Beginner\'s Guide',summary:'Everything you need to know about land surveying — definition, types, instruments, key terminology, and step-by-step workflow. Written in plain English for beginners.',icon:'🧭',color:'#06b6d4',date:'03 May 2026',read:'12 min',url:'what-is-surveying.html'},
     {id:2,cat:'road',title:'Circular Curve Design: All Elements Explained',summary:'Deep dive into circular curve geometry — Tangent Length (T), Arc Length (L), External Distance (E), Middle Ordinate (M) and Long Chord with derivation.',icon:'⭕',color:'#f59e0b',date:'20 Apr 2026',read:'7 min'},
     {id:3,cat:'coord',title:'Shoelace Formula: Area by Coordinate',summary:'How the Shoelace (Gauss) formula works for computing polygon area from coordinate points. Step-by-step with a worked example and unit conversions.',icon:'📐',color:'#10b981',date:'22 Apr 2026',read:'6 min'},
     {id:4,cat:'tips',title:'10 Field Tips for Total Station Setup',summary:'From centering and levelling to resection setup — practical tips for getting your Total Station set up quickly and accurately in the field.',icon:'🎯',color:'#8b5cf6',date:'25 Apr 2026',read:'8 min'},
@@ -668,14 +668,21 @@ function renderBlog() {
             var catColors = {survey:'#06b6d4',road:'#f59e0b',coord:'#10b981',tips:'#8b5cf6',theory:'#ef4444'};
             var catNames  = {survey:'Surveying',road:'Road Design',coord:'Coordinates',tips:'Field Tips',theory:'Theory'};
             var clr = catColors[a.cat] || '#06b6d4';
-            return '<div class="blog-card">' +
-                '<div class="blog-card-img" style="background:'+clr+'18;">' + a.icon + '</div>' +
+            var link = a.url ? 'href="'+a.url+'"' : 'href="#" onclick="showToast(\'Full article coming soon!\')"';
+            var readBtn = a.url
+                ? '<a href="'+a.url+'" class="blog-read-btn" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:'+clr+';margin-top:12px;">Read Article <i class=\"fas fa-arrow-right\"></i></a>'
+                : '<span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text-sub);margin-top:12px;opacity:.6;"><i class="fas fa-clock"></i> Coming Soon</span>';
+            return '<a '+link+' class="blog-card" style="text-decoration:none;color:inherit;display:block;">' +
+                '<div class="blog-card-img" style="background:'+clr+'18;">' + a.icon +
+                (a.url ? '<div style="position:absolute;top:10px;right:12px;background:'+clr+';color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:0.5px;">PUBLISHED</div>' : '') +
+                '</div>' +
                 '<div class="blog-card-body">' +
                 '<span class="blog-cat" style="color:'+clr+';">' + (catNames[a.cat]||a.cat) + '</span>' +
                 '<h3>' + a.title + '</h3>' +
                 '<p>' + a.summary + '</p>' +
                 '<div class="blog-meta"><span><i class="fas fa-calendar-alt"></i> ' + a.date + '</span><span><i class="fas fa-clock"></i> ' + a.read + ' read</span></div>' +
-                '</div></div>';
+                readBtn +
+                '</div></a>';
         }).join('');
     }
 }

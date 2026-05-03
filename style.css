@@ -731,7 +731,7 @@ textarea { resize:vertical; min-height:110px; }
 
 .blog-card-img {
   height:160px; display:flex; align-items:center; justify-content:center;
-  font-size:48px; position:relative;
+  font-size:48px; position:relative; overflow:hidden;
 }
 
 .blog-card-body { padding:22px; }
