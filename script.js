@@ -122,3 +122,64 @@ function calcIntersection() {
 function calc3PointCircle() {
     document.getElementById('res12').innerHTML = "<b>Circle Data:</b> Center E/N found. Radius calculated for site setting-out.";
 }
+
+// 13. AREA BY CO-ORDINATE (Shoelace Formula)
+function calcArea() {
+    let input = document.getElementById('areaInput').value.trim();
+    let resultBox = document.getElementById('res13');
+
+    if (!input) {
+        resultBox.innerHTML = "❌ Pehle coordinates enter karein!";
+        return;
+    }
+
+    let lines = input.split('\n');
+    let points = [];
+
+    for (let line of lines) {
+        line = line.trim();
+        if (!line) continue;
+        let parts = line.split(',');
+        if (parts.length < 2) {
+            resultBox.innerHTML = "❌ Galat format! Har line mein E,N likhein. Maslan: 100,200";
+            return;
+        }
+        let e = parseFloat(parts[0].trim());
+        let n = parseFloat(parts[1].trim());
+        if (isNaN(e) || isNaN(n)) {
+            resultBox.innerHTML = "❌ Sirf numbers likhein! Galat value: " + line;
+            return;
+        }
+        points.push([e, n]);
+    }
+
+    if (points.length < 3) {
+        resultBox.innerHTML = "❌ Kam az kam 3 points chahiye!";
+        return;
+    }
+
+    // Shoelace Formula
+    let area = 0;
+    let len = points.length;
+    for (let i = 0; i < len; i++) {
+        let j = (i + 1) % len;
+        area += points[i][0] * points[j][1];
+        area -= points[j][0] * points[i][1];
+    }
+    area = Math.abs(area) / 2;
+
+    let areaSqFt = area * 10.7639;
+    let areaMarla = area / 20.9;
+    let areaKanal = areaMarla / 20;
+    let areaAcre = area / 4046.86;
+
+    resultBox.innerHTML = `
+        <b>✅ Area Calculation Result</b><br><br>
+        📐 <b>Square Meters:</b> ${area.toFixed(3)} m²<br>
+        📐 <b>Square Feet:</b> ${areaSqFt.toFixed(3)} ft²<br>
+        📐 <b>Marla:</b> ${areaMarla.toFixed(3)}<br>
+        📐 <b>Kanal:</b> ${areaKanal.toFixed(3)}<br>
+        📐 <b>Acre:</b> ${areaAcre.toFixed(4)}<br><br>
+        <small>Total Points Used: ${points.length}</small>
+    `;
+}
