@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Circular Curve Design: All Elements Explained | Akhtar Engineering Hub</title>
+<meta name="description" content="A complete guide to circular curve design — all elements explained with formulas, a full worked example, and setting-out methods. Written by a professional road design engineer.">
+<meta name="keywords" content="circular curve elements, circular curve design, tangent length, arc length, external distance, middle ordinate, long chord, degree of curve, road curve design, horizontal alignment, surveying curves">
+<meta name="author" content="Akhtar Engineering Hub">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://akhtarengineeringhub.com/circular-curve-elements.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://akhtarengineeringhub.com/circular-curve-elements.html">
+<meta property="og:title" content="Circular Curve Design: All Elements Explained">
+<meta property="og:description" content="All circular curve elements — T, L, E, M, LC, D — explained with formulas, a full worked example and setting-out methods.">
+<meta property="og:site_name" content="Akhtar Engineering Hub">
+<meta property="article:published_time" content="2026-05-03">
+<meta property="article:section" content="Road Design">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Circular Curve Design: All Elements Explained">
+<meta name="twitter:description" content="All circular curve elements explained with formulas, worked example and setting-out methods.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Circular Curve Design: All Elements Explained",
+  "description":"Complete guide to circular curve elements — T, L, E, M, LC and D — with derivations, worked example and field setting-out methods.",
+  "author":{"@type":"Person","name":"Akhtar Engineering Hub"},
+  "publisher":{"@type":"Organization","name":"Akhtar Engineering Hub"},
+  "datePublished":"2026-05-03",
+  "dateModified":"2026-05-03",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://akhtarengineeringhub.com/circular-curve-elements.html"},
+  "articleSection":"Road Design",
+  "keywords":"circular curve, tangent length, arc length, external distance, middle ordinate, long chord, degree of curve, horizontal alignment"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#050d1a;--bg2:#0a1628;--bg3:#0e1f38;
+  --card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);--text:#f1f5f9;--text-sub:#94a3b8;
+  --gold:#f59e0b;--cyan:#06b6d4;--green:#10b981;--purple:#8b5cf6;--red:#ef4444;
+  --nav-bg:rgba(5,13,26,0.95);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+a{color:var(--gold);text-decoration:none;}
+a:hover{text-decoration:underline;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px;}
+
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),#d97706);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;}
+.nav-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--text);}
+.nav-title span{display:block;font-size:10px;color:var(--gold);font-weight:500;}
+.nav-right{display:flex;gap:12px;align-items:center;}
+.nav-link-btn{padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600;background:var(--card);border:1px solid var(--border2);color:var(--text-sub);transition:all .2s;}
+.nav-link-btn:hover{text-decoration:none;color:var(--text);}
+.nav-link-btn.primary{background:linear-gradient(135deg,var(--gold),#d97706);color:#fff;border-color:transparent;}
+.nav-link-btn.primary:hover{opacity:.9;text-decoration:none;}
+
+/* Hero */
+.article-hero{margin-top:60px;padding:60px 24px 50px;background:linear-gradient(135deg,#050d1a 0%,#0a1628 60%,#050d1a 100%);border-bottom:1px solid var(--border);text-align:center;position:relative;overflow:hidden;}
+.article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(245,158,11,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.article-hero-inner{position:relative;z-index:1;max-width:820px;margin:0 auto;}
+.article-cat{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:5px 14px;border-radius:100px;margin-bottom:20px;text-transform:uppercase;}
+.article-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:16px;}
+.article-hero h1 span{color:var(--gold);}
+.article-hero .intro{font-size:17px;color:var(--text-sub);max-width:640px;margin:0 auto 24px;line-height:1.7;}
+.article-meta{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--text-sub);}
+.article-meta span{display:flex;align-items:center;gap:6px;}
+.article-meta i{color:var(--gold);}
+
+/* Layout */
+.article-layout{max-width:1100px;margin:0 auto;padding:60px 24px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+.article-body{min-width:0;}
+.article-sidebar{position:sticky;top:80px;}
+
+/* Body */
+.article-body h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:800;margin:44px 0 14px;color:var(--text);letter-spacing:-0.5px;border-left:4px solid var(--gold);padding-left:16px;}
+.article-body h3{font-size:18px;font-weight:700;margin:28px 0 10px;color:var(--gold);}
+.article-body p{font-size:16px;color:var(--text-sub);margin-bottom:18px;line-height:1.85;}
+.article-body strong{color:var(--text);font-weight:700;}
+.article-body ul,.article-body ol{margin:12px 0 20px 0;padding-left:0;list-style:none;}
+.article-body ul li,.article-body ol li{font-size:15px;color:var(--text-sub);padding:7px 0 7px 30px;border-bottom:1px solid var(--border);position:relative;line-height:1.6;}
+.article-body ul li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--gold);font-size:11px;position:absolute;left:6px;top:10px;}
+.article-body ol{counter-reset:ol-c;}
+.article-body ol li{counter-increment:ol-c;}
+.article-body ol li::before{content:counter(ol-c);background:var(--gold);color:#fff;font-size:11px;font-weight:800;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;left:0;top:9px;}
+.article-body li:last-child{border-bottom:none;}
+
+/* Callouts */
+.callout{border-radius:12px;padding:20px 22px;margin:24px 0;display:flex;gap:16px;align-items:flex-start;}
+.callout.info{background:rgba(6,182,212,0.07);border-left:4px solid var(--cyan);}
+.callout.tip{background:rgba(245,158,11,0.07);border-left:4px solid var(--gold);}
+.callout.warn{background:rgba(239,68,68,0.07);border-left:4px solid var(--red);}
+.callout i{font-size:18px;margin-top:2px;flex-shrink:0;}
+.callout.info i{color:var(--cyan);}
+.callout.tip i{color:var(--gold);}
+.callout.warn i{color:var(--red);}
+.callout-body strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.callout-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+/* Pull quote */
+.pull-quote{border-left:3px solid var(--gold);background:rgba(245,158,11,0.05);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0;font-size:18px;font-style:italic;font-weight:600;color:var(--text);line-height:1.6;}
+
+/* Key terms */
+.kt{display:inline;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.25);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:600;color:#c4b5fd;}
+.kgold{display:inline;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--gold);}
+.kcyan{display:inline;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--cyan);}
+.kred{display:inline;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--red);}
+
+/* Formula */
+.formula-block{background:var(--bg3);border:1px solid rgba(245,158,11,0.25);border-radius:14px;padding:24px 28px;margin:24px 0;border-left:4px solid var(--gold);}
+.formula-block .fl{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
+.formula-block code{font-family:'Courier New',monospace;font-size:15px;font-weight:700;color:var(--text);background:rgba(255,255,255,0.04);border:1px solid var(--border2);border-radius:8px;padding:10px 16px;margin-bottom:8px;display:block;line-height:1.6;}
+.formula-block .fn{font-size:13px;color:var(--text-sub);margin-top:6px;}
+
+/* SVG Diagram */
+.diagram-wrap{background:var(--bg3);border:1px solid rgba(245,158,11,0.2);border-radius:16px;padding:24px;margin:28px 0;text-align:center;}
+.diagram-wrap .dc{font-size:12px;color:var(--text-sub);margin-top:14px;font-style:italic;}
+.diagram-wrap svg{max-width:100%;height:auto;}
+
+/* Elements Grid */
+.elements-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:28px 0;}
+.element-card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:22px;position:relative;overflow:hidden;transition:all .25s;}
+.element-card:hover{border-color:rgba(245,158,11,0.4);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.3);}
+.el-symbol{position:absolute;top:16px;right:20px;font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:900;color:rgba(245,158,11,0.08);line-height:1;}
+.el-tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.el-name{font-size:17px;font-weight:800;color:var(--text);margin-bottom:8px;}
+.el-formula{font-family:'Courier New',monospace;font-size:13px;color:var(--gold);background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:6px;padding:6px 10px;margin-bottom:10px;display:inline-block;}
+.el-desc{font-size:13px;color:var(--text-sub);line-height:1.6;}
+
+/* Worked Example Table */
+.ex-table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border2);margin:24px 0;}
+.ex-table{width:100%;border-collapse:collapse;font-size:14px;min-width:480px;}
+.ex-table thead tr{background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(217,119,6,0.08));}
+.ex-table th{padding:12px 16px;text-align:left;font-weight:700;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border2);}
+.ex-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--text-sub);font-size:14px;}
+.ex-table tr:last-child td{border-bottom:none;}
+.ex-table td:first-child{font-weight:700;color:var(--text);}
+.ex-table td:nth-child(2){font-family:'Courier New',monospace;color:var(--gold);}
+.ex-table td:nth-child(3){font-family:'Courier New',monospace;color:var(--cyan);}
+.ex-table tr:hover td{background:rgba(245,158,11,0.04);}
+
+/* Steps */
+.steps{margin:24px 0;}
+.step{display:flex;gap:18px;margin-bottom:14px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;transition:all .2s;}
+.step:hover{border-color:var(--border2);}
+.step-num{min-width:36px;height:36px;background:linear-gradient(135deg,var(--gold),#d97706);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff;flex-shrink:0;}
+.step-body strong{display:block;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.step-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+/* Setting out table */
+.so-table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border2);margin:24px 0;}
+.so-table{width:100%;border-collapse:collapse;font-size:13px;min-width:580px;}
+.so-table thead tr{background:rgba(245,158,11,0.08);}
+.so-table th{padding:11px 14px;text-align:center;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--gold);border-bottom:1px solid var(--border2);}
+.so-table td{padding:10px 14px;text-align:center;border-bottom:1px solid var(--border);color:var(--text-sub);font-size:13px;font-family:'Courier New',monospace;}
+.so-table td:first-child{font-family:'Inter',sans-serif;font-weight:600;color:var(--text);text-align:left;}
+.so-table tr:last-child td{border-bottom:none;}
+.so-table tr:hover td{background:rgba(245,158,11,0.03);}
+
+/* Visual box */
+.visual-box{background:var(--bg3);border:1px solid var(--border2);border-radius:16px;padding:28px;margin:28px 0;text-align:center;}
+.visual-box .vi{font-size:48px;margin-bottom:10px;display:block;}
+.visual-box .vc{font-size:12px;color:var(--text-sub);margin-top:10px;font-style:italic;}
+
+/* Sidebar */
+.sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:20px;}
+.sidebar-card h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.sidebar-card h4 i{color:var(--gold);}
+.toc-list{list-style:none;}
+.toc-list li{padding:0;border:none;}
+.toc-list li::before{display:none;}
+.toc-list li a{display:block;font-size:13px;color:var(--text-sub);padding:7px 10px;border-radius:6px;transition:all .2s;}
+.toc-list li a:hover{background:rgba(245,158,11,0.08);color:var(--gold);text-decoration:none;}
+.related-list{list-style:none;}
+.related-list li{padding:0;border:none;}
+.related-list li::before{display:none;}
+.related-list li a{display:block;font-size:13px;color:var(--text-sub);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.4;transition:color .2s;}
+.related-list li:last-child a{border-bottom:none;}
+.related-list li a:hover{color:var(--gold);text-decoration:none;}
+.sidebar-cta{background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(217,119,6,0.05));border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:22px;margin-bottom:20px;text-align:center;}
+.sidebar-cta h4{font-size:15px;font-weight:700;margin-bottom:8px;}
+.sidebar-cta p{font-size:13px;color:var(--text-sub);margin-bottom:16px;line-height:1.5;}
+.sidebar-cta a{display:block;background:linear-gradient(135deg,var(--gold),#d97706);color:#fff;font-size:13px;font-weight:700;padding:11px;border-radius:8px;text-decoration:none;}
+.sidebar-cta a:hover{opacity:.9;}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+.tag-pill{padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;background:var(--bg3);border:1px solid var(--border2);color:var(--text-sub);}
+
+/* Progress + back top */
+.progress-bar{position:fixed;top:60px;left:0;height:3px;background:linear-gradient(90deg,var(--gold),#d97706);z-index:200;transition:width .1s;}
+.back-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer;box-shadow:0 4px 20px rgba(245,158,11,0.4);opacity:0;transition:all .3s;z-index:200;border:none;}
+.back-top.show{opacity:1;}
+
+/* Article footer */
+.article-footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 24px;}
+.article-footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+.author-card{display:flex;gap:16px;align-items:flex-start;}
+.author-avatar{width:60px;height:60px;background:linear-gradient(135deg,var(--gold),#d97706);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;flex-shrink:0;}
+.author-info h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.author-info p{font-size:13px;color:var(--text-sub);line-height:1.6;}
+.author-info a{font-size:13px;font-weight:600;margin-top:10px;display:inline-block;color:var(--gold);}
+.nav-articles{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
+.nav-article-link{display:flex;flex-direction:column;align-items:flex-end;text-align:right;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;transition:all .2s;}
+.nav-article-link:hover{border-color:var(--gold);text-decoration:none;}
+.nav-article-link span{font-size:11px;color:var(--text-sub);}
+.nav-article-link strong{font-size:13px;color:var(--text);margin-top:2px;}
+
+.page-footer{background:var(--bg);border-top:1px solid var(--border);padding:24px;text-align:center;font-size:13px;color:var(--text-sub);}
+.page-footer a{color:var(--gold);}
+
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;}
+  .article-sidebar{display:none;}
+  .article-footer-inner{grid-template-columns:1fr;}
+  .nav-articles{align-items:flex-start;}
+  .nav-article-link{align-items:flex-start;text-align:left;}
+  .elements-grid{grid-template-columns:1fr;}
+}
+@media(max-width:580px){
+  .article-meta{gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-icon"><i class="fas fa-road"></i></div>
+    <div class="nav-title">Akhtar<span>Engineering Hub</span></div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link-btn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+    <a href="index.html" class="nav-link-btn primary"><i class="fas fa-circle-notch"></i> Curve Calculator</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat"><i class="fas fa-road"></i> Road Design &nbsp;|&nbsp; Intermediate Guide</div>
+    <h1>Circular Curve Design:<br><span>All Elements Explained</span></h1>
+    <p class="intro">Whether you are designing a highway, setting out a road on site, or just studying for your engineering exam — here is everything you need to know about horizontal circular curves, written clearly by a road design engineer.</p>
+    <div class="article-meta">
+      <span><i class="fas fa-user-tie"></i> Akhtar Engineering Hub</span>
+      <span><i class="fas fa-calendar-alt"></i> 3 May 2026</span>
+      <span><i class="fas fa-clock"></i> 11 min read</span>
+      <span><i class="fas fa-signal"></i> Intermediate</span>
+    </div>
+  </div>
+</div>
+
+<!-- Layout -->
+<div class="article-layout">
+<article class="article-body">
+
+  <!-- Intro -->
+  <p>Every road changes direction at some point. A perfectly straight road meeting another at a sharp corner is impossible to drive safely — so engineers design <strong>circular curves</strong> to connect two straight alignments with a smooth, controlled arc. The driver follows the curve comfortably, and the engineer sets it out precisely.</p>
+
+  <p>Understanding circular curves is fundamental for anyone working in road design, highway engineering or construction surveying. The geometry is based on a simple circle, but the terminology can be confusing at first. This article explains every element — what it is, why it matters, its formula, and how it fits into the bigger picture.</p>
+
+  <div class="callout info">
+    <i class="fas fa-info-circle"></i>
+    <div class="callout-body">
+      <strong>What This Article Covers</strong>
+      <p>The full circular curve geometry &mdash; all six major elements (T, L, E, M, LC, D) with derivations &mdash; a complete worked example for R=200 m, &Delta;=40° &mdash; the deflection angle setting-out method &mdash; and practical field tips.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2 id="what-is-curve">What is a Circular Curve?</h2>
+
+  <p>A <strong>circular curve</strong> is a section of road alignment that follows a constant radius arc between two straight sections. The two straight sections are called <strong>tangents</strong> — because they are tangent to (just touching) the circle at the point where the curve begins and ends.</p>
+
+  <p>The point where the two tangents meet — if extended — is called the <strong>Point of Intersection (PI)</strong>, also called the <strong>Intersection Point (IP)</strong>. The angle they meet at is the <strong>intersection angle (I)</strong>, and its supplement — the angle the curve turns through — is the <strong>delta angle (Δ)</strong>, also called the <strong>deflection angle</strong>.</p>
+
+  <div class="callout tip">
+    <i class="fas fa-lightbulb"></i>
+    <div class="callout-body">
+      <strong>Delta (Δ) vs Intersection Angle (I)</strong>
+      <p>If two tangents meet at an angle of 140°, the intersection angle I = 140°, and the delta (deflection) angle Δ = 180° − 140° = 40°. The delta angle is how much the road actually turns. Always use Δ in your curve calculations — not I.</p>
+    </div>
+  </div>
+
+  <!-- SVG Diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;">
+      <!-- Grid -->
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#f59e0b" opacity="0.7"/>
+        </marker>
+        <marker id="arw" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#94a3b8" opacity="0.5"/>
+        </marker>
+      </defs>
+      <!-- Background -->
+      <rect width="520" height="340" fill="#0e1f38" rx="10"/>
+
+      <!-- Circle (radius scaled) -->
+      <circle cx="260" cy="270" r="180" fill="none" stroke="rgba(245,158,11,0.12)" stroke-width="1" stroke-dasharray="4 4"/>
+
+      <!-- Arc (curve) -->
+      <path d="M 110 164 A 180 180 0 0 1 410 164" fill="none" stroke="#f59e0b" stroke-width="3"/>
+
+      <!-- Tangent lines -->
+      <line x1="40" y1="220" x2="110" y2="164" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <line x1="410" y1="164" x2="480" y2="108" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 3"/>
+
+      <!-- Extended tangents to PI -->
+      <line x1="110" y1="164" x2="260" y2="56" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+      <line x1="410" y1="164" x2="260" y2="56" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+
+      <!-- Radius lines to center -->
+      <line x1="260" y1="270" x2="110" y2="164" stroke="rgba(6,182,212,0.4)" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="260" y1="270" x2="410" y2="164" stroke="rgba(6,182,212,0.4)" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="260" y1="270" x2="260" y2="90" stroke="rgba(6,182,212,0.4)" stroke-width="1" stroke-dasharray="4 3"/>
+
+      <!-- Long chord -->
+      <line x1="110" y1="164" x2="410" y2="164" stroke="#10b981" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.7"/>
+
+      <!-- Tangent length arrow -->
+      <line x1="110" y1="164" x2="260" y2="56" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr)" opacity="0.6"/>
+
+      <!-- External distance line -->
+      <line x1="260" y1="56" x2="260" y2="90" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.8"/>
+
+      <!-- Middle ordinate -->
+      <line x1="260" y1="90" x2="260" y2="164" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.8"/>
+
+      <!-- Key Points -->
+      <!-- PC (TC) -->
+      <circle cx="110" cy="164" r="6" fill="#f59e0b"/>
+      <text x="78" y="158" fill="#f59e0b" font-size="12" font-weight="bold" font-family="Space Grotesk">PC</text>
+
+      <!-- PT (CT) -->
+      <circle cx="410" cy="164" r="6" fill="#f59e0b"/>
+      <text x="418" y="158" fill="#f59e0b" font-size="12" font-weight="bold" font-family="Space Grotesk">PT</text>
+
+      <!-- PI -->
+      <circle cx="260" cy="56" r="5" fill="#94a3b8"/>
+      <text x="268" y="52" fill="#94a3b8" font-size="11" font-weight="bold" font-family="Space Grotesk">PI</text>
+
+      <!-- Center O -->
+      <circle cx="260" cy="270" r="5" fill="#06b6d4"/>
+      <text x="268" y="274" fill="#06b6d4" font-size="11" font-weight="bold" font-family="Space Grotesk">O (Centre)</text>
+
+      <!-- Midpoint of curve -->
+      <circle cx="260" cy="90" r="5" fill="#f59e0b"/>
+      <text x="268" y="86" fill="#f59e0b" font-size="11" font-family="Space Grotesk">Mid-arc</text>
+
+      <!-- Labels -->
+      <!-- T label -->
+      <text x="168" y="95" fill="#f59e0b" font-size="11" font-weight="bold" font-family="Courier New" transform="rotate(-35, 168, 95)">T (Tangent)</text>
+
+      <!-- R label left -->
+      <text x="162" y="228" fill="#06b6d4" font-size="11" font-family="Courier New" transform="rotate(-52, 162, 228)">R</text>
+
+      <!-- R label right -->
+      <text x="346" y="228" fill="#06b6d4" font-size="11" font-family="Courier New" transform="rotate(52, 346, 228)">R</text>
+
+      <!-- LC label -->
+      <text x="260" y="178" fill="#10b981" font-size="11" font-family="Courier New" text-anchor="middle">LC (Long Chord)</text>
+
+      <!-- E label -->
+      <text x="270" y="76" fill="#8b5cf6" font-size="11" font-family="Courier New">E</text>
+
+      <!-- M label -->
+      <text x="270" y="132" fill="#ef4444" font-size="11" font-family="Courier New">M</text>
+
+      <!-- Delta angle arc -->
+      <path d="M 230 70 A 30 30 0 0 1 290 70" fill="none" stroke="#f1f5f9" stroke-width="1" opacity="0.4"/>
+      <text x="255" y="68" fill="#f1f5f9" font-size="10" font-family="Courier New" opacity="0.6">Δ</text>
+    </svg>
+    <div class="dc">Fig 1. Complete circular curve geometry. PC = Point of Curvature (start of curve), PT = Point of Tangency (end of curve), PI = Point of Intersection, O = Centre of Circle. All six elements are shown.</div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <h2 id="key-points">Key Points on the Curve</h2>
+
+  <p>Before learning the element formulas, you need to know the three key positions on every circular curve. Surveyors set these out in the field as the primary control points:</p>
+
+  <ul>
+    <li><span class="kgold">PC</span> — <strong>Point of Curvature</strong> (also called TC — Tangent to Curve). Where the straight tangent ends and the curve begins. The first point you peg on site.</li>
+    <li><span class="kgold">PT</span> — <strong>Point of Tangency</strong> (also called CT — Curve to Tangent). Where the curve ends and the next straight tangent begins. The last point of the curve.</li>
+    <li><span class="kcyan">PI</span> — <strong>Point of Intersection</strong>. Where the two tangents would meet if extended. Often inaccessible on site (in a field, over a cliff). The PI is a calculated position, not always physically marked.</li>
+    <li><span class="kcyan">O</span> — <strong>Centre of Circle</strong>. The theoretical centre of the curve. Never physically accessible — it is a calculated geometric point used only in calculations.</li>
+  </ul>
+
+  <!-- SECTION 3 -->
+  <h2 id="all-elements">The Six Curve Elements — Full Reference</h2>
+
+  <p>Every circular curve is fully defined by just two values: the <strong>Radius (R)</strong> and the <strong>Delta angle (Δ)</strong>. From these two, all six elements are calculated. Here they are — each one explained clearly:</p>
+
+  <div class="elements-grid">
+
+    <div class="element-card">
+      <div class="el-symbol">T</div>
+      <div class="el-tag">Element 01</div>
+      <div class="el-name">Tangent Length</div>
+      <div class="el-formula">T = R · tan(Δ/2)</div>
+      <div class="el-desc">The distance from the PC (or PT) back to the PI along the tangent line. This is what you subtract from the PI chainage to get the PC chainage, and add to get the PT chainage.</div>
+    </div>
+
+    <div class="element-card">
+      <div class="el-symbol">L</div>
+      <div class="el-tag">Element 02</div>
+      <div class="el-name">Arc Length</div>
+      <div class="el-formula">L = R · Δ (radians)<br>L = π·R·Δ / 180</div>
+      <div class="el-desc">The actual curved distance from PC to PT along the arc. This is the length of road you are designing — it determines where the PT is in terms of chainage (PC chainage + L = PT chainage).</div>
+    </div>
+
+    <div class="element-card">
+      <div class="el-symbol">E</div>
+      <div class="el-tag">Element 03</div>
+      <div class="el-name">External Distance</div>
+      <div class="el-formula">E = R · (sec(Δ/2) − 1)</div>
+      <div class="el-desc">The distance from the PI to the nearest point of the curve (the mid-arc point). Useful for checking sight distance clearance — any obstruction closer than E at the PI may block a driver's view around the curve.</div>
+    </div>
+
+    <div class="element-card">
+      <div class="el-symbol">M</div>
+      <div class="el-tag">Element 04</div>
+      <div class="el-name">Middle Ordinate</div>
+      <div class="el-formula">M = R · (1 − cos(Δ/2))</div>
+      <div class="el-desc">The distance from the mid-point of the long chord to the mid-point of the arc. This is used in sight distance calculations — specifically for checking that vehicles on the inside of the curve can see ahead far enough to stop safely.</div>
+    </div>
+
+    <div class="element-card">
+      <div class="el-symbol">LC</div>
+      <div class="el-tag">Element 05</div>
+      <div class="el-name">Long Chord</div>
+      <div class="el-formula">LC = 2 · R · sin(Δ/2)</div>
+      <div class="el-desc">The straight-line distance from PC to PT across the curve. This is a useful check — you can measure the LC in the field with a tape and verify that the PC and PT have been set out correctly.</div>
+    </div>
+
+    <div class="element-card">
+      <div class="el-symbol">D</div>
+      <div class="el-tag">Element 06</div>
+      <div class="el-name">Degree of Curve</div>
+      <div class="el-formula">D = 1719.0 / R</div>
+      <div class="el-desc">The central angle subtended by a 30-metre arc (used in metric countries). Expresses "sharpness" of the curve. A large D means a tight, sharp curve. A small D means a gentle curve. Mainly used in railway and older highway design.</div>
+    </div>
+
+  </div>
+
+  <div class="callout tip">
+    <i class="fas fa-lightbulb"></i>
+    <div class="callout-body">
+      <strong>The Most Important Elements in Practice</strong>
+      <p><strong>T</strong> and <strong>L</strong> are the two you use on almost every job. T tells you where the PC and PT are in chainage. L tells you how long the curve is. E and M matter for sight distance checks. LC is your field verification tool. D is mainly for reference and railway work.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <h2 id="formulas">All Formulas — Quick Reference</h2>
+
+  <div class="formula-block">
+    <div class="fl">Complete Circular Curve Formula Set</div>
+    <code>Tangent Length:    T  = R · tan(Δ/2)</code>
+    <code>Arc Length:        L  = π · R · Δ / 180°</code>
+    <code>External Dist.:    E  = R · (1/cos(Δ/2) − 1)</code>
+    <code>Middle Ordinate:   M  = R · (1 − cos(Δ/2))</code>
+    <code>Long Chord:        LC = 2 · R · sin(Δ/2)</code>
+    <code>Degree of Curve:   D  = 1719.0 / R</code>
+    <div class="fn">Δ must be in degrees for the last formula and converted to radians (Δ × π/180) for the arc length formula.</div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <h2 id="worked-example">Worked Example — R = 200 m, Δ = 40°</h2>
+
+  <p>Let us work through a real example. A road alignment has two tangents meeting at a PI. The designer has chosen a radius of <strong>200 metres</strong>, and the measured deflection angle is <strong>40°00'00"</strong>. Calculate all six curve elements and determine the chainage of PC and PT, given that the PI is at chainage <strong>1+480.000</strong>.</p>
+
+  <h3>Step 1 — Calculate Tangent Length (T)</h3>
+  <p>T = R · tan(Δ/2) = 200 · tan(20°) = 200 × 0.36397 = <strong>72.794 m</strong></p>
+
+  <h3>Step 2 — Calculate Arc Length (L)</h3>
+  <p>L = π × 200 × 40 / 180 = <strong>139.626 m</strong></p>
+
+  <h3>Step 3 — Calculate External Distance (E)</h3>
+  <p>E = 200 × (1/cos(20°) − 1) = 200 × (1.06418 − 1) = 200 × 0.06418 = <strong>12.835 m</strong></p>
+
+  <h3>Step 4 — Calculate Middle Ordinate (M)</h3>
+  <p>M = 200 × (1 − cos(20°)) = 200 × (1 − 0.93969) = 200 × 0.06031 = <strong>12.061 m</strong></p>
+
+  <h3>Step 5 — Calculate Long Chord (LC)</h3>
+  <p>LC = 2 × 200 × sin(20°) = 400 × 0.34202 = <strong>136.808 m</strong></p>
+
+  <h3>Step 6 — Calculate Degree of Curve (D)</h3>
+  <p>D = 1719.0 / 200 = <strong>8.595°</strong></p>
+
+  <h3>Step 7 — Calculate Chainages of PC and PT</h3>
+  <p>Chainage of PC = PI − T = 1480.000 − 72.794 = <strong>Ch. 1+407.206</strong><br>
+  Chainage of PT = PC + L = 1407.206 + 139.626 = <strong>Ch. 1+546.832</strong></p>
+
+  <div class="ex-table-wrap">
+    <table class="ex-table">
+      <thead>
+        <tr><th>Element</th><th>Formula</th><th>Result</th><th>Meaning</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Radius (R)</td><td>Given</td><td>200.000 m</td><td>Designer's choice</td></tr>
+        <tr><td>Delta (Δ)</td><td>Measured</td><td>40° 00' 00"</td><td>Road turns 40°</td></tr>
+        <tr><td>Tangent Length (T)</td><td>R·tan(Δ/2)</td><td>72.794 m</td><td>PI to PC/PT distance</td></tr>
+        <tr><td>Arc Length (L)</td><td>πRΔ/180</td><td>139.626 m</td><td>Curved road length</td></tr>
+        <tr><td>External Distance (E)</td><td>R(sec(Δ/2)−1)</td><td>12.835 m</td><td>PI to arc clearance</td></tr>
+        <tr><td>Middle Ordinate (M)</td><td>R(1−cos(Δ/2))</td><td>12.061 m</td><td>Sight distance check</td></tr>
+        <tr><td>Long Chord (LC)</td><td>2R·sin(Δ/2)</td><td>136.808 m</td><td>PC to PT straight</td></tr>
+        <tr><td>Degree of Curve (D)</td><td>1719/R</td><td>8.595°</td><td>Curve sharpness</td></tr>
+        <tr><td>Chainage of PC</td><td>PI − T</td><td>Ch. 1+407.206</td><td>Curve starts here</td></tr>
+        <tr><td>Chainage of PT</td><td>PC + L</td><td>Ch. 1+546.832</td><td>Curve ends here</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 6 -->
+  <h2 id="setting-out">Setting Out a Circular Curve in the Field</h2>
+
+  <p>Calculating the elements is only half the job. The other half is actually getting those numbers onto the ground. There are several setting-out methods, but the two most common are the <strong>deflection angle method</strong> and the <strong>total station offset method</strong>.</p>
+
+  <h3>Method 1 — Deflection Angle (Rankine's Method)</h3>
+
+  <p>This is the classical method, used before total stations became common. The instrument is set up at the PC and the curve is set out point by point using deflection angles and chord lengths. It is still used today for small curves and as a check method.</p>
+
+  <p>The deflection angle to any point on the curve is exactly <strong>half the central angle</strong> to that point. For a chord of length <em>c</em> on a curve of radius R:</p>
+
+  <div class="formula-block">
+    <div class="fl">Deflection Angle Method</div>
+    <code>Deflection angle δ  =  (c / 2R) × (180/π)  degrees</code>
+    <code>For equal chords:   δ  =  1719.0 × c / R   degrees (approx.)</code>
+    <div class="fn">Set up Total Station at PC, back-sight PI (set to 0°00'00"). Turn to each deflection angle and measure the chord distance to locate each curve point.</div>
+  </div>
+
+  <p>Here is a setting-out table for our worked example (R=200 m, Δ=40°), using 20-metre chords from the PC:</p>
+
+  <div class="so-table-wrap">
+    <table class="so-table">
+      <thead>
+        <tr><th>Point</th><th>Chainage</th><th>Arc from PC (m)</th><th>Chord (m)</th><th>Deflection δ</th><th>Cumul. Deflection</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>PC</td><td>1+407.206</td><td>0.000</td><td>—</td><td>0° 00' 00"</td><td>0° 00' 00"</td></tr>
+        <tr><td>P1</td><td>1+420.000</td><td>12.794</td><td>12.789</td><td>1° 50' 07"</td><td>1° 50' 07"</td></tr>
+        <tr><td>P2</td><td>1+440.000</td><td>32.794</td><td>19.998</td><td>2° 51' 53"</td><td>4° 42' 00"</td></tr>
+        <tr><td>P3</td><td>1+460.000</td><td>52.794</td><td>19.998</td><td>2° 51' 53"</td><td>7° 33' 53"</td></tr>
+        <tr><td>P4</td><td>1+480.000</td><td>72.794</td><td>19.998</td><td>2° 51' 53"</td><td>10° 25' 46"</td></tr>
+        <tr><td>P5</td><td>1+500.000</td><td>92.794</td><td>19.998</td><td>2° 51' 53"</td><td>13° 17' 39"</td></tr>
+        <tr><td>P6</td><td>1+520.000</td><td>112.794</td><td>19.998</td><td>2° 51' 53"</td><td>16° 09' 32"</td></tr>
+        <tr><td>P7</td><td>1+540.000</td><td>132.794</td><td>19.998</td><td>2° 51' 53"</td><td>19° 01' 25"</td></tr>
+        <tr><td>PT</td><td>1+546.832</td><td>139.626</td><td>6.831</td><td>0° 58' 35"</td><td>20° 00' 00"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <i class="fas fa-lightbulb"></i>
+    <div class="callout-body">
+      <strong>Final Check</strong>
+      <p>The cumulative deflection at the PT must equal exactly <strong>Δ/2</strong>. In our example: 40°/2 = 20°00'00". If your table gives exactly this value, your setting-out data is correct. If not, find the arithmetic error before going to site.</p>
+    </div>
+  </div>
+
+  <h3>Method 2 — Total Station Coordinates (Most Common Today)</h3>
+
+  <p>The modern approach. Once you have the curve data, you calculate the <strong>E,N coordinates</strong> of every point along the curve using the geometry, then load them into your total station or data collector. The instrument sets out each point by coordinates — fast, accurate, and usable from any instrument position, not just the PC.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <strong>Calculate PC Coordinates</strong>
+        <p>Using the PI coordinates, the bearing of the back tangent, and the tangent length T — calculate the E,N coordinates of the PC. This is a standard Bearing &amp; Distance calculation.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <strong>Calculate Centre Coordinates</strong>
+        <p>The centre O is perpendicular to the tangent at PC, at a distance R. Knowing the tangent bearing, rotate 90° (left or right depending on curve direction) and travel distance R to find O.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <strong>Compute Curve Points by Central Angle</strong>
+        <p>For each point along the curve at arc distance s from PC, the central angle α = (s/R) × (180/π). The point coordinates are calculated as: E = Eo + R·sin(bearing to PC + α), N = No + R·cos(bearing to PC + α).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <strong>Set Out from Known Control</strong>
+        <p>Load all coordinate points into the total station. Set up on any known control point with a clear view of the site, orient using a back-sight, then set out each curve point by coordinates — just stake each point as it comes up on screen.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <h2 id="radius-selection">How is Radius Chosen?</h2>
+
+  <p>A common question from beginners: <em>where does the radius come from? Who decides it?</em> The answer is the design engineer — but it is not a free choice. The minimum radius for any curve depends on the <strong>design speed</strong> of the road and the amount of <strong>superelevation</strong> (road banking) that is acceptable.</p>
+
+  <p>The governing formula comes from vehicle dynamics — the relationship between speed, radius, superelevation and side friction:</p>
+
+  <div class="formula-block">
+    <div class="fl">Minimum Radius Formula</div>
+    <code>R_min = V² / (127 × (e_max + f_max))</code>
+    <div class="fn">V = design speed in km/h &nbsp;|&nbsp; e_max = maximum superelevation (e.g., 0.07 for 7%) &nbsp;|&nbsp; f_max = maximum side friction factor (depends on speed, typically 0.10–0.16)</div>
+  </div>
+
+  <p>For example, at a design speed of 100 km/h with e=0.07 and f=0.12: R_min = 10000 / (127 × 0.19) = <strong>415 m</strong>. No curve on this road may have a radius less than 415 m. In practice, designers use standard tables from national design manuals (AASHTO, UK Design Manual for Roads, etc.) rather than calculating this each time.</p>
+
+  <!-- SECTION 8 -->
+  <h2 id="use-calculator">Skip the Math — Use the Free Calculator</h2>
+
+  <p>You do not need to calculate all six elements by hand every time. The <a href="index.html">Circular Curve Calculator</a> on Akhtar Engineering Hub does all of it instantly — enter R and Δ and get T, L, E, M, LC and D in one click. Free, no signup, works on any device.</p>
+
+  <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(217,119,6,0.04));border:1px solid rgba(245,158,11,0.2);border-radius:16px;padding:28px;text-align:center;margin:32px 0;">
+    <div style="font-size:36px;margin-bottom:12px;">⭕</div>
+    <h3 style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;">Try the Free Circular Curve Calculator</h3>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:20px;max-width:460px;margin-left:auto;margin-right:auto;">Enter any Radius and Delta angle. Get Tangent Length, Arc Length, External Distance, Middle Ordinate, Long Chord and Degree of Curve instantly.</p>
+    <a href="index.html" style="display:inline-block;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:15px;font-weight:700;padding:14px 28px;border-radius:100px;text-decoration:none;">Open Curve Calculator <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
+  </div>
+
+  <!-- Conclusion -->
+  <h2 id="conclusion">Conclusion</h2>
+
+  <p>Circular curves are at the heart of every road and railway alignment. Understanding the six elements — T, L, E, M, LC and D — is not just academic knowledge. These are the numbers that get pegged into the ground, checked with a tape, and verified by the resident engineer before any construction proceeds.</p>
+
+  <p>The two you will use most often are T (to locate the PC and PT by chainage) and L (to determine the curve length and PT chainage). The rest matter for sight distance design, field checks and reporting. Learn them all, and use the calculator to verify your hand calculations.</p>
+
+  <p>In the next article, we cover <strong>Spiral (Transition) Curves</strong> — the gentle lead-in curves placed before a circular curve to gradually introduce the superelevation and centrifugal force, rather than subjecting drivers to an abrupt change from straight to circle.</p>
+
+</article>
+
+<!-- Sidebar -->
+<aside class="article-sidebar">
+  <div class="sidebar-card">
+    <h4><i class="fas fa-list"></i> Table of Contents</h4>
+    <ul class="toc-list">
+      <li><a href="#what-is-curve">What is a Circular Curve?</a></li>
+      <li><a href="#key-points">Key Points (PC, PT, PI)</a></li>
+      <li><a href="#all-elements">All Six Curve Elements</a></li>
+      <li><a href="#formulas">Formula Quick Reference</a></li>
+      <li><a href="#worked-example">Worked Example (R=200, Δ=40°)</a></li>
+      <li><a href="#setting-out">Setting Out in the Field</a></li>
+      <li><a href="#radius-selection">How Radius is Chosen</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-cta">
+    <h4>⭕ Curve Calculator</h4>
+    <p>Enter R and Δ — get all six elements instantly. Free.</p>
+    <a href="index.html">Open Calculator →</a>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-info-circle"></i> Article Details</h4>
+    <div style="font-size:13px;color:var(--text-sub);">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Category</span><span style="color:var(--gold);font-weight:600;">Road Design</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Level</span><span style="color:var(--cyan);font-weight:600;">Intermediate</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Read Time</span><span>11 min</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>Updated</span><span>May 2026</span></div>
+    </div>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-book-open"></i> Related Articles</h4>
+    <ul class="related-list">
+      <li><a href="what-is-surveying.html">What is Surveying? Complete Beginner's Guide</a></li>
+      <li><a href="rl-calculation-hi-method.html">RL Calculation: The HI Method</a></li>
+      <li><a href="index.html">Spiral / Transition Curves Explained</a></li>
+      <li><a href="index.html">Vertical Curves: Sag vs Crest &amp; K-Value</a></li>
+      <li><a href="index.html">Traverse Accuracy — What is 1:10000?</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-tags"></i> Tags</h4>
+    <div class="tag-cloud">
+      <span class="tag-pill">Circular Curve</span>
+      <span class="tag-pill">Road Design</span>
+      <span class="tag-pill">Tangent Length</span>
+      <span class="tag-pill">Arc Length</span>
+      <span class="tag-pill">Delta Angle</span>
+      <span class="tag-pill">Setting Out</span>
+      <span class="tag-pill">Horizontal Alignment</span>
+    </div>
+  </div>
+</aside>
+
+</div>
+
+<!-- Article Footer -->
+<div class="article-footer">
+  <div class="article-footer-inner">
+    <div class="author-card">
+      <div class="author-avatar"><i class="fas fa-road"></i></div>
+      <div class="author-info">
+        <h4>Akhtar Engineering Hub</h4>
+        <p>Written by a professional road design and surveying engineer with hands-on experience in horizontal alignment design, circular and spiral curves, and field setting-out using total stations. Every example in this article is based on real project work.</p>
+        <a href="index.html">Visit the Hub →</a>
+      </div>
+    </div>
+    <div class="nav-articles">
+      <a href="rl-calculation-hi-method.html" class="nav-article-link">
+        <span>← Previous Article</span>
+        <strong>RL Calculation: The HI Method</strong>
+      </a>
+      <a href="index.html" class="nav-article-link">
+        <span>Browse All</span>
+        <strong>All Articles on the Blog →</strong>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <p>&copy; 2026 <a href="index.html">Akhtar Engineering Hub</a> &nbsp;|&nbsp; Learn &bull; Build &bull; Solve &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="index.html">Privacy Policy</a></p>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+window.addEventListener('scroll',function(){
+  var doc=document.documentElement;
+  var top=doc.scrollTop||document.body.scrollTop;
+  var hgt=doc.scrollHeight-doc.clientHeight;
+  var bar=document.getElementById('progressBar');
+  if(bar) bar.style.width=(hgt>0?(top/hgt)*100:0)+'%';
+  var btn=document.getElementById('backTop');
+  if(btn) btn.classList.toggle('show',top>400);
+});
+var tocLinks=document.querySelectorAll('.toc-list a');
+var sections=[];
+tocLinks.forEach(function(l){
+  var id=l.getAttribute('href').replace('#','');
+  var el=document.getElementById(id);
+  if(el) sections.push({id:id,el:el,link:l});
+});
+window.addEventListener('scroll',function(){
+  var scrollY=window.scrollY+100;
+  var current='';
+  sections.forEach(function(s){if(s.el.offsetTop<=scrollY)current=s.id;});
+  tocLinks.forEach(function(l){l.style.color='';l.style.background='';});
+  sections.forEach(function(s){
+    if(s.id===current){s.link.style.color='var(--gold)';s.link.style.background='rgba(245,158,11,0.08)';}
+  });
+});
+</script>
+</body>
+</html>
