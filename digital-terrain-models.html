@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Digital Terrain Models: How Contours and Volumes Are Calculated | Akhtar Engineering Hub</title>
+<meta name="description" content="Complete guide to Digital Terrain Models — how survey points become a DTM, TIN triangulation, Delaunay algorithm, contour interpolation, cut-and-fill volume calculation methods and practical data collection tips.">
+<meta name="keywords" content="digital terrain model, DTM, TIN triangulation, Delaunay triangulation, contour interpolation, cut and fill volume, earthworks volume, terrain model, survey DTM, grid volume calculation, prismoidal formula">
+<meta name="author" content="Akhtar Engineering Hub">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://akhtarengineeringhub.com/digital-terrain-models.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://akhtarengineeringhub.com/digital-terrain-models.html">
+<meta property="og:title" content="Digital Terrain Models: How Contours and Volumes Are Calculated">
+<meta property="og:description" content="From survey points to DTM — TIN triangulation, contour interpolation, cut-and-fill volumes and practical data collection tips explained.">
+<meta property="og:site_name" content="Akhtar Engineering Hub">
+<meta property="article:published_time" content="2026-05-03">
+<meta property="article:section" content="Surveying">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Digital Terrain Models: How Contours and Volumes Are Calculated">
+<meta name="twitter:description" content="TIN triangulation, contour interpolation, cut-and-fill volumes and DTM data collection tips — complete guide.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Digital Terrain Models: How Contours and Volumes Are Calculated",
+  "description":"Complete guide to Digital Terrain Models — TIN triangulation, contour interpolation, cut-and-fill volume methods and practical survey tips.",
+  "author":{"@type":"Person","name":"Akhtar Engineering Hub"},
+  "publisher":{"@type":"Organization","name":"Akhtar Engineering Hub"},
+  "datePublished":"2026-05-03",
+  "dateModified":"2026-05-03",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://akhtarengineeringhub.com/digital-terrain-models.html"},
+  "articleSection":"Surveying",
+  "keywords":"DTM, TIN, digital terrain model, contours, cut and fill, earthworks volume, Delaunay triangulation"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#050d1a;--bg2:#0a1628;--bg3:#0e1f38;
+  --card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);--text:#f1f5f9;--text-sub:#94a3b8;
+  --gold:#f59e0b;--amber:#d97706;--cyan:#06b6d4;--green:#10b981;--red:#ef4444;--purple:#8b5cf6;
+  --accent:#f59e0b;
+  --nav-bg:rgba(5,13,26,0.95);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:10px;}
+
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--amber));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;}
+.nav-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--text);}
+.nav-title span{display:block;font-size:10px;color:var(--accent);font-weight:500;}
+.nav-right{display:flex;gap:12px;align-items:center;}
+.nav-link-btn{padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600;background:var(--card);border:1px solid var(--border2);color:var(--text-sub);transition:all .2s;}
+.nav-link-btn:hover{text-decoration:none;color:var(--text);}
+.nav-link-btn.primary{background:linear-gradient(135deg,var(--gold),var(--amber));color:#fff;border-color:transparent;}
+.nav-link-btn.primary:hover{opacity:.9;text-decoration:none;}
+
+.article-hero{margin-top:60px;padding:60px 24px 50px;background:linear-gradient(135deg,#050d1a 0%,#0a1628 60%,#050d1a 100%);border-bottom:1px solid var(--border);text-align:center;position:relative;overflow:hidden;}
+.article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(245,158,11,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.article-hero-inner{position:relative;z-index:1;max-width:820px;margin:0 auto;}
+.article-cat{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:5px 14px;border-radius:100px;margin-bottom:20px;text-transform:uppercase;}
+.article-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,46px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:16px;}
+.article-hero h1 span{color:var(--gold);}
+.article-hero .intro{font-size:17px;color:var(--text-sub);max-width:660px;margin:0 auto 24px;line-height:1.7;}
+.article-meta{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--text-sub);}
+.article-meta span{display:flex;align-items:center;gap:6px;}
+.article-meta i{color:var(--gold);}
+
+.article-layout{max-width:1100px;margin:0 auto;padding:60px 24px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+.article-body{min-width:0;}
+.article-sidebar{position:sticky;top:80px;}
+
+.article-body h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:800;margin:44px 0 14px;color:var(--text);letter-spacing:-0.5px;border-left:4px solid var(--gold);padding-left:16px;}
+.article-body h3{font-size:18px;font-weight:700;margin:28px 0 10px;color:var(--gold);}
+.article-body p{font-size:16px;color:var(--text-sub);margin-bottom:18px;line-height:1.85;}
+.article-body strong{color:var(--text);font-weight:700;}
+.article-body ul,.article-body ol{margin:12px 0 20px 0;padding-left:0;list-style:none;}
+.article-body ul li,.article-body ol li{font-size:15px;color:var(--text-sub);padding:7px 0 7px 30px;border-bottom:1px solid var(--border);position:relative;line-height:1.6;}
+.article-body ul li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--gold);font-size:11px;position:absolute;left:6px;top:10px;}
+.article-body ol{counter-reset:olc;}
+.article-body ol li{counter-increment:olc;}
+.article-body ol li::before{content:counter(olc);background:var(--gold);color:#fff;font-size:11px;font-weight:800;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;left:0;top:9px;}
+.article-body li:last-child{border-bottom:none;}
+
+.callout{border-radius:12px;padding:20px 22px;margin:24px 0;display:flex;gap:16px;align-items:flex-start;}
+.callout.info{background:rgba(245,158,11,0.07);border-left:4px solid var(--gold);}
+.callout.tip{background:rgba(16,185,129,0.07);border-left:4px solid var(--green);}
+.callout.warn{background:rgba(245,158,11,0.07);border-left:4px solid var(--gold);}
+.callout.danger{background:rgba(239,68,68,0.07);border-left:4px solid var(--red);}
+.callout.cyan{background:rgba(6,182,212,0.07);border-left:4px solid var(--cyan);}
+.callout i{font-size:18px;margin-top:2px;flex-shrink:0;}
+.callout.info i,.callout.warn i{color:var(--gold);}
+.callout.tip i{color:var(--green);}
+.callout.danger i{color:var(--red);}
+.callout.cyan i{color:var(--cyan);}
+.callout-body strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.callout-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+.pull-quote{border-left:3px solid var(--gold);background:rgba(245,158,11,0.05);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0;font-size:18px;font-style:italic;font-weight:600;color:var(--text);line-height:1.6;}
+
+.ko{display:inline;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--gold);}
+.kg{display:inline;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--green);}
+.kc{display:inline;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--cyan);}
+.kr{display:inline;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--red);}
+.kp{display:inline;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--purple);}
+
+.formula-block{background:var(--bg3);border:1px solid rgba(245,158,11,0.22);border-radius:14px;padding:24px 28px;margin:24px 0;border-left:4px solid var(--gold);}
+.formula-block .fl{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
+.formula-block code{font-family:'Courier New',monospace;font-size:14px;font-weight:700;color:var(--text);background:rgba(255,255,255,0.04);border:1px solid var(--border2);border-radius:8px;padding:10px 16px;margin-bottom:8px;display:block;line-height:1.6;}
+.formula-block .fn{font-size:13px;color:var(--text-sub);margin-top:6px;}
+
+/* Pipeline cards */
+.pipeline{display:flex;gap:0;margin:28px 0;overflow-x:auto;}
+.pipe-step{flex:1;min-width:120px;background:var(--card);border:1px solid var(--border2);padding:18px 14px;text-align:center;position:relative;}
+.pipe-step:first-child{border-radius:14px 0 0 14px;}
+.pipe-step:last-child{border-radius:0 14px 14px 0;}
+.pipe-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:18px;font-weight:700;z-index:1;}
+.pipe-step:last-child::after{display:none;}
+.pipe-step .ps-icon{font-size:26px;margin-bottom:8px;display:block;}
+.pipe-step .ps-label{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.pipe-step p{font-size:12px;color:var(--text-sub);margin:0;line-height:1.4;}
+
+/* SVG Diagrams */
+.diagram-wrap{background:var(--bg3);border:1px solid rgba(245,158,11,0.18);border-radius:16px;padding:24px;margin:28px 0;text-align:center;}
+.diagram-wrap .dc{font-size:12px;color:var(--text-sub);margin-top:14px;font-style:italic;}
+
+/* Volume methods comparison */
+.vol-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0;}
+.vol-card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:20px;transition:all .2s;}
+.vol-card:hover{border-color:rgba(245,158,11,0.3);}
+.vol-card .vc-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:10px;}
+.vol-card.grid .vc-badge{background:rgba(6,182,212,0.12);color:var(--cyan);}
+.vol-card.prism .vc-badge{background:rgba(16,185,129,0.12);color:var(--green);}
+.vol-card.tin .vc-badge{background:rgba(245,158,11,0.12);color:var(--gold);}
+.vol-card h4{font-size:15px;font-weight:800;color:var(--text);margin-bottom:8px;}
+.vol-card p{font-size:13px;color:var(--text-sub);line-height:1.6;margin-bottom:10px;}
+.vol-card .vc-use{font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;display:inline-block;}
+.vol-card.grid .vc-use{background:rgba(6,182,212,0.08);color:var(--cyan);}
+.vol-card.prism .vc-use{background:rgba(16,185,129,0.08);color:var(--green);}
+.vol-card.tin .vc-use{background:rgba(245,158,11,0.08);color:var(--gold);}
+
+/* Cut-fill table */
+.cf-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border2);margin:24px 0;}
+.cf-table{width:100%;border-collapse:collapse;font-size:13px;min-width:500px;}
+.cf-table thead tr{background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(217,119,6,0.05));}
+.cf-table th{padding:11px 14px;text-align:center;font-weight:700;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border2);}
+.cf-table th:first-child,.cf-table th:nth-child(2){text-align:left;}
+.cf-table td{padding:10px 14px;text-align:center;border-bottom:1px solid var(--border);color:var(--text-sub);font-size:13px;font-family:'Courier New',monospace;}
+.cf-table td:first-child{text-align:left;font-family:'Inter',sans-serif;font-weight:700;color:var(--text);}
+.cf-table td:nth-child(2){text-align:left;font-family:'Courier New',monospace;}
+.cf-table .cut{color:var(--red);font-weight:700;}
+.cf-table .fill{color:var(--green);font-weight:700;}
+.cf-table .bal{color:var(--gold);font-weight:700;}
+.cf-table tfoot td{border-top:2px solid var(--border2);background:rgba(255,255,255,0.02);font-weight:700;color:var(--text);}
+.cf-table tr:last-child td{border-bottom:none;}
+.cf-table tr:hover td{background:rgba(245,158,11,0.03);}
+
+/* Steps */
+.steps{margin:24px 0;}
+.step{display:flex;gap:18px;margin-bottom:14px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;transition:all .2s;}
+.step:hover{border-color:var(--border2);}
+.step-num{min-width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--amber));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff;flex-shrink:0;}
+.step-body strong{display:block;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.step-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+/* Tips grid */
+.tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+.tip-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;}
+.tip-card .tch{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.tip-card .tci{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:rgba(245,158,11,0.1);}
+.tip-card .tcl{font-size:13px;font-weight:700;color:var(--gold);}
+.tip-card p{font-size:13px;color:var(--text-sub);line-height:1.6;margin:0;}
+
+/* Sidebar */
+.sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:20px;}
+.sidebar-card h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.sidebar-card h4 i{color:var(--gold);}
+.toc-list{list-style:none;}
+.toc-list li{padding:0;border:none;}
+.toc-list li::before{display:none;}
+.toc-list li a{display:block;font-size:13px;color:var(--text-sub);padding:7px 10px;border-radius:6px;transition:all .2s;}
+.toc-list li a:hover{background:rgba(245,158,11,0.08);color:var(--gold);text-decoration:none;}
+.related-list{list-style:none;}
+.related-list li{padding:0;border:none;}
+.related-list li::before{display:none;}
+.related-list li a{display:block;font-size:13px;color:var(--text-sub);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.4;transition:color .2s;}
+.related-list li:last-child a{border-bottom:none;}
+.related-list li a:hover{color:var(--gold);text-decoration:none;}
+.sidebar-cta{background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(217,119,6,0.05));border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:22px;margin-bottom:20px;text-align:center;}
+.sidebar-cta h4{font-size:15px;font-weight:700;margin-bottom:8px;}
+.sidebar-cta p{font-size:13px;color:var(--text-sub);margin-bottom:16px;line-height:1.5;}
+.sidebar-cta a{display:block;background:linear-gradient(135deg,var(--gold),var(--amber));color:#fff;font-size:13px;font-weight:700;padding:11px;border-radius:8px;text-decoration:none;}
+.sidebar-cta a:hover{opacity:.9;}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+.tag-pill{padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;background:var(--bg3);border:1px solid var(--border2);color:var(--text-sub);}
+
+.progress-bar{position:fixed;top:60px;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--amber));z-index:200;transition:width .1s;}
+.back-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer;box-shadow:0 4px 20px rgba(245,158,11,0.4);opacity:0;transition:all .3s;z-index:200;border:none;}
+.back-top.show{opacity:1;}
+
+.article-footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 24px;}
+.article-footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+.author-card{display:flex;gap:16px;align-items:flex-start;}
+.author-avatar{width:60px;height:60px;background:linear-gradient(135deg,var(--gold),var(--amber));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;flex-shrink:0;}
+.author-info h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.author-info p{font-size:13px;color:var(--text-sub);line-height:1.6;}
+.author-info a{font-size:13px;font-weight:600;margin-top:10px;display:inline-block;color:var(--gold);}
+.nav-articles{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
+.nav-article-link{display:flex;flex-direction:column;align-items:flex-end;text-align:right;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;transition:all .2s;}
+.nav-article-link:hover{border-color:var(--gold);text-decoration:none;}
+.nav-article-link span{font-size:11px;color:var(--text-sub);}
+.nav-article-link strong{font-size:13px;color:var(--text);margin-top:2px;}
+
+.page-footer{background:var(--bg);border-top:1px solid var(--border);padding:24px;text-align:center;font-size:13px;color:var(--text-sub);}
+.page-footer a{color:var(--gold);}
+
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;}
+  .article-sidebar{display:none;}
+  .article-footer-inner{grid-template-columns:1fr;}
+  .nav-articles{align-items:flex-start;}
+  .nav-article-link{align-items:flex-start;text-align:left;}
+  .vol-methods{grid-template-columns:1fr;}
+  .tips-grid{grid-template-columns:1fr;}
+  .pipeline{flex-direction:column;}
+  .pipe-step{border-radius:0;border-left:3px solid var(--gold);}
+  .pipe-step:first-child{border-radius:14px 14px 0 0;}
+  .pipe-step:last-child{border-radius:0 0 14px 14px;}
+  .pipe-step::after{content:'↓';right:auto;left:50%;top:auto;bottom:-14px;transform:translateX(-50%);}
+}
+@media(max-width:580px){.article-meta{gap:12px;}}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-icon"><i class="fas fa-mountain"></i></div>
+    <div class="nav-title">Akhtar<span>Engineering Hub</span></div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link-btn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+    <a href="index.html" class="nav-link-btn primary"><i class="fas fa-calculator"></i> Calculators</a>
+  </div>
+</header>
+
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat"><i class="fas fa-mountain"></i> Surveying &nbsp;|&nbsp; Earthworks &amp; Terrain</div>
+    <h1>Digital Terrain Models:<br><span>How Contours and Volumes Are Calculated</span></h1>
+    <p class="intro">A Digital Terrain Model turns a scattered cloud of survey points into a mathematical surface that can generate contours, calculate earthwork volumes and answer questions about any point on the ground. Understanding how this works makes you a better surveyor and a better earthworks engineer.</p>
+    <div class="article-meta">
+      <span><i class="fas fa-user-tie"></i> Akhtar Engineering Hub</span>
+      <span><i class="fas fa-calendar-alt"></i> 3 May 2026</span>
+      <span><i class="fas fa-clock"></i> 13 min read</span>
+      <span><i class="fas fa-layer-group"></i> Earthworks</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-layout">
+<article class="article-body">
+
+  <p>Before a single cubic metre of soil is moved on a large earthworks project, the engineer needs to know how much cut and fill is involved. Before a drainage design can be produced, the engineer needs contours showing how water will flow. Before a road alignment can be optimised, the designer needs a continuous terrain surface to work against. All of these require a <strong>Digital Terrain Model</strong> — or DTM.</p>
+
+  <p>The DTM is one of the most powerful outputs of a topographic survey. It is not a picture, not a drawing, and not a point cloud. It is a <em>mathematical surface</em> that can be queried at any location, used in volume calculations, and rendered into any contour interval the engineer needs. This article explains how a DTM is built from survey data, how contours are generated, and how volumes are calculated from it.</p>
+
+  <div class="callout info">
+    <i class="fas fa-info-circle"></i>
+    <div class="callout-body">
+      <strong>What This Article Covers</strong>
+      <p>What a DTM is and how it differs from a DSM &mdash; the survey-to-DTM pipeline &mdash; TIN triangulation and the Delaunay algorithm &mdash; how contours are interpolated &mdash; three volume calculation methods (grid, prismoidal, TIN) &mdash; a worked cut-and-fill example &mdash; practical data collection tips &mdash; and common mistakes.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2 id="what-is-dtm">What Exactly is a DTM?</h2>
+
+  <p>The term <strong>Digital Terrain Model (DTM)</strong> refers to a digital representation of the bare-earth surface — the ground, without trees, buildings or other surface features. A closely related term is <strong>Digital Surface Model (DSM)</strong>, which includes everything above the ground: buildings, trees, bridges. The DTM strips all of that away to show only the terrain.</p>
+
+  <ul>
+    <li><span class="ko">DTM</span> — Bare earth surface. Represents the ground. Used for earthworks, drainage design, flood modelling, road design</li>
+    <li><span class="kc">DSM</span> — All surfaces including buildings and vegetation. Used for line-of-sight analysis, urban planning, photogrammetry outputs</li>
+    <li><span class="kg">DEM</span> — Digital Elevation Model. Often used interchangeably with DTM, but technically a broader term that includes both DSM and DTM</li>
+    <li><span class="kp">TIN</span> — Triangulated Irregular Network. The mathematical structure most commonly used to represent a DTM in engineering software</li>
+  </ul>
+
+  <p>In construction surveying, when engineers say "the DTM," they almost always mean a TIN surface built from total station or GPS survey points, representing the bare ground.</p>
+
+  <div class="pull-quote">
+    "The DTM is the digital twin of the ground — once you have it, you can answer any terrain question without going back to the field."
+  </div>
+
+  <!-- SECTION 2 -->
+  <h2 id="pipeline">From Survey Points to DTM — The Pipeline</h2>
+
+  <div class="pipeline">
+    <div class="pipe-step">
+      <span class="ps-icon">📡</span>
+      <div class="ps-label">Field Survey</div>
+      <p>Total station or GNSS collects E, N, H at terrain points</p>
+    </div>
+    <div class="pipe-step">
+      <span class="ps-icon">🗄️</span>
+      <div class="ps-label">Point Cloud</div>
+      <p>Raw XYZ data — scattered, unstructured survey shots</p>
+    </div>
+    <div class="pipe-step">
+      <span class="ps-icon">🔺</span>
+      <div class="ps-label">TIN Build</div>
+      <p>Delaunay triangulation connects points into triangles</p>
+    </div>
+    <div class="pipe-step">
+      <span class="ps-icon">〰️</span>
+      <div class="ps-label">Contours</div>
+      <p>Interpolated from TIN edges at any interval</p>
+    </div>
+    <div class="pipe-step">
+      <span class="ps-icon">📦</span>
+      <div class="ps-label">Volumes</div>
+      <p>Compared with design surface for cut/fill</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <h2 id="tin">TIN Triangulation — How the Surface is Built</h2>
+
+  <p>The most common mathematical structure for representing a DTM in engineering software is the <strong>Triangulated Irregular Network (TIN)</strong>. A TIN connects survey points with triangular faces to form a continuous surface. The key properties of a TIN are:</p>
+
+  <ul>
+    <li>Every survey point is an exact vertex — the TIN passes through every measured point precisely</li>
+    <li>The surface between points is defined by the flat triangular face — it is a linear interpolation within each triangle</li>
+    <li>No point in the survey area is further than one triangle away from a measured value</li>
+    <li>The triangle sizes adapt to the density of survey data — closely spaced points in detailed areas, larger triangles where the terrain is smooth and fewer shots were taken</li>
+  </ul>
+
+  <h3>The Delaunay Triangulation Algorithm</h3>
+
+  <p>Given a set of points, there are many ways to connect them into triangles. The <strong>Delaunay triangulation</strong> is the one that engineering software almost universally uses, because it produces the "best" triangles in a specific geometric sense: it maximises the minimum angle of all triangles, which means it avoids very long, thin slivers that interpolate poorly.</p>
+
+  <p>The mathematical property that defines Delaunay triangulation is the <strong>circumcircle criterion</strong>: for any triangle in the network, the circumscribed circle (passing through all three vertices) contains no other survey point in its interior. If you find a quadrilateral (two adjacent triangles) that violates this rule, you "flip" the shared edge to create two new triangles that satisfy it. This process repeats until all triangles satisfy the criterion.</p>
+
+  <!-- TIN SVG Diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;">
+      <rect width="520" height="260" fill="#0e1f38" rx="10"/>
+
+      <!-- Left panel: raw points -->
+      <text x="130" y="30" fill="#f59e0b" font-size="12" font-weight="bold" font-family="Space Grotesk" text-anchor="middle">1. Survey Points</text>
+
+      <!-- Survey points scattered -->
+      <circle cx="60" cy="80" r="4" fill="#f59e0b"/>
+      <circle cx="120" cy="60" r="4" fill="#f59e0b"/>
+      <circle cx="180" cy="90" r="4" fill="#f59e0b"/>
+      <circle cx="80" cy="130" r="4" fill="#f59e0b"/>
+      <circle cx="150" cy="150" r="4" fill="#f59e0b"/>
+      <circle cx="200" cy="120" r="4" fill="#f59e0b"/>
+      <circle cx="100" cy="190" r="4" fill="#f59e0b"/>
+      <circle cx="170" cy="200" r="4" fill="#f59e0b"/>
+      <circle cx="60" cy="200" r="4" fill="#f59e0b"/>
+      <circle cx="210" cy="175" r="4" fill="#f59e0b"/>
+
+      <!-- Height labels -->
+      <text x="55" y="74" fill="#94a3b8" font-size="9" font-family="Courier New">45.2</text>
+      <text x="115" y="54" fill="#94a3b8" font-size="9" font-family="Courier New">48.6</text>
+      <text x="175" y="84" fill="#94a3b8" font-size="9" font-family="Courier New">46.1</text>
+      <text x="75" y="124" fill="#94a3b8" font-size="9" font-family="Courier New">43.8</text>
+      <text x="145" y="144" fill="#94a3b8" font-size="9" font-family="Courier New">42.5</text>
+      <text x="195" y="114" fill="#94a3b8" font-size="9" font-family="Courier New">44.0</text>
+      <text x="95" y="184" fill="#94a3b8" font-size="9" font-family="Courier New">40.2</text>
+      <text x="165" y="194" fill="#94a3b8" font-size="9" font-family="Courier New">39.8</text>
+      <text x="55" y="194" fill="#94a3b8" font-size="9" font-family="Courier New">41.5</text>
+
+      <!-- Divider -->
+      <line x1="250" y1="20" x2="250" y2="240" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+      <!-- Right panel: TIN -->
+      <text x="390" y="30" fill="#f59e0b" font-size="12" font-weight="bold" font-family="Space Grotesk" text-anchor="middle">2. TIN Surface</text>
+
+      <!-- Same points shifted right by 270 -->
+      <!-- Triangle edges -->
+      <polygon points="330,80 390,60 450,90" fill="rgba(245,158,11,0.06)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+      <polygon points="330,80 390,60 350,130" fill="rgba(245,158,11,0.04)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+      <polygon points="390,60 450,90 420,120" fill="rgba(245,158,11,0.06)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+      <polygon points="350,130 420,120 450,90" fill="rgba(245,158,11,0.04)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+      <polygon points="350,130 420,150 420,120" fill="rgba(245,158,11,0.06)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+      <polygon points="350,130 370,190 420,150" fill="rgba(245,158,11,0.04)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+      <polygon points="330,80 350,130 330,200" fill="rgba(245,158,11,0.06)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+      <polygon points="330,200 350,130 370,190" fill="rgba(245,158,11,0.04)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+      <polygon points="370,190 420,150 480,175" fill="rgba(245,158,11,0.06)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+      <polygon points="420,150 450,90 480,175" fill="rgba(245,158,11,0.04)" stroke="#f59e0b" stroke-width="1" opacity="0.8"/>
+
+      <!-- Vertices -->
+      <circle cx="330" cy="80" r="4" fill="#f59e0b"/>
+      <circle cx="390" cy="60" r="4" fill="#f59e0b"/>
+      <circle cx="450" cy="90" r="4" fill="#f59e0b"/>
+      <circle cx="350" cy="130" r="4" fill="#f59e0b"/>
+      <circle cx="420" cy="150" r="4" fill="#f59e0b"/>
+      <circle cx="420" cy="120" r="4" fill="#f59e0b"/>
+      <circle cx="370" cy="190" r="4" fill="#f59e0b"/>
+      <circle cx="330" cy="200" r="4" fill="#f59e0b"/>
+      <circle cx="480" cy="175" r="4" fill="#f59e0b"/>
+
+      <!-- Contour line overlay (illustrative) -->
+      <path d="M 330 105 Q 380 95 430 100 Q 460 103 480 110" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4 2" opacity="0.7"/>
+      <path d="M 330 148 Q 360 140 400 138 Q 440 137 480 145" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4 2" opacity="0.7"/>
+      <text x="484" y="114" fill="#06b6d4" font-size="10" font-family="Courier New" opacity="0.8">44m</text>
+      <text x="484" y="148" fill="#06b6d4" font-size="10" font-family="Courier New" opacity="0.8">42m</text>
+
+      <!-- Legend bottom -->
+      <line x1="270" y1="230" x2="290" y2="230" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="295" y="234" fill="#f59e0b" font-size="11" font-family="Inter">TIN edge</text>
+      <line x1="360" y1="230" x2="380" y2="230" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4 2"/>
+      <text x="385" y="234" fill="#06b6d4" font-size="11" font-family="Inter">Contour line</text>
+    </svg>
+    <div class="dc">Fig 1. Left: raw survey points with spot heights. Right: TIN surface built by Delaunay triangulation, with two contour lines interpolated across the triangle edges at 44 m and 42 m. Every survey point is an exact TIN vertex.</div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <h2 id="contours">Contour Generation — How It Works</h2>
+
+  <p>Once the TIN is built, generating contours is a geometric interpolation problem. For each triangle in the TIN, the software tests whether a given contour elevation (say, 43.000 m) passes through that triangle. If it does, the exact positions where the contour crosses the triangle edges are computed by linear interpolation:</p>
+
+  <div class="formula-block">
+    <div class="fl">Contour Intersection — Linear Interpolation on a TIN Edge</div>
+    <code>Position along edge = (H_contour − H_start) / (H_end − H_start)</code>
+    <code>E_intersection = E_start + t × (E_end − E_start)</code>
+    <code>N_intersection = N_start + t × (N_end − N_start)</code>
+    <div class="fn">Where t = position along edge (0 to 1), H_contour = desired contour elevation, H_start and H_end = heights at each end of the TIN edge. Each triangle that is crossed by the contour contributes a short line segment. All segments are joined to form the complete contour line. This is done for every triangle and every contour elevation in sequence.</div>
+  </div>
+
+  <p>This process is exact — the contours produced from a TIN are mathematically precise linear interpolations between measured survey points. The accuracy of the contours depends entirely on the density and accuracy of the original survey data, not on the contouring software.</p>
+
+  <div class="callout cyan">
+    <i class="fas fa-info-circle"></i>
+    <div class="callout-body">
+      <strong>Contour Interval — Choosing the Right Value</strong>
+      <p>The contour interval should be chosen based on the point density of the survey and the intended use. As a guide: if your average shot spacing is D metres, the minimum meaningful contour interval is approximately D × tan(slope angle). For a 10 m shot spacing on a 5% slope, the minimum useful interval is about 0.5 m. Generating 0.1 m contours from 20 m spaced shots creates false precision — the interpolation between points will not represent the real terrain at that resolution.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <h2 id="volume-methods">Volume Calculation — Three Methods</h2>
+
+  <p>Comparing an existing ground DTM with a design surface DTM gives you the cut-and-fill volumes for an earthworks project. There are three main methods:</p>
+
+  <div class="vol-methods">
+    <div class="vol-card grid">
+      <div class="vc-badge">Grid Method</div>
+      <h4>Average End Area / Grid Squares</h4>
+      <p>The site is divided into a regular grid. At each grid node, the height difference (existing − design) is read from both DTMs. The volume of each grid cell is approximated as the average height difference multiplied by the cell area.</p>
+      <p>Simple and fast. Accuracy improves with finer grid. Does not follow irregular boundaries well.</p>
+      <span class="vc-use">Best for: Large-scale earthworks, quick estimates</span>
+    </div>
+    <div class="vol-card prism">
+      <div class="vc-badge">Prismoidal Formula</div>
+      <h4>Simpson's Rule Refinement</h4>
+      <p>A correction to the average end area method that accounts for the curved nature of the surface. The prismoidal formula adds a mid-section area term that improves accuracy, particularly for curved sections.</p>
+      <p>More accurate than simple averaging. Requires additional mid-point measurements or interpolation.</p>
+      <span class="vc-use">Best for: Road sections, linear earthworks</span>
+    </div>
+    <div class="vol-card tin">
+      <div class="vc-badge">TIN vs TIN</div>
+      <h4>Surface Comparison</h4>
+      <p>Both the existing ground and the design surface are represented as TINs. The two surfaces are overlaid and the volume of the solid between them is computed exactly for each triangular prism element. This is the most accurate method.</p>
+      <p>Exact to the precision of the survey data. Handles complex boundaries and shapes.</p>
+      <span class="vc-use">Best for: All precision earthworks, final quantities</span>
+    </div>
+  </div>
+
+  <div class="formula-block">
+    <div class="fl">Grid Volume Method — Formula</div>
+    <code>h_i  =  H_existing(i)  −  H_design(i)    [at each grid node i]</code>
+    <code>V_cell  =  Cell Area × Average h of four corners</code>
+    <code>V_cell  =  (D² / 4) × (h₁ + h₂ + h₃ + h₄)</code>
+    <code>Total cut volume  =  Σ V_cell  for all cells where h > 0</code>
+    <code>Total fill volume =  Σ V_cell  for all cells where h < 0</code>
+    <div class="fn">D = grid spacing (m). h = height difference at each corner (positive = cut, negative = fill). Grid cells that straddle the zero line (some corners cut, some fill) require subdivision or interpolation of the boundary. All volume methods report gross cut and gross fill separately — the net difference is the bulk earthworks balance.</div>
+  </div>
+
+  <div class="formula-block">
+    <div class="fl">Prismoidal Formula (for linear sections)</div>
+    <code>V  =  (L / 6) × (A₁ + 4A_m + A₂)</code>
+    <div class="fn">L = length of section (m) | A₁ = cross-sectional area at start | A₂ = cross-sectional area at end | A_m = cross-sectional area at mid-point. This is Simpson's rule applied to volume — it gives exact results for prismoidal shapes (pyramids, wedges, frusta) and a very good approximation for real earthworks cross sections.</div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <h2 id="worked-example">Worked Example — Cut and Fill Volume by Grid Method</h2>
+
+  <p>A small section of road formation requires earthworks over a 20 m × 20 m area. The grid spacing is 10 m. Existing ground levels and formation (design) levels have been surveyed at each grid node. Positive difference = cut; negative = fill.</p>
+
+  <div class="cf-wrap">
+    <table class="cf-table">
+      <thead>
+        <tr><th>Grid Node</th><th>Easting</th><th>H_existing (m)</th><th>H_design (m)</th><th>Difference (m)</th><th>Cut/Fill</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A1 (SW)</td><td class="mono">0, 0</td><td class="mono">45.200</td><td class="mono">44.500</td><td class="mono">+0.700</td><td class="cut">CUT</td></tr>
+        <tr><td>B1</td><td class="mono">10, 0</td><td class="mono">45.450</td><td class="mono">44.600</td><td class="mono">+0.850</td><td class="cut">CUT</td></tr>
+        <tr><td>C1 (SE)</td><td class="mono">20, 0</td><td class="mono">45.100</td><td class="mono">44.700</td><td class="mono">+0.400</td><td class="cut">CUT</td></tr>
+        <tr><td>A2</td><td class="mono">0, 10</td><td class="mono">44.600</td><td class="mono">44.500</td><td class="mono">+0.100</td><td class="cut">CUT</td></tr>
+        <tr><td>B2 (centre)</td><td class="mono">10, 10</td><td class="mono">44.300</td><td class="mono">44.600</td><td class="mono">−0.300</td><td class="fill">FILL</td></tr>
+        <tr><td>C2</td><td class="mono">20, 10</td><td class="mono">44.800</td><td class="mono">44.700</td><td class="mono">+0.100</td><td class="cut">CUT</td></tr>
+        <tr><td>A3 (NW)</td><td class="mono">0, 20</td><td class="mono">43.900</td><td class="mono">44.500</td><td class="mono">−0.600</td><td class="fill">FILL</td></tr>
+        <tr><td>B3</td><td class="mono">10, 20</td><td class="mono">43.750</td><td class="mono">44.600</td><td class="mono">−0.850</td><td class="fill">FILL</td></tr>
+        <tr><td>C3 (NE)</td><td class="mono">20, 20</td><td class="mono">44.200</td><td class="mono">44.700</td><td class="mono">−0.500</td><td class="fill">FILL</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Cell Volume Calculations</h3>
+  <p>Four 10×10 m cells. Cell area = 100 m². Average the four corner h-values per cell:</p>
+
+  <div class="cf-wrap">
+    <table class="cf-table">
+      <thead><tr><th>Cell</th><th>Corners (h values)</th><th>Average h (m)</th><th>Volume (m³)</th><th>Type</th></tr></thead>
+      <tbody>
+        <tr><td>SW cell</td><td class="mono">+0.700, +0.850, +0.100, −0.300</td><td class="mono">+0.338</td><td class="cut mono">+33.8</td><td class="cut">Mixed→mostly CUT</td></tr>
+        <tr><td>SE cell</td><td class="mono">+0.850, +0.400, −0.300, +0.100</td><td class="mono">+0.263</td><td class="cut mono">+26.3</td><td class="cut">Mixed→mostly CUT</td></tr>
+        <tr><td>NW cell</td><td class="mono">+0.100, −0.300, −0.600, −0.850</td><td class="mono">−0.413</td><td class="fill mono">−41.3</td><td class="fill">Mixed→mostly FILL</td></tr>
+        <tr><td>NE cell</td><td class="mono">−0.300, +0.100, −0.850, −0.500</td><td class="mono">−0.388</td><td class="fill mono">−38.8</td><td class="fill">Mixed→mostly FILL</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td colspan="3"><strong>Totals</strong></td><td class="cut mono">Cut: +60.1 m³</td><td class="fill mono">Fill: −80.1 m³</td></tr>
+        <tr><td colspan="3"><strong>Net Volume (Fill deficit)</strong></td><td colspan="2" class="bal mono">−20.0 m³ net fill required</td></tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <i class="fas fa-lightbulb"></i>
+    <div class="callout-body">
+      <strong>Bulking and Shrinkage Factors</strong>
+      <p>The volumes above are in-situ volumes. When soil is excavated it <em>bulks</em> (expands) — typically 15–25% depending on soil type. When placed and compacted it <em>shrinks</em> — typically 5–15% below the in-situ volume. Always apply bulking/shrinkage factors before ordering plant or haulage. A 1000 m³ in-situ cut produces approximately 1200 m³ of loose material to haul, which compacts to approximately 900 m³ in the fill area.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <h2 id="data-collection">Practical Tips for Good DTM Data Collection</h2>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tch"><div class="tci">🎯</div><div class="tcl">Shoot Terrain Changes, Not a Grid</div></div>
+      <p>The most important survey shots are at points where the terrain changes direction — ridgelines, valley floors, break-of-slope, toe of embankment. A regular grid misses these and the TIN interpolates wrongly across them. Always shoot break lines first, then fill with regular shots.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tch"><div class="tci">📐</div><div class="tcl">Define Break Lines Explicitly</div></div>
+      <p>In your survey software, mark important linear features (roads, ditches, walls, embankment toes) as break lines. The TIN will honour these edges exactly — triangles will not cross a break line. Without break lines, the TIN interpolates across sharp changes and contours become misleading.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tch"><div class="tci">📏</div><div class="tcl">Match Shot Density to Required Contour Interval</div></div>
+      <p>If you need 0.5 m contours, you need shots close enough to define the terrain at that resolution. On a 5% slope, 0.5 m contours are 10 m apart on the ground — so shots every 5–8 m are needed. On a 20% slope, 0.5 m contours are 2.5 m apart — shots every 1–2 m are needed in that area.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tch"><div class="tci">🚧</div><div class="tcl">Extend the Survey Beyond the Site Boundary</div></div>
+      <p>Always survey at least 5–10 m beyond the project boundary. The TIN needs data outside the design area to correctly define the surface at the edges — otherwise boundary effects distort the contours and volumes near the site perimeter.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tch"><div class="tci">💧</div><div class="tcl">Always Capture Drainage Features</div></div>
+      <p>Survey the invert (bottom) of all channels, drains, culverts and gullies. These are break lines in the terrain that the TIN must honour. If a drain is not captured accurately, the DTM will show water flowing in the wrong direction — which invalidates the entire drainage design.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tch"><div class="tci">🔍</div><div class="tcl">Check the TIN Visually Before Using It</div></div>
+      <p>Always render the TIN and contours on screen before producing any output. Look for: spiky anomalies (bad survey shots), flat areas (insufficient data), contours crossing (gross errors), or implausible drainage patterns. Fix problems in the source data — do not smooth or delete TIN triangles to hide survey errors.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <h2 id="common-errors">Common DTM Mistakes</h2>
+
+  <ul>
+    <li><strong>Missing break lines:</strong> The TIN interpolates across a road cutting or embankment edge, producing wrong contours and volumes. Always add break lines along all significant terrain discontinuities</li>
+    <li><strong>Boundary effect errors:</strong> The TIN is not extended beyond the site, so edge triangles are very large and volumes near the boundary are wildly wrong. Survey beyond the site</li>
+    <li><strong>Gross error shots:</strong> One mistyped height (e.g. 45.200 recorded as 4.520) creates a spike in the TIN that distorts all surrounding contours and volumes. Inspect the raw data before building the TIN</li>
+    <li><strong>Wrong coordinate system:</strong> Design DTM is in site grid; survey DTM is in national coordinates; volumes are computed from the difference — meaningless. Always confirm coordinate systems match before any comparison</li>
+    <li><strong>Ignoring bulking/shrinkage:</strong> Reporting in-situ volumes as if they are fill volumes leads to ordering too little material or too little haulage capacity. Always apply soil factors for earthworks quantities</li>
+    <li><strong>Too coarse a grid for the method:</strong> Using 20 m grid squares on a site with significant terrain variation — the averaging misses peaks and valleys, underestimating both cut and fill. Use a finer grid or switch to TIN vs TIN comparison</li>
+  </ul>
+
+  <!-- SECTION 9 -->
+  <h2 id="use-calculators">Use the Free Volume Calculator</h2>
+
+  <p>The <a href="index.html">Akhtar Engineering Hub</a> earthworks calculators help you compute cut-and-fill volumes for individual cross sections, apply prismoidal corrections, and check your quantities against simple hand calculations before relying on software output.</p>
+
+  <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(217,119,6,0.04));border:1px solid rgba(245,158,11,0.2);border-radius:16px;padding:28px;text-align:center;margin:32px 0;">
+    <div style="font-size:36px;margin-bottom:12px;">🏔️</div>
+    <h3 style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;">Earthworks &amp; Volume Calculators</h3>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:20px;max-width:460px;margin-left:auto;margin-right:auto;">Cross-section volumes, prismoidal formula, cut-and-fill balance — free on Akhtar Engineering Hub. No signup required.</p>
+    <a href="index.html" style="display:inline-block;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:15px;font-weight:700;padding:14px 28px;border-radius:100px;text-decoration:none;">Open Calculators <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
+  </div>
+
+  <!-- Conclusion -->
+  <h2 id="conclusion">Summary</h2>
+
+  <p>A Digital Terrain Model is not magic — it is a systematic mathematical process. Survey points are collected at the terrain changes that matter most. The Delaunay triangulation algorithm connects those points into a TIN surface that passes exactly through every measured point and interpolates linearly between them. Contours are generated by intersecting horizontal planes with the TIN edges. Volumes are calculated by comparing two TIN surfaces — existing ground and design — and summing the prismatic solid between them.</p>
+
+  <p>The quality of a DTM depends almost entirely on the quality of the input survey data. More points in the right places (at terrain changes, along break lines, at drainage features) produce a better DTM than twice as many points on a regular grid in flat areas. And the output — whether contours, volumes or design check surfaces — is only as reliable as the person who set up the TIN correctly and inspected it visually before trusting any numbers.</p>
+
+  <p>Understanding the DTM pipeline — from field shot to TIN to contour to volume — makes you a better commissioner of surveys, a better checker of software output, and a better engineer when the earthworks quantities matter to the project budget.</p>
+
+</article>
+
+<!-- Sidebar -->
+<aside class="article-sidebar">
+  <div class="sidebar-card">
+    <h4><i class="fas fa-list"></i> Table of Contents</h4>
+    <ul class="toc-list">
+      <li><a href="#what-is-dtm">What is a DTM?</a></li>
+      <li><a href="#pipeline">Survey-to-DTM Pipeline</a></li>
+      <li><a href="#tin">TIN Triangulation</a></li>
+      <li><a href="#contours">Contour Generation</a></li>
+      <li><a href="#volume-methods">Volume Methods (3 Types)</a></li>
+      <li><a href="#worked-example">Cut &amp; Fill Worked Example</a></li>
+      <li><a href="#data-collection">Data Collection Tips</a></li>
+      <li><a href="#common-errors">Common Mistakes</a></li>
+      <li><a href="#conclusion">Summary</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-cta">
+    <h4>🏔️ Volume Calculators</h4>
+    <p>Cut-and-fill volumes, prismoidal formula and cross-section areas — free.</p>
+    <a href="index.html">Open Calculators →</a>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-info-circle"></i> Article Details</h4>
+    <div style="font-size:13px;color:var(--text-sub);">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Category</span><span style="color:var(--gold);font-weight:600;">Earthworks</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Level</span><span style="color:var(--cyan);font-weight:600;">Intermediate</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Read Time</span><span>13 min</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>Updated</span><span>May 2026</span></div>
+    </div>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-book-open"></i> Related Articles</h4>
+    <ul class="related-list">
+      <li><a href="setting-out-by-coordinates.html">Setting Out by Coordinates</a></li>
+      <li><a href="total-station-resection.html">Total Station Resection Setup</a></li>
+      <li><a href="rl-calculation-hi-method.html">RL Calculation: The HI Method</a></li>
+      <li><a href="traverse-bowditch-adjustment.html">Traverse: Bowditch Adjustment</a></li>
+      <li><a href="vertical-curves-k-value.html">Vertical Curves: K-Value</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-tags"></i> Tags</h4>
+    <div class="tag-cloud">
+      <span class="tag-pill">DTM</span>
+      <span class="tag-pill">TIN</span>
+      <span class="tag-pill">Contours</span>
+      <span class="tag-pill">Cut &amp; Fill</span>
+      <span class="tag-pill">Earthworks</span>
+      <span class="tag-pill">Delaunay</span>
+      <span class="tag-pill">Volume Calc</span>
+      <span class="tag-pill">Terrain Model</span>
+    </div>
+  </div>
+</aside>
+</div>
+
+<!-- Article Footer -->
+<div class="article-footer">
+  <div class="article-footer-inner">
+    <div class="author-card">
+      <div class="author-avatar"><i class="fas fa-mountain"></i></div>
+      <div class="author-info">
+        <h4>Akhtar Engineering Hub</h4>
+        <p>Written by a professional civil engineer and surveyor with hands-on experience building DTMs, producing earthworks quantity reports and interpreting cut-and-fill volumes for road, drainage and site development projects.</p>
+        <a href="index.html">Visit the Hub →</a>
+      </div>
+    </div>
+    <div class="nav-articles">
+      <a href="setting-out-by-coordinates.html" class="nav-article-link">
+        <span>← Previous Article</span>
+        <strong>Setting Out by Coordinates</strong>
+      </a>
+      <a href="index.html" class="nav-article-link">
+        <span>Browse All</span>
+        <strong>All Articles on the Blog →</strong>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <p>&copy; 2026 <a href="index.html">Akhtar Engineering Hub</a> &nbsp;|&nbsp; Learn &bull; Build &bull; Solve &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="index.html">Privacy Policy</a></p>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+window.addEventListener('scroll',function(){
+  var doc=document.documentElement;
+  var top=doc.scrollTop||document.body.scrollTop;
+  var hgt=doc.scrollHeight-doc.clientHeight;
+  var bar=document.getElementById('progressBar');
+  if(bar) bar.style.width=(hgt>0?(top/hgt)*100:0)+'%';
+  var btn=document.getElementById('backTop');
+  if(btn) btn.classList.toggle('show',top>400);
+});
+var tocLinks=document.querySelectorAll('.toc-list a');
+var sections=[];
+tocLinks.forEach(function(l){
+  var id=l.getAttribute('href').replace('#','');
+  var el=document.getElementById(id);
+  if(el) sections.push({id:id,el:el,link:l});
+});
+window.addEventListener('scroll',function(){
+  var scrollY=window.scrollY+100;
+  var current='';
+  sections.forEach(function(s){if(s.el.offsetTop<=scrollY)current=s.id;});
+  tocLinks.forEach(function(l){l.style.color='';l.style.background='';});
+  sections.forEach(function(s){
+    if(s.id===current){s.link.style.color='var(--gold)';s.link.style.background='rgba(245,158,11,0.08)';}
+  });
+});
+</script>
+</body>
+</html>
