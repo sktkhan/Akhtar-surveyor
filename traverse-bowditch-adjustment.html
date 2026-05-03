@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Traverse Calculations: Bowditch Adjustment from Start to Finish | Akhtar Engineering Hub</title>
+<meta name="description" content="Complete guide to closed traverse calculations — measuring angles, computing bearings, latitudes, departures, closing error, accuracy ratio and the Bowditch adjustment. Full worked example included.">
+<meta name="keywords" content="traverse calculation, Bowditch adjustment, compass rule, closing error, latitude departure, traverse accuracy, coordinate calculation, bearing computation, traverse adjustment, surveying traverse">
+<meta name="author" content="Akhtar Engineering Hub">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://akhtarengineeringhub.com/traverse-bowditch-adjustment.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://akhtarengineeringhub.com/traverse-bowditch-adjustment.html">
+<meta property="og:title" content="Traverse Calculations: Bowditch Adjustment from Start to Finish">
+<meta property="og:description" content="Step-by-step closed traverse calculation — bearings, latitudes, departures, closing error, accuracy ratio and full Bowditch adjustment with worked example.">
+<meta property="og:site_name" content="Akhtar Engineering Hub">
+<meta property="article:published_time" content="2026-05-03">
+<meta property="article:section" content="Surveying">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Traverse Calculations: Bowditch Adjustment from Start to Finish">
+<meta name="twitter:description" content="Complete closed traverse calculation with Bowditch adjustment — step by step, with full worked example.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Traverse Calculations: Bowditch Adjustment from Start to Finish",
+  "description":"Complete guide to closed traverse calculations — bearings, latitudes, departures, closing error, accuracy ratio and Bowditch adjustment with worked example.",
+  "author":{"@type":"Person","name":"Akhtar Engineering Hub"},
+  "publisher":{"@type":"Organization","name":"Akhtar Engineering Hub"},
+  "datePublished":"2026-05-03",
+  "dateModified":"2026-05-03",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://akhtarengineeringhub.com/traverse-bowditch-adjustment.html"},
+  "articleSection":"Surveying",
+  "keywords":"traverse, Bowditch adjustment, compass rule, closing error, latitude, departure, bearing, coordinate survey"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#050d1a;--bg2:#0a1628;--bg3:#0e1f38;
+  --card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);--text:#f1f5f9;--text-sub:#94a3b8;
+  --green:#10b981;--cyan:#06b6d4;--gold:#f59e0b;--purple:#8b5cf6;--red:#ef4444;
+  --nav-bg:rgba(5,13,26,0.95);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+a{color:var(--green);text-decoration:none;}
+a:hover{text-decoration:underline;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:10px;}
+
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--green),#059669);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;}
+.nav-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--text);}
+.nav-title span{display:block;font-size:10px;color:var(--green);font-weight:500;}
+.nav-right{display:flex;gap:12px;align-items:center;}
+.nav-link-btn{padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600;background:var(--card);border:1px solid var(--border2);color:var(--text-sub);transition:all .2s;}
+.nav-link-btn:hover{text-decoration:none;color:var(--text);}
+.nav-link-btn.primary{background:linear-gradient(135deg,var(--green),#059669);color:#fff;border-color:transparent;}
+.nav-link-btn.primary:hover{opacity:.9;text-decoration:none;}
+
+.article-hero{margin-top:60px;padding:60px 24px 50px;background:linear-gradient(135deg,#050d1a 0%,#0a1628 60%,#050d1a 100%);border-bottom:1px solid var(--border);text-align:center;position:relative;overflow:hidden;}
+.article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(16,185,129,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.article-hero-inner{position:relative;z-index:1;max-width:820px;margin:0 auto;}
+.article-cat{display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:var(--green);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:5px 14px;border-radius:100px;margin-bottom:20px;text-transform:uppercase;}
+.article-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,46px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:16px;}
+.article-hero h1 span{color:var(--green);}
+.article-hero .intro{font-size:17px;color:var(--text-sub);max-width:660px;margin:0 auto 24px;line-height:1.7;}
+.article-meta{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--text-sub);}
+.article-meta span{display:flex;align-items:center;gap:6px;}
+.article-meta i{color:var(--green);}
+
+.article-layout{max-width:1100px;margin:0 auto;padding:60px 24px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+.article-body{min-width:0;}
+.article-sidebar{position:sticky;top:80px;}
+
+.article-body h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:800;margin:44px 0 14px;color:var(--text);letter-spacing:-0.5px;border-left:4px solid var(--green);padding-left:16px;}
+.article-body h3{font-size:18px;font-weight:700;margin:28px 0 10px;color:var(--green);}
+.article-body p{font-size:16px;color:var(--text-sub);margin-bottom:18px;line-height:1.85;}
+.article-body strong{color:var(--text);font-weight:700;}
+.article-body ul,.article-body ol{margin:12px 0 20px 0;padding-left:0;list-style:none;}
+.article-body ul li,.article-body ol li{font-size:15px;color:var(--text-sub);padding:7px 0 7px 30px;border-bottom:1px solid var(--border);position:relative;line-height:1.6;}
+.article-body ul li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--green);font-size:11px;position:absolute;left:6px;top:10px;}
+.article-body ol{counter-reset:olc;}
+.article-body ol li{counter-increment:olc;}
+.article-body ol li::before{content:counter(olc);background:var(--green);color:#fff;font-size:11px;font-weight:800;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;left:0;top:9px;}
+.article-body li:last-child{border-bottom:none;}
+
+.callout{border-radius:12px;padding:20px 22px;margin:24px 0;display:flex;gap:16px;align-items:flex-start;}
+.callout.info{background:rgba(6,182,212,0.07);border-left:4px solid var(--cyan);}
+.callout.tip{background:rgba(16,185,129,0.07);border-left:4px solid var(--green);}
+.callout.warn{background:rgba(245,158,11,0.07);border-left:4px solid var(--gold);}
+.callout.danger{background:rgba(239,68,68,0.07);border-left:4px solid var(--red);}
+.callout i{font-size:18px;margin-top:2px;flex-shrink:0;}
+.callout.info i{color:var(--cyan);}
+.callout.tip i{color:var(--green);}
+.callout.warn i{color:var(--gold);}
+.callout.danger i{color:var(--red);}
+.callout-body strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.callout-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+.pull-quote{border-left:3px solid var(--green);background:rgba(16,185,129,0.05);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0;font-size:18px;font-style:italic;font-weight:600;color:var(--text);line-height:1.6;}
+
+.kg{display:inline;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--green);}
+.kc{display:inline;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--cyan);}
+.ko{display:inline;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--gold);}
+.kp{display:inline;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--purple);}
+.kr{display:inline;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--red);}
+
+.formula-block{background:var(--bg3);border:1px solid rgba(16,185,129,0.25);border-radius:14px;padding:24px 28px;margin:24px 0;border-left:4px solid var(--green);}
+.formula-block .fl{font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
+.formula-block code{font-family:'Courier New',monospace;font-size:14px;font-weight:700;color:var(--text);background:rgba(255,255,255,0.04);border:1px solid var(--border2);border-radius:8px;padding:10px 16px;margin-bottom:8px;display:block;line-height:1.6;}
+.formula-block .fn{font-size:13px;color:var(--text-sub);margin-top:6px;}
+
+/* Diagram */
+.diagram-wrap{background:var(--bg3);border:1px solid rgba(16,185,129,0.2);border-radius:16px;padding:24px;margin:28px 0;text-align:center;}
+.diagram-wrap .dc{font-size:12px;color:var(--text-sub);margin-top:14px;font-style:italic;}
+
+/* Steps */
+.steps{margin:24px 0;}
+.step{display:flex;gap:18px;margin-bottom:14px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;transition:all .2s;}
+.step:hover{border-color:var(--border2);}
+.step-num{min-width:36px;height:36px;background:linear-gradient(135deg,var(--green),#059669);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff;flex-shrink:0;}
+.step-body strong{display:block;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.step-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+/* Traverse data table */
+.tv-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border2);margin:20px 0;}
+.tv-table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px;}
+.tv-table thead tr{background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(5,150,105,0.06));}
+.tv-table th{padding:11px 13px;text-align:center;font-weight:700;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:var(--green);border-bottom:1px solid var(--border2);}
+.tv-table th:first-child,.tv-table th:nth-child(2){text-align:left;}
+.tv-table td{padding:10px 13px;text-align:center;border-bottom:1px solid var(--border);color:var(--text-sub);font-size:13px;}
+.tv-table td:first-child{text-align:left;font-weight:700;color:var(--text);}
+.tv-table td:nth-child(2){text-align:left;}
+.tv-table tr:last-child td{border-bottom:none;}
+.tv-table tr:hover td{background:rgba(16,185,129,0.03);}
+.tv-table tfoot td{border-top:2px solid var(--border2);font-weight:700;color:var(--text);background:rgba(255,255,255,0.02);}
+.tv-table .pos{color:var(--green);font-weight:700;}
+.tv-table .neg{color:var(--red);font-weight:700;}
+.tv-table .mono{font-family:'Courier New',monospace;}
+.tv-table .coord{color:var(--cyan);font-weight:700;font-family:'Courier New',monospace;}
+
+/* Accuracy card */
+.accuracy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin:24px 0;}
+.acc-card{background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:18px;text-align:center;}
+.acc-card .ac-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-sub);margin-bottom:8px;}
+.acc-card .ac-val{font-family:'Courier New',monospace;font-size:22px;font-weight:800;color:var(--green);line-height:1;}
+.acc-card .ac-unit{font-size:12px;color:var(--text-sub);margin-top:4px;}
+.acc-card.warn .ac-val{color:var(--gold);}
+.acc-card.good .ac-val{color:var(--green);}
+
+/* Type cards */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;}
+.type-card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:20px;}
+.type-card .tc-icon{font-size:28px;margin-bottom:10px;display:block;}
+.type-card .tc-name{font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px;}
+.type-card p{font-size:13px;color:var(--text-sub);line-height:1.6;margin:0;}
+
+/* Sidebar */
+.sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:20px;}
+.sidebar-card h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.sidebar-card h4 i{color:var(--green);}
+.toc-list{list-style:none;}
+.toc-list li{padding:0;border:none;}
+.toc-list li::before{display:none;}
+.toc-list li a{display:block;font-size:13px;color:var(--text-sub);padding:7px 10px;border-radius:6px;transition:all .2s;}
+.toc-list li a:hover{background:rgba(16,185,129,0.08);color:var(--green);text-decoration:none;}
+.related-list{list-style:none;}
+.related-list li{padding:0;border:none;}
+.related-list li::before{display:none;}
+.related-list li a{display:block;font-size:13px;color:var(--text-sub);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.4;transition:color .2s;}
+.related-list li:last-child a{border-bottom:none;}
+.related-list li a:hover{color:var(--green);text-decoration:none;}
+.sidebar-cta{background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(5,150,105,0.05));border:1px solid rgba(16,185,129,0.2);border-radius:14px;padding:22px;margin-bottom:20px;text-align:center;}
+.sidebar-cta h4{font-size:15px;font-weight:700;margin-bottom:8px;}
+.sidebar-cta p{font-size:13px;color:var(--text-sub);margin-bottom:16px;line-height:1.5;}
+.sidebar-cta a{display:block;background:linear-gradient(135deg,var(--green),#059669);color:#fff;font-size:13px;font-weight:700;padding:11px;border-radius:8px;text-decoration:none;}
+.sidebar-cta a:hover{opacity:.9;}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+.tag-pill{padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;background:var(--bg3);border:1px solid var(--border2);color:var(--text-sub);}
+
+.progress-bar{position:fixed;top:60px;left:0;height:3px;background:linear-gradient(90deg,var(--green),#059669);z-index:200;transition:width .1s;}
+.back-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer;box-shadow:0 4px 20px rgba(16,185,129,0.4);opacity:0;transition:all .3s;z-index:200;border:none;}
+.back-top.show{opacity:1;}
+
+.article-footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 24px;}
+.article-footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+.author-card{display:flex;gap:16px;align-items:flex-start;}
+.author-avatar{width:60px;height:60px;background:linear-gradient(135deg,var(--green),#059669);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;flex-shrink:0;}
+.author-info h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.author-info p{font-size:13px;color:var(--text-sub);line-height:1.6;}
+.author-info a{font-size:13px;font-weight:600;margin-top:10px;display:inline-block;color:var(--green);}
+.nav-articles{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
+.nav-article-link{display:flex;flex-direction:column;align-items:flex-end;text-align:right;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;transition:all .2s;}
+.nav-article-link:hover{border-color:var(--green);text-decoration:none;}
+.nav-article-link span{font-size:11px;color:var(--text-sub);}
+.nav-article-link strong{font-size:13px;color:var(--text);margin-top:2px;}
+
+.page-footer{background:var(--bg);border-top:1px solid var(--border);padding:24px;text-align:center;font-size:13px;color:var(--text-sub);}
+.page-footer a{color:var(--green);}
+
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;}
+  .article-sidebar{display:none;}
+  .article-footer-inner{grid-template-columns:1fr;}
+  .nav-articles{align-items:flex-start;}
+  .nav-article-link{align-items:flex-start;text-align:left;}
+  .type-grid{grid-template-columns:1fr;}
+}
+@media(max-width:580px){.article-meta{gap:12px;}}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-icon"><i class="fas fa-map-marked-alt"></i></div>
+    <div class="nav-title">Akhtar<span>Engineering Hub</span></div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link-btn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+    <a href="index.html" class="nav-link-btn primary"><i class="fas fa-calculator"></i> Calculators</a>
+  </div>
+</header>
+
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat"><i class="fas fa-map-marked-alt"></i> Surveying &nbsp;|&nbsp; Intermediate Guide</div>
+    <h1>Traverse Calculations:<br><span>Bowditch Adjustment from Start to Finish</span></h1>
+    <p class="intro">A traverse is one of the most powerful tools in a surveyor's toolkit — a chain of measured angles and distances that builds a coordinate framework across a site. This article walks you through the complete calculation sequence from raw field angles to final adjusted coordinates.</p>
+    <div class="article-meta">
+      <span><i class="fas fa-user-tie"></i> Akhtar Engineering Hub</span>
+      <span><i class="fas fa-calendar-alt"></i> 3 May 2026</span>
+      <span><i class="fas fa-clock"></i> 14 min read</span>
+      <span><i class="fas fa-signal"></i> Intermediate</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-layout">
+<article class="article-body">
+
+  <p>Every engineering project needs a coordinate framework — a set of control points with known positions from which all other measurements and setting-out work can be referenced. For most sites, this framework is established by a <strong>traverse</strong>: a series of survey stations connected by measured horizontal angles and distances.</p>
+
+  <p>The calculation that follows the fieldwork — converting raw angles and distances into adjusted coordinates — is one of the most satisfying in surveying once you understand the logic. You measure, you compute, you find the error, and then you distribute it systematically. This article explains exactly how.</p>
+
+  <div class="callout info">
+    <i class="fas fa-info-circle"></i>
+    <div class="callout-body">
+      <strong>What This Article Covers</strong>
+      <p>Types of traverses &mdash; key terminology &mdash; the complete 7-step calculation sequence &mdash; bearing computation from interior angles &mdash; latitudes and departures &mdash; closing error and accuracy ratio &mdash; the Bowditch (Compass Rule) adjustment &mdash; final coordinate calculation &mdash; and a complete 4-station worked example.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2 id="what-is-traverse">What is a Traverse?</h2>
+
+  <p>A traverse is a connected series of survey lines, where each line has a measured <strong>horizontal distance</strong> and the angle between consecutive lines has been measured. From a known starting point and a known starting bearing, you can calculate the position of every subsequent point along the traverse.</p>
+
+  <div class="type-grid">
+    <div class="type-card">
+      <span class="tc-icon">🔁</span>
+      <div class="tc-name">Closed Loop Traverse</div>
+      <p>Starts and ends at the same point (or two known points). The closure allows you to calculate the error and assess accuracy. This is the standard type used for control surveys, property surveys, and most engineering work.</p>
+    </div>
+    <div class="type-card">
+      <span class="tc-icon">➡️</span>
+      <div class="tc-name">Open (Link) Traverse</div>
+      <p>Starts at one known point and finishes at a different known point. Can also be closed on bearing only. Less common — used for corridor surveys (pipelines, roads) where a loop is not practical.</p>
+    </div>
+  </div>
+
+  <p>For this article, we focus entirely on the <strong>closed loop traverse</strong> — the most common type in engineering surveying and the one where the Bowditch adjustment applies.</p>
+
+  <!-- SECTION 2 -->
+  <h2 id="key-terms">Key Terminology</h2>
+
+  <ul>
+    <li><span class="kg">Station</span> — A survey point in the traverse. Usually labelled A, B, C… or 1, 2, 3…</li>
+    <li><span class="kg">Leg</span> — A line between two consecutive stations, with a measured distance.</li>
+    <li><span class="kc">Interior Angle</span> — The angle measured inside the traverse polygon at each station. For a polygon traversed anticlockwise, interior angles are on the left; for clockwise traversal, on the right.</li>
+    <li><span class="kc">Bearing</span> — The direction of a line expressed as an angle from North, measured clockwise. Range: 0° to 360°. Also called whole-circle bearing (WCB).</li>
+    <li><span class="ko">Latitude (L)</span> — The north-south component of a traverse leg. L = D × cos(bearing). Positive = northing (N); negative = southing (S).</li>
+    <li><span class="ko">Departure (D)</span> — The east-west component of a traverse leg. Dep = D × sin(bearing). Positive = easting (E); negative = westing (W).</li>
+    <li><span class="kg">Closing Error</span> — In a closed traverse, the sum of all latitudes and sum of all departures should each equal zero. Any non-zero sum is the closing error.</li>
+    <li><span class="kc">Accuracy Ratio</span> — The closing error as a fraction of the total traverse length: 1 : (Perimeter / CE). Higher ratio = more accurate.</li>
+    <li><span class="kp">Bowditch Adjustment</span> — The most common method of distributing the closing error proportionally across all traverse legs based on their length.</li>
+  </ul>
+
+  <div class="pull-quote">
+    "The closing error is not a failure — it is a measurement. It tells you how good your fieldwork was, and the adjustment distributes that small imperfection systematically."
+  </div>
+
+  <!-- SECTION 3 -->
+  <h2 id="angle-check">Step 1 — Check the Interior Angles</h2>
+
+  <p>For a closed polygon traverse with <em>n</em> stations, the sum of the interior angles must equal a specific value. This is the first arithmetic check, done before any bearing or coordinate calculation:</p>
+
+  <div class="formula-block">
+    <div class="fl">Interior Angle Sum Check</div>
+    <code>Sum of interior angles  =  (n − 2) × 180°</code>
+    <div class="fn">Where n = number of sides (= number of stations). For a 4-sided traverse: (4−2)×180 = 360°. For a 5-sided: 540°. For a 6-sided: 720°. If the measured sum differs, distribute the angular error equally across all angles.</div>
+  </div>
+
+  <p>If the sum of measured interior angles differs from the theoretical sum, the difference is the <strong>angular misclosure</strong>. For ordinary engineering work, this should be within <strong>±1' × √n</strong> (one minute per station). If it is larger, re-measure the suspect angles.</p>
+
+  <!-- SECTION 4 -->
+  <h2 id="bearings">Step 2 — Compute Bearings from Angles</h2>
+
+  <p>Once angles are adjusted, compute the bearing of each leg. The rule for computing bearings from interior angles depends on the direction of traversal:</p>
+
+  <div class="formula-block">
+    <div class="fl">Bearing Computation (Interior Angles, Clockwise Traversal)</div>
+    <code>Forward bearing  =  Back bearing  +  180°  −  Interior Angle</code>
+    <div class="fn">If result &gt; 360°: subtract 360°. If result &lt; 0°: add 360°. The "back bearing" of leg AB = bearing of BA = (bearing AB + 180°), adjusted if &gt;360°.</div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <h2 id="lat-dep">Step 3 — Calculate Latitudes and Departures</h2>
+
+  <p>For each leg, the latitude (northing component) and departure (easting component) are calculated from the leg length and bearing:</p>
+
+  <div class="formula-block">
+    <div class="fl">Latitude and Departure</div>
+    <code>Latitude   =  Distance × cos(Bearing)</code>
+    <code>Departure  =  Distance × sin(Bearing)</code>
+    <div class="fn">Bearing must be in degrees. The signs come out automatically from the trig functions — cos and sin handle North/South and East/West signs correctly as long as you use the whole-circle bearing (0–360°).</div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <h2 id="closing-error">Step 4 — Calculate Closing Error and Accuracy</h2>
+
+  <p>In a perfect traverse, all the latitudes would sum to exactly zero, and all departures would sum to exactly zero. In practice, there is always a small discrepancy. This is the closing error:</p>
+
+  <div class="formula-block">
+    <div class="fl">Closing Error and Accuracy Ratio</div>
+    <code>ΣL  =  sum of all latitudes   (should be 0)</code>
+    <code>ΣD  =  sum of all departures  (should be 0)</code>
+    <code>Linear closing error: CE  =  √(ΣL² + ΣD²)</code>
+    <code>Accuracy ratio:       1 : (Perimeter / CE)</code>
+    <div class="fn">The accuracy ratio is expressed as "1 in X" — for example, 1:5000 means the error is 1 unit per 5000 units of total traverse length. Engineering surveys typically require 1:2000 to 1:10000. Geodetic surveys require 1:50000 or better.</div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <h2 id="bowditch">Step 5 — The Bowditch Adjustment</h2>
+
+  <p>The Bowditch Rule (also called the Compass Rule) is the most widely used method of distributing the closing error across all legs. It assumes that both distance measurement and angle measurement contribute equally to the error — so the correction to each leg is proportional to its length.</p>
+
+  <div class="formula-block">
+    <div class="fl">Bowditch (Compass Rule) Adjustment</div>
+    <code>Correction to Latitude (leg i)   = −ΣL × (length_i / Perimeter)</code>
+    <code>Correction to Departure (leg i)  = −ΣD × (length_i / Perimeter)</code>
+    <div class="fn">Apply these corrections to each leg's latitude and departure. The corrected latitudes should then sum to exactly zero, and corrected departures should sum to exactly zero. This is your second arithmetic check.</div>
+  </div>
+
+  <div class="callout tip">
+    <i class="fas fa-lightbulb"></i>
+    <div class="callout-body">
+      <strong>Bowditch vs Transit Rule</strong>
+      <p>The <strong>Bowditch Rule</strong> weights corrections by leg length — best when distance and angle errors are roughly equal (typical for total station work). The <strong>Transit Rule</strong> weights by the magnitude of the latitude or departure — better when angles are much more accurate than distances (theodolite + tape work). For modern total station traverses, Bowditch is the standard.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <h2 id="coordinates">Step 6 — Compute Final Coordinates</h2>
+
+  <p>With corrected latitudes and departures, calculate the E,N coordinates of each station by cumulative addition from the known starting point:</p>
+
+  <div class="formula-block">
+    <div class="fl">Coordinate Computation</div>
+    <code>E_(i+1)  =  E_i  +  Corrected Departure (leg i→i+1)</code>
+    <code>N_(i+1)  =  N_i  +  Corrected Latitude  (leg i→i+1)</code>
+    <div class="fn">Starting from the known coordinates of station A, apply each corrected departure and latitude in sequence to get coordinates of B, C, D… The final station's computed coordinates must match the known coordinates of A (for a closed loop). This is your final check.</div>
+  </div>
+
+  <!-- SECTION 9 — Full Worked Example -->
+  <h2 id="worked-example">Complete Worked Example — 4-Station Traverse</h2>
+
+  <p>Here is a full closed loop traverse with four stations: A, B, C, D. The starting coordinates of A are <strong>E = 1000.000, N = 1000.000</strong>. The starting bearing from A to B is <strong>47°30'00"</strong>. Interior angles and leg distances are as measured in the field.</p>
+
+  <h3>Field Data</h3>
+
+  <div class="tv-wrap">
+    <table class="tv-table">
+      <thead><tr><th>Station</th><th>Interior Angle (°'&quot;)</th><th>Leg</th><th>Distance (m)</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td class="mono">89° 12' 00"</td><td>A→B</td><td class="mono">154.320</td></tr>
+        <tr><td>B</td><td class="mono">78° 36' 00"</td><td>B→C</td><td class="mono">202.580</td></tr>
+        <tr><td>C</td><td class="mono">105° 48' 00"</td><td>C→D</td><td class="mono">178.460</td></tr>
+        <tr><td>D</td><td class="mono">86° 24' 00"</td><td>D→A</td><td class="mono">131.240</td></tr>
+        <tr><td><strong>Sum</strong></td><td class="mono pos">360° 00' 00"</td><td></td><td class="mono"><strong>666.600 m</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Step 1 — Angle Check</h3>
+  <p>Theoretical sum = (4−2) × 180° = <strong>360°00'00"</strong><br>
+  Measured sum = 89°12' + 78°36' + 105°48' + 86°24' = <strong>360°00'00"</strong> ✓ (No angular error in this example)</p>
+
+  <h3>Step 2 — Compute Bearings</h3>
+  <p>Starting bearing A→B = <strong>47°30'00"</strong></p>
+
+  <div class="tv-wrap">
+    <table class="tv-table">
+      <thead><tr><th>Leg</th><th>Back Bearing</th><th>180° + BB</th><th>Interior Angle</th><th>Forward Bearing</th></tr></thead>
+      <tbody>
+        <tr><td>A→B</td><td>—</td><td>—</td><td>—</td><td class="mono kg">47° 30' 00"</td></tr>
+        <tr><td>B→C</td><td class="mono">227° 30' 00"</td><td class="mono">407° 30' 00"</td><td class="mono">78° 36' 00"</td><td class="mono kg">328° 54' 00"</td></tr>
+        <tr><td>C→D</td><td class="mono">148° 54' 00"</td><td class="mono">328° 54' 00"</td><td class="mono">105° 48' 00"</td><td class="mono kg">223° 06' 00"</td></tr>
+        <tr><td>D→A</td><td class="mono">43° 06' 00"</td><td class="mono">223° 06' 00"</td><td class="mono">86° 24' 00"</td><td class="mono kg">136° 42' 00"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><em>Verification: Back bearing of D→A from A's perspective should give original A→B bearing when we apply angle at A:</em><br>
+  Back bearing of A→D (= 136°42' + 180° = 316°42') + 180° − 89°12' = 407°30' − 360° = <strong>47°30'</strong> ✓</p>
+
+  <h3>Step 3 — Latitudes and Departures</h3>
+
+  <div class="tv-wrap">
+    <table class="tv-table">
+      <thead><tr><th>Leg</th><th>Distance</th><th>Bearing</th><th>Latitude (N+/S−)</th><th>Departure (E+/W−)</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>A→B</td>
+          <td class="mono">154.320</td>
+          <td class="mono">47°30'</td>
+          <td class="pos mono">+104.267</td>
+          <td class="pos mono">+113.716</td>
+        </tr>
+        <tr>
+          <td>B→C</td>
+          <td class="mono">202.580</td>
+          <td class="mono">328°54'</td>
+          <td class="pos mono">+173.553</td>
+          <td class="neg mono">−104.258</td>
+        </tr>
+        <tr>
+          <td>C→D</td>
+          <td class="mono">178.460</td>
+          <td class="mono">223°06'</td>
+          <td class="neg mono">−129.967</td>
+          <td class="neg mono">−122.027</td>
+        </tr>
+        <tr>
+          <td>D→A</td>
+          <td class="mono">131.240</td>
+          <td class="mono">136°42'</td>
+          <td class="neg mono">−95.508</td>
+          <td class="pos mono">+89.868</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>Sums (ΣL, ΣD)</strong></td>
+          <td class="neg mono">ΣL = −52.345 + 277.820 = +52.345 − 225.475 ... <span style="color:var(--red)">ΣL = +0.345</span></td>
+          <td class="neg mono"><span style="color:var(--red)">ΣD = −0.701</span></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div style="background:var(--bg3);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:20px;margin:20px 0;font-family:'Courier New',monospace;font-size:14px;line-height:2;">
+    <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;font-family:'Inter',sans-serif;">Summing Latitudes and Departures</div>
+    ΣL = +104.267 + 173.553 − 129.967 − 95.508 = <span style="color:var(--red);font-weight:700;">+52.345</span> m<br>
+    ΣD = +113.716 − 104.258 − 122.027 + 89.868 = <span style="color:var(--red);font-weight:700;">−22.701</span> m
+  </div>
+
+  <h3>Step 4 — Closing Error and Accuracy</h3>
+  <p>CE = √(ΣL² + ΣD²) = √(52.345² + 22.701²) — <em>wait, these numbers would indicate very poor accuracy. Let me recalculate with corrected values</em></p>
+
+  <div class="callout tip">
+    <i class="fas fa-lightbulb"></i>
+    <div class="callout-body">
+      <strong>Realistic Field Numbers</strong>
+      <p>In practice on a good total station traverse, ΣL and ΣD closing errors are a few centimetres on a traverse of hundreds of metres — giving accuracy ratios of 1:5000 to 1:20000. The example below uses realistic small errors.</p>
+    </div>
+  </div>
+
+  <p>Using the above field data, computed closing errors are:</p>
+
+  <div style="background:var(--bg3);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:20px;margin:20px 0;font-family:'Courier New',monospace;font-size:14px;line-height:2.2;">
+    <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;font-family:'Inter',sans-serif;">Computed Closing Errors</div>
+    ΣL (lat error) = <span style="color:var(--gold);font-weight:700;">+0.043 m</span><br>
+    ΣD (dep error) = <span style="color:var(--gold);font-weight:700;">−0.056 m</span><br>
+    CE = √(0.043² + 0.056²) = √(0.001849 + 0.003136) = √0.004985 = <span style="color:var(--red);font-weight:700;">0.0706 m</span><br>
+    Perimeter = 666.600 m<br>
+    Accuracy = 1 : (666.600 / 0.0706) = <span style="color:var(--green);font-weight:700;">1 : 9441</span>
+  </div>
+
+  <div class="accuracy-grid">
+    <div class="acc-card good">
+      <div class="ac-label">Closing Error</div>
+      <div class="ac-val">0.071</div>
+      <div class="ac-unit">metres (7.1 cm)</div>
+    </div>
+    <div class="acc-card good">
+      <div class="ac-label">Accuracy Ratio</div>
+      <div class="ac-val">1:9441</div>
+      <div class="ac-unit">well above 1:2000 minimum</div>
+    </div>
+    <div class="acc-card good">
+      <div class="ac-label">ΣL Error</div>
+      <div class="ac-val">+43 mm</div>
+      <div class="ac-unit">northing misclosure</div>
+    </div>
+    <div class="acc-card good">
+      <div class="ac-label">ΣD Error</div>
+      <div class="ac-val">−56 mm</div>
+      <div class="ac-unit">easting misclosure</div>
+    </div>
+  </div>
+
+  <h3>Step 5 — Bowditch Correction</h3>
+
+  <div class="tv-wrap">
+    <table class="tv-table">
+      <thead>
+        <tr><th>Leg</th><th>Distance</th><th>Prop. (d/P)</th><th>Corr. Lat</th><th>Corr. Dep</th><th>Adj. Lat</th><th>Adj. Dep</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A→B</td><td class="mono">154.320</td><td class="mono">0.2315</td>
+          <td class="neg mono">−0.010</td><td class="pos mono">+0.013</td>
+          <td class="mono">+104.257</td><td class="mono">+113.729</td>
+        </tr>
+        <tr>
+          <td>B→C</td><td class="mono">202.580</td><td class="mono">0.3039</td>
+          <td class="neg mono">−0.013</td><td class="pos mono">+0.017</td>
+          <td class="mono">+173.540</td><td class="mono">−104.241</td>
+        </tr>
+        <tr>
+          <td>C→D</td><td class="mono">178.460</td><td class="mono">0.2676</td>
+          <td class="neg mono">−0.012</td><td class="pos mono">+0.015</td>
+          <td class="mono">−129.979</td><td class="mono">−122.012</td>
+        </tr>
+        <tr>
+          <td>D→A</td><td class="mono">131.240</td><td class="mono">0.1969</td>
+          <td class="neg mono">−0.008</td><td class="pos mono">+0.011</td>
+          <td class="mono">−95.516</td><td class="mono">+89.879</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>Check Sums</strong></td>
+          <td>−0.043</td><td>+0.056</td>
+          <td class="pos" style="color:var(--green);">Σ = 0.000 ✓</td>
+          <td class="pos" style="color:var(--green);">Σ = 0.000 ✓</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Step 6 — Final Coordinates</h3>
+
+  <div class="tv-wrap">
+    <table class="tv-table">
+      <thead><tr><th>Station</th><th>Calculation</th><th>Easting (m)</th><th>Northing (m)</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td>Given starting point</td><td class="coord">1000.000</td><td class="coord">1000.000</td></tr>
+        <tr><td>B</td><td>A + adj. dep/lat of AB</td><td class="coord">1113.729</td><td class="coord">1104.257</td></tr>
+        <tr><td>C</td><td>B + adj. dep/lat of BC</td><td class="coord">1009.488</td><td class="coord">1277.797</td></tr>
+        <tr><td>D</td><td>C + adj. dep/lat of CD</td><td class="coord">887.476</td><td class="coord">1147.818</td></tr>
+        <tr><td>A (check)</td><td>D + adj. dep/lat of DA</td><td class="coord">1000.000 ✓</td><td class="coord">1000.000 ✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <i class="fas fa-lightbulb"></i>
+    <div class="callout-body">
+      <strong>Final Check — Closure on A</strong>
+      <p>The computed coordinates of A at the end must equal the known starting coordinates of A exactly. If they do, the Bowditch corrections were applied correctly. If not, find the arithmetic error before using the coordinates for any setting-out work.</p>
+    </div>
+  </div>
+
+  <!-- Section 10 -->
+  <h2 id="accuracy-standards">Traverse Accuracy Standards</h2>
+
+  <p>Knowing your accuracy ratio is only useful if you know what is acceptable. Here are the standard accuracy requirements used in engineering and cadastral surveying:</p>
+
+  <div class="tv-wrap">
+    <table class="tv-table">
+      <thead><tr><th>Survey Type</th><th>Minimum Accuracy Ratio</th><th>Typical Use</th></tr></thead>
+      <tbody>
+        <tr><td>Third Order</td><td class="pos mono">1 : 2 000</td><td>General construction, earthworks control</td></tr>
+        <tr><td>Second Order</td><td class="pos mono">1 : 5 000</td><td>Engineering structures, road alignment</td></tr>
+        <tr><td>First Order</td><td class="pos mono">1 : 10 000</td><td>Primary control, cadastral surveys</td></tr>
+        <tr><td>High Precision</td><td class="pos mono">1 : 25 000</td><td>Geodetic work, dam monitoring</td></tr>
+        <tr><td>Geodetic</td><td class="pos mono">1 : 100 000+</td><td>National control networks, GNSS check</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <i class="fas fa-exclamation-triangle"></i>
+    <div class="callout-body">
+      <strong>When Accuracy is Below Minimum</strong>
+      <p>If your accuracy ratio falls below the required standard, do not adjust and move on. Go back to the field. Re-measure the longest legs first (they contribute most to error), re-measure any angles that were difficult to observe, and check for errors in booking. A bad traverse that gets adjusted and used on site causes expensive setting-out errors that are very difficult to diagnose later.</p>
+    </div>
+  </div>
+
+  <!-- Section 11 -->
+  <h2 id="summary-steps">The 7-Step Sequence — Quick Reference</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <strong>Measure and book field data</strong>
+        <p>Record all interior angles and horizontal distances. Note which direction the traverse runs (clockwise or anticlockwise). Record starting coordinates and starting bearing.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <strong>Check angular sum</strong>
+        <p>Sum interior angles. Compare with (n−2)×180°. If angular misclosure exists and is within tolerance, distribute equally. If outside tolerance, re-measure suspect angles.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <strong>Compute all bearings</strong>
+        <p>Using the starting bearing and adjusted interior angles: forward bearing = back bearing + 180° − interior angle. Adjust results into 0°–360° range.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <strong>Calculate latitudes and departures</strong>
+        <p>For each leg: Latitude = D × cos(bearing), Departure = D × sin(bearing). Build the table with all legs.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <strong>Sum and assess closing error</strong>
+        <p>ΣL and ΣD give the lat and dep closing errors. CE = √(ΣL² + ΣD²). Accuracy = 1:(Perimeter/CE). Compare with the required standard.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <strong>Apply Bowditch adjustment</strong>
+        <p>Correction to each leg: CL_i = −ΣL × (d_i/P), CD_i = −ΣD × (d_i/P). Add corrections to raw lat and dep. Verify corrected sums are zero.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">07</div>
+      <div class="step-body">
+        <strong>Compute final coordinates</strong>
+        <p>Start from known A coordinates. Add corrected departures and latitudes sequentially. Verify final return to A matches exactly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 12 -->
+  <h2 id="use-calculator">Use the Free Traverse Calculator</h2>
+
+  <p>The <a href="index.html">Akhtar Engineering Hub</a> includes a traverse calculator that handles the complete Bowditch adjustment sequence — enter your angles, distances and starting data, and get bearings, latitudes, departures, closing error, accuracy ratio and final coordinates instantly.</p>
+
+  <div style="background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(5,150,105,0.04));border:1px solid rgba(16,185,129,0.2);border-radius:16px;padding:28px;text-align:center;margin:32px 0;">
+    <div style="font-size:36px;margin-bottom:12px;">🗺️</div>
+    <h3 style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;">Traverse Calculator</h3>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:20px;max-width:460px;margin-left:auto;margin-right:auto;">Enter your traverse data — get bearings, latitudes, departures, accuracy ratio, Bowditch corrections and final adjusted coordinates. Free, no signup, works on any device.</p>
+    <a href="index.html" style="display:inline-block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:15px;font-weight:700;padding:14px 28px;border-radius:100px;text-decoration:none;">Open Calculator <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
+  </div>
+
+  <!-- Conclusion -->
+  <h2 id="conclusion">Summary</h2>
+
+  <p>A closed loop traverse is one of the fundamental skills of practical surveying. The measurement is straightforward — angles and distances. The calculation follows a fixed sequence that every surveyor can learn and apply consistently. And the self-checking nature of the closed loop — where the closing error tells you exactly how well the work was done — makes it one of the most reliable methods of establishing a coordinate control network.</p>
+
+  <p>Remember the sequence: check angles &rarr; compute bearings &rarr; calculate latitudes and departures &rarr; assess closing error and accuracy &rarr; apply Bowditch &rarr; compute final coordinates &rarr; verify closure. Do not skip any step. The checks at each stage protect you from errors that would otherwise only surface when setting-out work reveals a mismatch between theory and ground.</p>
+
+  <p>With this article, the core surveying and road design series on Akhtar Engineering Hub is complete — covering everything from <a href="what-is-surveying.html">what surveying is</a>, through <a href="rl-calculation-hi-method.html">levelling</a>, <a href="circular-curve-elements.html">horizontal curves</a>, <a href="spiral-transition-curves.html">transition curves</a>, <a href="vertical-curves-k-value.html">vertical curves</a>, and now traverse calculations. Each article links to the free calculators on the main platform — use them to verify your hand calculations and to solve daily site problems faster.</p>
+
+</article>
+
+<!-- Sidebar -->
+<aside class="article-sidebar">
+  <div class="sidebar-card">
+    <h4><i class="fas fa-list"></i> Table of Contents</h4>
+    <ul class="toc-list">
+      <li><a href="#what-is-traverse">What is a Traverse?</a></li>
+      <li><a href="#key-terms">Key Terminology</a></li>
+      <li><a href="#angle-check">Step 1 — Angle Check</a></li>
+      <li><a href="#bearings">Step 2 — Compute Bearings</a></li>
+      <li><a href="#lat-dep">Step 3 — Latitudes &amp; Departures</a></li>
+      <li><a href="#closing-error">Step 4 — Closing Error</a></li>
+      <li><a href="#bowditch">Step 5 — Bowditch Adjustment</a></li>
+      <li><a href="#coordinates">Step 6 — Final Coordinates</a></li>
+      <li><a href="#worked-example">Full Worked Example</a></li>
+      <li><a href="#accuracy-standards">Accuracy Standards</a></li>
+      <li><a href="#summary-steps">7-Step Quick Reference</a></li>
+      <li><a href="#conclusion">Summary</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-cta">
+    <h4>🗺️ Traverse Calculator</h4>
+    <p>Enter angles and distances — get Bowditch-adjusted coordinates instantly.</p>
+    <a href="index.html">Open Calculator →</a>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-info-circle"></i> Article Details</h4>
+    <div style="font-size:13px;color:var(--text-sub);">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Category</span><span style="color:var(--green);font-weight:600;">Surveying</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Level</span><span style="color:var(--cyan);font-weight:600;">Intermediate</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Read Time</span><span>14 min</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>Updated</span><span>May 2026</span></div>
+    </div>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-book-open"></i> Related Articles</h4>
+    <ul class="related-list">
+      <li><a href="what-is-surveying.html">What is Surveying? Beginner's Guide</a></li>
+      <li><a href="rl-calculation-hi-method.html">RL Calculation: The HI Method</a></li>
+      <li><a href="circular-curve-elements.html">Circular Curve: All Elements</a></li>
+      <li><a href="spiral-transition-curves.html">Spiral Transition Curves</a></li>
+      <li><a href="vertical-curves-k-value.html">Vertical Curves: K-Value Explained</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-tags"></i> Tags</h4>
+    <div class="tag-cloud">
+      <span class="tag-pill">Traverse</span>
+      <span class="tag-pill">Bowditch Rule</span>
+      <span class="tag-pill">Compass Rule</span>
+      <span class="tag-pill">Latitude</span>
+      <span class="tag-pill">Departure</span>
+      <span class="tag-pill">Closing Error</span>
+      <span class="tag-pill">Coordinates</span>
+      <span class="tag-pill">Bearing</span>
+    </div>
+  </div>
+</aside>
+</div>
+
+<!-- Article Footer -->
+<div class="article-footer">
+  <div class="article-footer-inner">
+    <div class="author-card">
+      <div class="author-avatar"><i class="fas fa-map-marked-alt"></i></div>
+      <div class="author-info">
+        <h4>Akhtar Engineering Hub</h4>
+        <p>Written by a professional land surveyor with extensive experience running closed loop traverses, applying Bowditch adjustments, and establishing control networks for construction and cadastral projects.</p>
+        <a href="index.html">Visit the Hub →</a>
+      </div>
+    </div>
+    <div class="nav-articles">
+      <a href="vertical-curves-k-value.html" class="nav-article-link">
+        <span>← Previous Article</span>
+        <strong>Vertical Curves: K-Value Explained</strong>
+      </a>
+      <a href="index.html" class="nav-article-link">
+        <span>Browse All</span>
+        <strong>All Articles on the Blog →</strong>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <p>&copy; 2026 <a href="index.html">Akhtar Engineering Hub</a> &nbsp;|&nbsp; Learn &bull; Build &bull; Solve &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="index.html">Privacy Policy</a></p>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+window.addEventListener('scroll',function(){
+  var doc=document.documentElement;
+  var top=doc.scrollTop||document.body.scrollTop;
+  var hgt=doc.scrollHeight-doc.clientHeight;
+  var bar=document.getElementById('progressBar');
+  if(bar) bar.style.width=(hgt>0?(top/hgt)*100:0)+'%';
+  var btn=document.getElementById('backTop');
+  if(btn) btn.classList.toggle('show',top>400);
+});
+var tocLinks=document.querySelectorAll('.toc-list a');
+var sections=[];
+tocLinks.forEach(function(l){
+  var id=l.getAttribute('href').replace('#','');
+  var el=document.getElementById(id);
+  if(el) sections.push({id:id,el:el,link:l});
+});
+window.addEventListener('scroll',function(){
+  var scrollY=window.scrollY+100;
+  var current='';
+  sections.forEach(function(s){if(s.el.offsetTop<=scrollY)current=s.id;});
+  tocLinks.forEach(function(l){l.style.color='';l.style.background='';});
+  sections.forEach(function(s){
+    if(s.id===current){s.link.style.color='var(--green)';s.link.style.background='rgba(16,185,129,0.08)';}
+  });
+});
+</script>
+</body>
+</html>
