@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GNSS in Construction Surveying: RTK, PPK and When to Use Each | Akhtar Engineering Hub</title>
+<meta name="description" content="Complete guide to GNSS in construction surveying — how RTK works, base-rover architecture, fixed vs float solutions, PPK post-processing, accuracy expectations, GNSS vs total station trade-offs and practical site tips.">
+<meta name="keywords" content="RTK GNSS surveying, PPK surveying, real time kinematic, post processed kinematic, GNSS construction, base rover GNSS, NRTK VRS, GNSS accuracy, GPS surveying, GNSS vs total station, differential GNSS">
+<meta name="author" content="Akhtar Engineering Hub">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://akhtarengineeringhub.com/gnss-rtk-ppk-construction.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://akhtarengineeringhub.com/gnss-rtk-ppk-construction.html">
+<meta property="og:title" content="GNSS in Construction Surveying: RTK, PPK and When to Use Each">
+<meta property="og:description" content="RTK, PPK, NRTK — how GNSS positioning works, accuracy expectations, base-rover architecture and when to use GNSS vs total station.">
+<meta property="og:site_name" content="Akhtar Engineering Hub">
+<meta property="article:published_time" content="2026-05-03">
+<meta property="article:section" content="Surveying">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GNSS in Construction Surveying: RTK, PPK and When to Use Each">
+<meta name="twitter:description" content="Complete guide to RTK and PPK GNSS for construction surveying — how it works, accuracy, base-rover setup and when to use each method.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"GNSS in Construction Surveying: RTK, PPK and When to Use Each",
+  "description":"Complete guide to GNSS in construction surveying — RTK, PPK, NRTK, accuracy, base-rover architecture and GNSS vs total station trade-offs.",
+  "author":{"@type":"Person","name":"Akhtar Engineering Hub"},
+  "publisher":{"@type":"Organization","name":"Akhtar Engineering Hub"},
+  "datePublished":"2026-05-03",
+  "dateModified":"2026-05-03",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://akhtarengineeringhub.com/gnss-rtk-ppk-construction.html"},
+  "articleSection":"Surveying",
+  "keywords":"RTK, PPK, GNSS, GPS, construction surveying, real-time kinematic, post-processed kinematic, base rover"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#050d1a;--bg2:#0a1628;--bg3:#0e1f38;
+  --card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);--text:#f1f5f9;--text-sub:#94a3b8;
+  --cyan:#06b6d4;--blue:#0ea5e9;--green:#10b981;--gold:#f59e0b;--red:#ef4444;--purple:#8b5cf6;
+  --accent:#06b6d4;
+  --nav-bg:rgba(5,13,26,0.95);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:10px;}
+
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--cyan),var(--blue));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;}
+.nav-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--text);}
+.nav-title span{display:block;font-size:10px;color:var(--accent);font-weight:500;}
+.nav-right{display:flex;gap:12px;align-items:center;}
+.nav-link-btn{padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600;background:var(--card);border:1px solid var(--border2);color:var(--text-sub);transition:all .2s;}
+.nav-link-btn:hover{text-decoration:none;color:var(--text);}
+.nav-link-btn.primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;border-color:transparent;}
+.nav-link-btn.primary:hover{opacity:.9;text-decoration:none;}
+
+.article-hero{margin-top:60px;padding:60px 24px 50px;background:linear-gradient(135deg,#050d1a 0%,#0a1628 60%,#050d1a 100%);border-bottom:1px solid var(--border);text-align:center;position:relative;overflow:hidden;}
+.article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(6,182,212,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(6,182,212,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.article-hero-inner{position:relative;z-index:1;max-width:820px;margin:0 auto;}
+.article-cat{display:inline-flex;align-items:center;gap:8px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:5px 14px;border-radius:100px;margin-bottom:20px;text-transform:uppercase;}
+.article-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,46px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:16px;}
+.article-hero h1 span{color:var(--cyan);}
+.article-hero .intro{font-size:17px;color:var(--text-sub);max-width:660px;margin:0 auto 24px;line-height:1.7;}
+.article-meta{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--text-sub);}
+.article-meta span{display:flex;align-items:center;gap:6px;}
+.article-meta i{color:var(--cyan);}
+
+.article-layout{max-width:1100px;margin:0 auto;padding:60px 24px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+.article-body{min-width:0;}
+.article-sidebar{position:sticky;top:80px;}
+
+.article-body h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:800;margin:44px 0 14px;color:var(--text);letter-spacing:-0.5px;border-left:4px solid var(--cyan);padding-left:16px;}
+.article-body h3{font-size:18px;font-weight:700;margin:28px 0 10px;color:var(--cyan);}
+.article-body p{font-size:16px;color:var(--text-sub);margin-bottom:18px;line-height:1.85;}
+.article-body strong{color:var(--text);font-weight:700;}
+.article-body ul,.article-body ol{margin:12px 0 20px 0;padding-left:0;list-style:none;}
+.article-body ul li,.article-body ol li{font-size:15px;color:var(--text-sub);padding:7px 0 7px 30px;border-bottom:1px solid var(--border);position:relative;line-height:1.6;}
+.article-body ul li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--cyan);font-size:11px;position:absolute;left:6px;top:10px;}
+.article-body ol{counter-reset:olc;}
+.article-body ol li{counter-increment:olc;}
+.article-body ol li::before{content:counter(olc);background:var(--cyan);color:#fff;font-size:11px;font-weight:800;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;left:0;top:9px;}
+.article-body li:last-child{border-bottom:none;}
+
+.callout{border-radius:12px;padding:20px 22px;margin:24px 0;display:flex;gap:16px;align-items:flex-start;}
+.callout.info{background:rgba(6,182,212,0.07);border-left:4px solid var(--cyan);}
+.callout.tip{background:rgba(16,185,129,0.07);border-left:4px solid var(--green);}
+.callout.warn{background:rgba(245,158,11,0.07);border-left:4px solid var(--gold);}
+.callout.danger{background:rgba(239,68,68,0.07);border-left:4px solid var(--red);}
+.callout i{font-size:18px;margin-top:2px;flex-shrink:0;}
+.callout.info i{color:var(--cyan);}
+.callout.tip i{color:var(--green);}
+.callout.warn i{color:var(--gold);}
+.callout.danger i{color:var(--red);}
+.callout-body strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.callout-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+.pull-quote{border-left:3px solid var(--cyan);background:rgba(6,182,212,0.05);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0;font-size:18px;font-style:italic;font-weight:600;color:var(--text);line-height:1.6;}
+
+.kc{display:inline;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--cyan);}
+.kg{display:inline;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--green);}
+.ko{display:inline;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--gold);}
+.kr{display:inline;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--red);}
+.kp{display:inline;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--purple);}
+
+.formula-block{background:var(--bg3);border:1px solid rgba(6,182,212,0.22);border-radius:14px;padding:24px 28px;margin:24px 0;border-left:4px solid var(--cyan);}
+.formula-block .fl{font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
+.formula-block code{font-family:'Courier New',monospace;font-size:14px;font-weight:700;color:var(--text);background:rgba(255,255,255,0.04);border:1px solid var(--border2);border-radius:8px;padding:10px 16px;margin-bottom:8px;display:block;line-height:1.6;}
+.formula-block .fn{font-size:13px;color:var(--text-sub);margin-top:6px;}
+
+/* GNSS acronym banner */
+.acronym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:24px 0;}
+.acronym-card{background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:16px;text-align:center;}
+.ac-short{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:900;color:var(--cyan);margin-bottom:4px;}
+.ac-full{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.ac-desc{font-size:11px;color:var(--text-sub);line-height:1.4;}
+
+/* Architecture diagram */
+.diagram-wrap{background:var(--bg3);border:1px solid rgba(6,182,212,0.18);border-radius:16px;padding:24px;margin:28px 0;text-align:center;}
+.diagram-wrap .dc{font-size:12px;color:var(--text-sub);margin-top:14px;font-style:italic;}
+
+/* RTK vs PPK comparison */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:28px 0;}
+.method-card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:22px;transition:all .2s;}
+.method-card:hover{border-color:rgba(6,182,212,0.3);}
+.method-card .mc-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:12px;}
+.method-card.rtk .mc-badge{background:rgba(6,182,212,0.12);color:var(--cyan);}
+.method-card.ppk .mc-badge{background:rgba(16,185,129,0.12);color:var(--green);}
+.method-card h4{font-size:16px;font-weight:800;color:var(--text);margin-bottom:8px;}
+.method-card p{font-size:13px;color:var(--text-sub);line-height:1.65;margin-bottom:8px;}
+.method-card ul{margin:0;}
+.method-card ul li{font-size:13px;padding:5px 0 5px 24px;border-bottom:1px solid var(--border);}
+.method-card ul li:last-child{border-bottom:none;}
+.method-card ul li::before{font-size:10px;top:8px;}
+.method-card.rtk ul li::before{color:var(--cyan);}
+.method-card.ppk ul li::before{color:var(--green);}
+
+/* Accuracy table */
+.acc-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border2);margin:24px 0;}
+.acc-table{width:100%;border-collapse:collapse;font-size:13px;min-width:500px;}
+.acc-table thead tr{background:linear-gradient(135deg,rgba(6,182,212,0.1),rgba(14,165,233,0.05));}
+.acc-table th{padding:11px 14px;text-align:left;font-weight:700;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--border2);}
+.acc-table th:nth-child(2),.acc-table th:nth-child(3),.acc-table th:nth-child(4){text-align:center;}
+.acc-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text-sub);font-size:13px;}
+.acc-table td:nth-child(2),.acc-table td:nth-child(3),.acc-table td:nth-child(4){text-align:center;font-family:'Courier New',monospace;font-weight:700;}
+.acc-table td:nth-child(2){color:var(--green);}
+.acc-table td:nth-child(3){color:var(--cyan);}
+.acc-table td:nth-child(4){color:var(--gold);}
+.acc-table tr:last-child td{border-bottom:none;}
+.acc-table tr:hover td{background:rgba(6,182,212,0.03);}
+
+/* Use-case decision grid */
+.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+.decision-card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:20px;}
+.decision-card .dc-head{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.decision-card.use-gnss .dc-head{color:var(--cyan);}
+.decision-card.use-ts .dc-head{color:var(--green);}
+.decision-card h4{font-size:15px;font-weight:800;color:var(--text);margin-bottom:10px;}
+.decision-card ul{margin:0;}
+.decision-card ul li{font-size:13px;padding:5px 0 5px 24px;border-bottom:1px solid var(--border);}
+.decision-card ul li:last-child{border-bottom:none;}
+.decision-card.use-gnss ul li::before{color:var(--cyan);}
+.decision-card.use-ts ul li::before{color:var(--green);}
+
+/* Fixed vs Float */
+.solution-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;}
+.sol-card{border-radius:12px;padding:20px;}
+.sol-card.fixed{background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);}
+.sol-card.float{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);}
+.sol-card .sol-badge{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;display:inline-block;padding:3px 10px;border-radius:100px;}
+.sol-card.fixed .sol-badge{background:rgba(16,185,129,0.15);color:var(--green);}
+.sol-card.float .sol-badge{background:rgba(245,158,11,0.15);color:var(--gold);}
+.sol-card h4{font-size:15px;font-weight:800;margin-bottom:8px;}
+.sol-card.fixed h4{color:var(--green);}
+.sol-card.float h4{color:var(--gold);}
+.sol-card p{font-size:13px;color:var(--text-sub);line-height:1.6;margin-bottom:8px;}
+.sol-card .sol-acc{font-family:'Courier New',monospace;font-size:15px;font-weight:800;}
+.sol-card.fixed .sol-acc{color:var(--green);}
+.sol-card.float .sol-acc{color:var(--gold);}
+
+/* Steps */
+.steps{margin:24px 0;}
+.step{display:flex;gap:18px;margin-bottom:14px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;transition:all .2s;}
+.step:hover{border-color:var(--border2);}
+.step-num{min-width:36px;height:36px;background:linear-gradient(135deg,var(--cyan),var(--blue));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff;flex-shrink:0;}
+.step-body strong{display:block;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.step-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+/* Sidebar */
+.sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:20px;}
+.sidebar-card h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.sidebar-card h4 i{color:var(--cyan);}
+.toc-list{list-style:none;}
+.toc-list li{padding:0;border:none;}
+.toc-list li::before{display:none;}
+.toc-list li a{display:block;font-size:13px;color:var(--text-sub);padding:7px 10px;border-radius:6px;transition:all .2s;}
+.toc-list li a:hover{background:rgba(6,182,212,0.08);color:var(--cyan);text-decoration:none;}
+.related-list{list-style:none;}
+.related-list li{padding:0;border:none;}
+.related-list li::before{display:none;}
+.related-list li a{display:block;font-size:13px;color:var(--text-sub);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.4;transition:color .2s;}
+.related-list li:last-child a{border-bottom:none;}
+.related-list li a:hover{color:var(--cyan);text-decoration:none;}
+.sidebar-cta{background:linear-gradient(135deg,rgba(6,182,212,0.1),rgba(14,165,233,0.05));border:1px solid rgba(6,182,212,0.2);border-radius:14px;padding:22px;margin-bottom:20px;text-align:center;}
+.sidebar-cta h4{font-size:15px;font-weight:700;margin-bottom:8px;}
+.sidebar-cta p{font-size:13px;color:var(--text-sub);margin-bottom:16px;line-height:1.5;}
+.sidebar-cta a{display:block;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;font-size:13px;font-weight:700;padding:11px;border-radius:8px;text-decoration:none;}
+.sidebar-cta a:hover{opacity:.9;}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+.tag-pill{padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;background:var(--bg3);border:1px solid var(--border2);color:var(--text-sub);}
+
+.progress-bar{position:fixed;top:60px;left:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--blue));z-index:200;transition:width .1s;}
+.back-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--cyan);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer;box-shadow:0 4px 20px rgba(6,182,212,0.4);opacity:0;transition:all .3s;z-index:200;border:none;}
+.back-top.show{opacity:1;}
+
+.article-footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 24px;}
+.article-footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+.author-card{display:flex;gap:16px;align-items:flex-start;}
+.author-avatar{width:60px;height:60px;background:linear-gradient(135deg,var(--cyan),var(--blue));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;flex-shrink:0;}
+.author-info h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.author-info p{font-size:13px;color:var(--text-sub);line-height:1.6;}
+.author-info a{font-size:13px;font-weight:600;margin-top:10px;display:inline-block;color:var(--cyan);}
+.nav-articles{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
+.nav-article-link{display:flex;flex-direction:column;align-items:flex-end;text-align:right;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;transition:all .2s;}
+.nav-article-link:hover{border-color:var(--cyan);text-decoration:none;}
+.nav-article-link span{font-size:11px;color:var(--text-sub);}
+.nav-article-link strong{font-size:13px;color:var(--text);margin-top:2px;}
+
+.page-footer{background:var(--bg);border-top:1px solid var(--border);padding:24px;text-align:center;font-size:13px;color:var(--text-sub);}
+.page-footer a{color:var(--cyan);}
+
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;}
+  .article-sidebar{display:none;}
+  .article-footer-inner{grid-template-columns:1fr;}
+  .nav-articles{align-items:flex-start;}
+  .nav-article-link{align-items:flex-start;text-align:left;}
+  .method-grid,.decision-grid,.solution-cards{grid-template-columns:1fr;}
+}
+@media(max-width:580px){.article-meta{gap:12px;}}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-icon"><i class="fas fa-satellite"></i></div>
+    <div class="nav-title">Akhtar<span>Engineering Hub</span></div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link-btn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+    <a href="index.html" class="nav-link-btn primary"><i class="fas fa-calculator"></i> Calculators</a>
+  </div>
+</header>
+
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat"><i class="fas fa-satellite"></i> Surveying &nbsp;|&nbsp; GNSS &amp; Technology</div>
+    <h1>GNSS in Construction Surveying:<br><span>RTK, PPK and When to Use Each</span></h1>
+    <p class="intro">GPS changed surveying. GNSS changed it further. But standing in a construction site with a receiver telling you "float solution — accuracy 0.45 m" is useless. Understanding RTK, PPK, and the limits of each method turns a black box into a reliable professional tool.</p>
+    <div class="article-meta">
+      <span><i class="fas fa-user-tie"></i> Akhtar Engineering Hub</span>
+      <span><i class="fas fa-calendar-alt"></i> 3 May 2026</span>
+      <span><i class="fas fa-clock"></i> 12 min read</span>
+      <span><i class="fas fa-satellite"></i> Technology</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-layout">
+<article class="article-body">
+
+  <p>GNSS — Global Navigation Satellite System — is the umbrella term for all satellite positioning systems. GPS is just one of them (the American one). When a construction surveyor sets up a rover receiver today, it is simultaneously tracking satellites from multiple constellations, using signals from dozens of satellites at once. This multi-constellation capability is what makes modern GNSS receivers so much more reliable than the GPS receivers of twenty years ago.</p>
+
+  <p>But raw GNSS — just a receiver watching satellites — gives you position accuracy of 2–5 metres. That is useless for engineering. The solution is <strong>differential GNSS</strong>: comparing the receiver's observations against a reference point of known position and using the difference to correct the errors. RTK and PPK are the two most important forms of differential GNSS for construction surveyors.</p>
+
+  <div class="callout info">
+    <i class="fas fa-info-circle"></i>
+    <div class="callout-body">
+      <strong>What This Article Covers</strong>
+      <p>The GNSS acronym landscape &mdash; how satellite positioning works &mdash; error sources &mdash; differential GNSS principle &mdash; RTK in detail (base-rover, fixed vs float) &mdash; Network RTK (NRTK/VRS) &mdash; PPK post-processing &mdash; accuracy table &mdash; GNSS vs total station decision guide &mdash; practical site tips &mdash; and common mistakes.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2 id="acronyms">The Acronym Landscape — Sorted Out</h2>
+
+  <div class="acronym-grid">
+    <div class="acronym-card">
+      <div class="ac-short">GPS</div>
+      <div class="ac-full">Global Positioning System</div>
+      <div class="ac-desc">US military-owned constellation. 31 satellites. The original — now one component of GNSS.</div>
+    </div>
+    <div class="acronym-card">
+      <div class="ac-short">GLONASS</div>
+      <div class="ac-full">Globalnaya Navigatsionnaya Sputnikovaya Sistema</div>
+      <div class="ac-desc">Russian constellation. 24 satellites. Major second constellation tracked by all modern receivers.</div>
+    </div>
+    <div class="acronym-card">
+      <div class="ac-short">Galileo</div>
+      <div class="ac-full">European GNSS</div>
+      <div class="ac-desc">EU constellation. 30 satellites. Fully operational since 2023. Excellent precision signals.</div>
+    </div>
+    <div class="acronym-card">
+      <div class="ac-short">BeiDou</div>
+      <div class="ac-full">BeiDou Navigation Satellite System</div>
+      <div class="ac-desc">Chinese constellation. 35+ satellites. Now global and tracked by most professional receivers.</div>
+    </div>
+    <div class="acronym-card">
+      <div class="ac-short">RTK</div>
+      <div class="ac-full">Real-Time Kinematic</div>
+      <div class="ac-desc">Differential correction applied in real time via radio or internet link. Result available instantly.</div>
+    </div>
+    <div class="acronym-card">
+      <div class="ac-short">PPK</div>
+      <div class="ac-full">Post-Processed Kinematic</div>
+      <div class="ac-desc">Differential correction applied after the survey using downloaded base station data. Higher reliability.</div>
+    </div>
+    <div class="acronym-card">
+      <div class="ac-short">NRTK</div>
+      <div class="ac-full">Network RTK</div>
+      <div class="ac-desc">RTK using a network of permanent base stations instead of your own base receiver. Also called VRS.</div>
+    </div>
+    <div class="acronym-card">
+      <div class="ac-short">PDOP</div>
+      <div class="ac-full">Position Dilution of Precision</div>
+      <div class="ac-desc">A measure of satellite geometry quality. Lower PDOP = better geometry = more accurate position.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <h2 id="how-it-works">How GNSS Positioning Works</h2>
+
+  <p>Every GNSS satellite broadcasts a signal containing two pieces of information: its precise position (from the satellite's own onboard clock and ephemeris data) and the exact time the signal was transmitted. The receiver measures how long the signal takes to arrive. Multiply by the speed of light and you have the distance from that satellite.</p>
+
+  <p>With distances from four or more satellites, the receiver can solve for its own position (E, N, H) and correct its clock error simultaneously. This is <strong>trilateration</strong> — not triangulation. The result is a pseudorange position — "pseudo" because the ranges contain errors from the ionosphere, troposphere, satellite clock drift and receiver noise.</p>
+
+  <div class="formula-block">
+    <div class="fl">Pseudorange and Error Sources</div>
+    <code>Pseudorange  =  True range + Clock errors + Ionospheric delay + Tropospheric delay + Multipath + Noise</code>
+    <code>Raw GNSS accuracy: ±2–5 m horizontal, ±5–10 m vertical</code>
+    <code>With SBAS correction: ±0.5–1.5 m horizontal</code>
+    <code>With RTK (fixed): ±8–15 mm horizontal, ±15–25 mm vertical</code>
+    <div class="fn">The dominant error for construction surveying is the ionospheric delay — the signal slows as it passes through the ionosphere and the delay varies with solar activity, time of day and location. Differential GNSS methods cancel most of this error by comparing two receivers that experience very similar atmospheric delays.</div>
+  </div>
+
+  <div class="pull-quote">
+    "The atmosphere does not care about your project deadline. GNSS accuracy is ultimately constrained by physics — understanding the limits protects you from trusting results you should not trust."
+  </div>
+
+  <!-- SECTION 3 -->
+  <h2 id="differential">The Differential Correction Principle</h2>
+
+  <p>The key insight behind all high-accuracy GNSS methods is that errors are <strong>spatially correlated</strong>. Two receivers that are close together experience almost identical atmospheric delays, satellite clock errors and orbit errors. If one receiver is on a known point, it can calculate the errors in its own position and broadcast corrections. A nearby rover receiver applies those same corrections to its own pseudoranges — and most of the systematic errors cancel out.</p>
+
+  <p>The closer the rover is to the base, the better the error cancellation. This is why base-rover GNSS systems have a recommended baseline length (typically under 20–30 km for RTK, though network RTK extends this considerably).</p>
+
+  <!-- SECTION 4 -->
+  <h2 id="rtk">RTK — Real-Time Kinematic Explained</h2>
+
+  <p>RTK is differential GNSS where the corrections are transmitted from the base station to the rover in real time — via a radio link (UHF/VHF) or an internet connection (NTRIP over mobile data). The rover applies the corrections and solves for its position in real time, typically within 1–5 seconds of switching on.</p>
+
+  <h3>Base-Rover Architecture</h3>
+
+  <p>In a classic own-base RTK setup:</p>
+
+  <ol>
+    <li>The <strong>base station</strong> is set up over a known control point (or at an assumed position if doing a relative survey). It observes satellites and transmits corrections continuously</li>
+    <li>The <strong>rover</strong> receives the corrections via radio or internet, combines them with its own satellite observations, and computes a differential position in real time</li>
+    <li>The rover operator works normally — walking to points, collecting data, or guiding setting-out — while the system provides continuous centimetre-level position updates</li>
+  </ol>
+
+  <!-- Architecture SVG -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;">
+      <rect width="520" height="240" fill="#0e1f38" rx="10"/>
+
+      <!-- Satellites -->
+      <circle cx="120" cy="35" r="14" fill="rgba(6,182,212,0.1)" stroke="#06b6d4" stroke-width="1.5"/>
+      <text x="120" y="39" fill="#06b6d4" font-size="10" text-anchor="middle" font-family="Space Grotesk">SAT</text>
+      <circle cx="260" cy="25" r="14" fill="rgba(6,182,212,0.1)" stroke="#06b6d4" stroke-width="1.5"/>
+      <text x="260" y="29" fill="#06b6d4" font-size="10" text-anchor="middle" font-family="Space Grotesk">SAT</text>
+      <circle cx="400" cy="35" r="14" fill="rgba(6,182,212,0.1)" stroke="#06b6d4" stroke-width="1.5"/>
+      <text x="400" y="39" fill="#06b6d4" font-size="10" text-anchor="middle" font-family="Space Grotesk">SAT</text>
+
+      <!-- Signal lines to base -->
+      <line x1="120" y1="49" x2="110" y2="175" stroke="rgba(6,182,212,0.3)" stroke-width="1" stroke-dasharray="4 2"/>
+      <line x1="260" y1="39" x2="110" y2="175" stroke="rgba(6,182,212,0.3)" stroke-width="1" stroke-dasharray="4 2"/>
+      <line x1="400" y1="49" x2="110" y2="175" stroke="rgba(6,182,212,0.3)" stroke-width="1" stroke-dasharray="4 2"/>
+
+      <!-- Signal lines to rover -->
+      <line x1="120" y1="49" x2="380" y2="165" stroke="rgba(6,182,212,0.2)" stroke-width="1" stroke-dasharray="4 2"/>
+      <line x1="260" y1="39" x2="380" y2="165" stroke="rgba(6,182,212,0.2)" stroke-width="1" stroke-dasharray="4 2"/>
+      <line x1="400" y1="49" x2="380" y2="165" stroke="rgba(6,182,212,0.2)" stroke-width="1" stroke-dasharray="4 2"/>
+
+      <!-- Base station -->
+      <rect x="80" y="170" width="60" height="40" rx="6" fill="rgba(245,158,11,0.1)" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="110" y="190" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle" font-family="Space Grotesk">BASE</text>
+      <text x="110" y="203" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter">Known point</text>
+      <!-- Tripod -->
+      <line x1="110" y1="210" x2="95" y2="230" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+      <line x1="110" y1="210" x2="110" y2="232" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+      <line x1="110" y1="210" x2="125" y2="230" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+
+      <!-- Radio / internet link -->
+      <line x1="140" y1="188" x2="350" y2="175" stroke="#ef4444" stroke-width="2" stroke-dasharray="6 3"/>
+      <text x="240" y="175" fill="#ef4444" font-size="10" text-anchor="middle" font-family="Inter">Radio / NTRIP corrections</text>
+
+      <!-- Rover -->
+      <rect x="350" y="160" width="60" height="40" rx="6" fill="rgba(6,182,212,0.1)" stroke="#06b6d4" stroke-width="1.5"/>
+      <text x="380" y="180" fill="#06b6d4" font-size="11" font-weight="bold" text-anchor="middle" font-family="Space Grotesk">ROVER</text>
+      <text x="380" y="193" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter">Unknown point</text>
+      <!-- Pole -->
+      <line x1="380" y1="200" x2="380" y2="232" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+      <circle cx="380" cy="234" r="3" fill="#06b6d4" opacity="0.6"/>
+
+      <!-- FIXED badge -->
+      <rect x="346" y="136" width="68" height="20" rx="10" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+      <text x="380" y="150" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle" font-family="Space Grotesk">FIXED ±10mm</text>
+
+      <!-- Baseline label -->
+      <line x1="140" y1="205" x2="350" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text x="245" y="220" fill="#94a3b8" font-size="10" text-anchor="middle" font-family="Courier New">Baseline &lt; 20–30 km</text>
+    </svg>
+    <div class="dc">Fig 1. RTK base-rover architecture. The base station on a known point transmits satellite observation corrections via radio or internet to the rover. The rover applies the corrections and computes a fixed solution in real time. The baseline (base-to-rover distance) should ideally be under 20 km for best results.</div>
+  </div>
+
+  <h3>Fixed vs Float Solution — Critical Distinction</h3>
+
+  <div class="solution-cards">
+    <div class="sol-card fixed">
+      <div class="sol-badge">✓ Fixed Solution</div>
+      <h4>Centimetre Accuracy</h4>
+      <p>The receiver has resolved the carrier phase integer ambiguity — it knows exactly how many full wavelengths of signal are between the satellite and receiver. This is the goal of all RTK work.</p>
+      <p>Typical horizontal accuracy:</p>
+      <div class="sol-acc">±8–15 mm</div>
+    </div>
+    <div class="sol-card float">
+      <div class="sol-badge">⚠ Float Solution</div>
+      <h4>Decimetre Accuracy Only</h4>
+      <p>The receiver has not resolved the integer ambiguity — it has only estimated it. The position is computed but the uncertainty is much larger. A float solution is <strong>not acceptable</strong> for engineering setting out or precise survey work.</p>
+      <p>Typical horizontal accuracy:</p>
+      <div class="sol-acc">±0.2–0.5 m</div>
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <i class="fas fa-exclamation-circle"></i>
+    <div class="callout-body">
+      <strong>Never Accept a Float Solution for Engineering Work</strong>
+      <p>The most dangerous situation in GNSS surveying is collecting data on a float solution thinking it is fixed. Always confirm the solution status before every observation series. If you are working near obstructions (trees, buildings, slopes) the solution can drop from fixed to float and back — check constantly. A 0.3 m float error in a pile position or road alignment can cause expensive rework.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <h2 id="nrtk">Network RTK (NRTK / VRS)</h2>
+
+  <p>Setting up your own base station takes time and requires a known control point near the site. <strong>Network RTK</strong> eliminates the base station entirely — instead, you subscribe to a network of permanent reference stations operated by a national or commercial provider, and receive corrections over the internet (NTRIP protocol).</p>
+
+  <ul>
+    <li>The network creates a <strong>Virtual Reference Station (VRS)</strong> — a mathematically synthesised base station at a point close to your rover's approximate position</li>
+    <li>Corrections from the VRS are delivered to your rover via a mobile data connection (4G/5G)</li>
+    <li>Accuracy is similar to own-base RTK: ±10–20 mm horizontal when fixed</li>
+    <li>No base equipment to set up, transport or power — one receiver, one person, immediate start</li>
+    <li>Requires a mobile data signal — fails in remote areas or underground</li>
+    <li>Requires a subscription (typically charged annually or per-month)</li>
+    <li>The coordinate system delivered by the network may differ slightly from your site control — always calibrate against local control before trusting absolute coordinates</li>
+  </ul>
+
+  <!-- SECTION 6 -->
+  <h2 id="ppk">PPK — Post-Processed Kinematic</h2>
+
+  <div class="method-grid">
+    <div class="method-card rtk">
+      <div class="mc-badge">Real-Time</div>
+      <h4>RTK — Instant Results</h4>
+      <p>Corrections applied as you work. Position displayed in real time. Ideal for setting out, topographic survey and most construction work where immediate feedback is needed.</p>
+      <ul>
+        <li>Results available immediately on site</li>
+        <li>Requires radio or internet link to base</li>
+        <li>If link drops, survey stops</li>
+        <li>No re-processing possible if solution was float</li>
+      </ul>
+    </div>
+    <div class="method-card ppk">
+      <div class="mc-badge">Post-Processed</div>
+      <h4>PPK — Highest Reliability</h4>
+      <p>Raw observations stored in both base and rover. Processed after the survey using specialist software. The integer ambiguity can be resolved retrospectively — including sections where the real-time link was lost.</p>
+      <ul>
+        <li>No real-time link required in the field</li>
+        <li>Can recover data from obstructed areas</li>
+        <li>Results only available after processing</li>
+        <li>Best for UAV photogrammetry, remote surveys</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>When PPK is the Better Choice</h3>
+  <ul>
+    <li><strong>UAV (drone) surveys:</strong> The drone cannot maintain a radio link to a base station during flight. PPK processes the flight's raw observations against a simultaneously logging base station after landing — giving centimetre-level geotagging of every photo</li>
+    <li><strong>Remote or obstructed sites:</strong> No mobile data, radio range too short for RTK. PPK logs raw data and processes it back at the office against data from the nearest continuously operating reference station (CORS)</li>
+    <li><strong>Quality assurance:</strong> Even when RTK is used on site, logging raw PPK data simultaneously gives you a backup that can be reprocessed if there were doubts about the real-time solution quality</li>
+    <li><strong>Absolute accuracy requirements:</strong> When you need to demonstrate traceability to a national reference frame, PPK processing against published CORS data provides the clearest audit trail</li>
+  </ul>
+
+  <!-- SECTION 7 -->
+  <h2 id="accuracy">Accuracy — Realistic Numbers for Each Method</h2>
+
+  <div class="acc-wrap">
+    <table class="acc-table">
+      <thead>
+        <tr><th>Method</th><th>Horiz. Accuracy (1σ)</th><th>Vertical Accuracy (1σ)</th><th>Best Use</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Raw GNSS (no correction)</td><td>±2–5 m</td><td>±5–10 m</td><td>Navigation only</td></tr>
+        <tr><td>SBAS (WAAS/EGNOS)</td><td>±0.5–1.5 m</td><td>±1–3 m</td><td>GIS, asset mapping</td></tr>
+        <tr><td>RTK Float</td><td>±0.2–0.5 m</td><td>±0.5–1 m</td><td>Not for engineering</td></tr>
+        <tr><td>RTK Fixed (own base)</td><td>±8–15 mm</td><td>±15–25 mm</td><td>Construction survey</td></tr>
+        <tr><td>Network RTK Fixed</td><td>±10–20 mm</td><td>±20–35 mm</td><td>Construction survey</td></tr>
+        <tr><td>PPK Fixed</td><td>±5–15 mm</td><td>±10–20 mm</td><td>UAV, precise control</td></tr>
+        <tr><td>Static GNSS (long obs.)</td><td>±2–5 mm</td><td>±5–10 mm</td><td>Control networks</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <i class="fas fa-exclamation-triangle"></i>
+    <div class="callout-body">
+      <strong>Vertical Accuracy is Always Worse Than Horizontal</strong>
+      <p>GNSS satellites are above the horizon — there are no satellites below you. This means the vertical component of position is geometrically weaker than horizontal. As a rule of thumb, vertical accuracy is typically 1.5–3× worse than horizontal accuracy. For precise level setting out (drainage inverts, formation levels, slab levels), always verify GNSS-derived heights against a spirit level run from a benchmarked control point.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <h2 id="gnss-vs-ts">GNSS vs Total Station — The Decision Guide</h2>
+
+  <div class="decision-grid">
+    <div class="decision-card use-gnss">
+      <div class="dc-head">📡 Use GNSS When:</div>
+      <h4>Open Sky, Large Area, Fast Coverage</h4>
+      <ul>
+        <li>Open site with good sky view (PDOP &lt; 3.0)</li>
+        <li>Large topographic surveys — faster to cover with rover than total station</li>
+        <li>Control network establishment over large distances</li>
+        <li>UAV ground control points (GCPs) and PPK tagging</li>
+        <li>Earthworks progress surveys — speed more important than 5 mm precision</li>
+        <li>Road centreline pegging on long alignments in open country</li>
+        <li>One-person operation when you cannot have an assistant for the prism</li>
+      </ul>
+    </div>
+    <div class="decision-card use-ts">
+      <div class="dc-head">🔭 Use Total Station When:</div>
+      <h4>Obstructions, Precision, Enclosed Spaces</h4>
+      <ul>
+        <li>Under tree canopy, near buildings or in urban canyons</li>
+        <li>Inside structures — tunnels, basements, building frames</li>
+        <li>Precise structural setting out (columns, piles) requiring ±5 mm</li>
+        <li>Precise level setting — drain inverts, slab levels, road formation</li>
+        <li>Areas where multipath is high (near large metal structures)</li>
+        <li>Monitoring surveys requiring sub-millimetre repeatability</li>
+        <li>When working to a site grid with a tight coordinate system</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>In practice, most professional survey teams use both. GNSS for broad area coverage and control, total station for precise detail and setting out in constrained areas. The tools are complementary — the skill is knowing which to reach for.</p>
+
+  <!-- SECTION 9 -->
+  <h2 id="site-tips">Practical Site Tips for RTK GNSS</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <strong>Always calibrate against local control before starting</strong>
+        <p>Observe at least two known control points at the start of each session. Compare the GNSS-derived coordinates with the known values. If the discrepancy exceeds your project tolerance, do not proceed — the network correction may be offset from your site grid, or the base is on the wrong coordinates.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <strong>Check PDOP before collecting data</strong>
+        <p>PDOP (Position Dilution of Precision) measures satellite geometry. PDOP under 2.0 is excellent; under 3.0 is acceptable; above 4.0 is marginal. Most receivers display PDOP continuously. Plan surveys during periods of good geometry — many satellite planning apps let you predict PDOP by location and time of day.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <strong>Initialise (fix) in open sky, not under trees</strong>
+        <p>Getting a fixed RTK solution requires unobstructed satellite signals. Initialise in the most open part of the site, then move into the work area. Once fixed, the receiver can maintain the solution in moderate obstruction — but it cannot fix for the first time in a degraded environment.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <strong>Take multiple observations of important points</strong>
+        <p>For setting out or picking up control points, take 3–5 observations with 5–10 second intervals and average them. This reduces the effect of residual noise and gives you a standard deviation on the result. Any observation with residual over 15 mm should be discarded and repeated.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <strong>Keep the pole vertical — always</strong>
+        <p>The GNSS antenna position is computed at the top of the pole. A 2 m pole that is 2° from vertical introduces a 70 mm horizontal error at the ground mark. Use the pole bubble and confirm it before every observation. On windy sites, shield the pole with your body or use a bipod support.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <strong>Re-check solution status after any obstruction</strong>
+        <p>Walking under a tree, past a building or into a cutting can cause the solution to drop to float. After emerging from an obstruction, wait for the fixed light to re-confirm before collecting data. Add a 10-second buffer after re-fixing before recording any point.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 10 -->
+  <h2 id="common-mistakes">Common GNSS Mistakes on Construction Sites</h2>
+
+  <ul>
+    <li><strong>Treating float as fixed:</strong> The most costly error. Ensure the receiver display clearly shows "FIXED" — not "FLOAT," "DGNSS," or "AUTONOMOUS" — before every observation</li>
+    <li><strong>No local calibration check:</strong> Assuming the NRTK network is exactly aligned with the site coordinate system. Always verify against known control at the start of every session and after any equipment change</li>
+    <li><strong>Wrong antenna height:</strong> The antenna height (pole height + phase centre offset) must be entered correctly. An error of 10 mm propagates to every level you measure. Measure pole height with a tape, not by memory</li>
+    <li><strong>Multipath from site equipment:</strong> Setting up the base receiver next to a steel hoarding, container or parked machine. The reflected signals create multipath errors. Base should be in the open, away from reflective surfaces</li>
+    <li><strong>Using GNSS heights as spot levels:</strong> GNSS heights are ellipsoidal — referenced to the mathematical ellipsoid, not to mean sea level. The difference (the geoid undulation) can be 10–50 m. Always apply the correct geoid model or calibrate heights to local benchmarks before using for level control</li>
+    <li><strong>Relying on GNSS in multipath-heavy environments:</strong> Around large warehouses, under power lines, near retaining walls — GNSS can give a fixed solution that is still 50–100 mm wrong due to multipath. Verify with a total station check in these conditions</li>
+  </ul>
+
+  <!-- SECTION 11 -->
+  <h2 id="use-calculators">Use the Free Calculators</h2>
+
+  <p>The <a href="index.html">Akhtar Engineering Hub</a> coordinate tools help you verify GNSS-derived coordinates against known control points, compute bearing and distance checks, and prepare coordinate transformation data before going to site.</p>
+
+  <div style="background:linear-gradient(135deg,rgba(6,182,212,0.08),rgba(14,165,233,0.04));border:1px solid rgba(6,182,212,0.2);border-radius:16px;padding:28px;text-align:center;margin:32px 0;">
+    <div style="font-size:36px;margin-bottom:12px;">🛰️</div>
+    <h3 style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;">Coordinate Verification Calculators</h3>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:20px;max-width:460px;margin-left:auto;margin-right:auto;">Check GNSS results against known control — bearing, distance, join calculation and coordinate comparison. Free, no signup.</p>
+    <a href="index.html" style="display:inline-block;background:linear-gradient(135deg,#06b6d4,#0ea5e9);color:#fff;font-size:15px;font-weight:700;padding:14px 28px;border-radius:100px;text-decoration:none;">Open Calculators <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
+  </div>
+
+  <!-- Conclusion -->
+  <h2 id="conclusion">Summary</h2>
+
+  <p>GNSS is one of the most powerful tools in modern construction surveying — and one of the easiest to misuse. The difference between a fixed RTK solution (±10 mm) and a float solution (±400 mm) is invisible on the receiver display unless you know to check. The difference between ellipsoidal height and orthometric height is invisible unless you know to apply a geoid model. The multipath error that makes your fixed solution wrong by 80 mm is invisible unless you verify against a total station.</p>
+
+  <p>RTK is the workhorse for fast open-area surveying. PPK is the choice when reliability matters more than real-time feedback — UAV surveys, remote sites, quality assurance logging. Network RTK eliminates the base station and is now the standard for most professional daily survey work where mobile data is available.</p>
+
+  <p>Use GNSS for speed and coverage. Use a total station for precision and enclosed spaces. Verify both against known control points. Understand the limitations of every method you use — and your survey work will be both fast and reliable.</p>
+
+</article>
+
+<!-- Sidebar -->
+<aside class="article-sidebar">
+  <div class="sidebar-card">
+    <h4><i class="fas fa-list"></i> Table of Contents</h4>
+    <ul class="toc-list">
+      <li><a href="#acronyms">The Acronym Landscape</a></li>
+      <li><a href="#how-it-works">How GNSS Works</a></li>
+      <li><a href="#differential">Differential Correction</a></li>
+      <li><a href="#rtk">RTK Explained</a></li>
+      <li><a href="#nrtk">Network RTK (NRTK/VRS)</a></li>
+      <li><a href="#ppk">PPK — Post-Processing</a></li>
+      <li><a href="#accuracy">Accuracy Table</a></li>
+      <li><a href="#gnss-vs-ts">GNSS vs Total Station</a></li>
+      <li><a href="#site-tips">Practical Site Tips</a></li>
+      <li><a href="#common-mistakes">Common Mistakes</a></li>
+      <li><a href="#conclusion">Summary</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-cta">
+    <h4>🛰️ Coordinate Calculators</h4>
+    <p>Verify GNSS results against control — bearing &amp; distance checks.</p>
+    <a href="index.html">Open Calculators →</a>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-info-circle"></i> Article Details</h4>
+    <div style="font-size:13px;color:var(--text-sub);">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Category</span><span style="color:var(--cyan);font-weight:600;">Technology</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Level</span><span style="color:var(--gold);font-weight:600;">Intermediate</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Read Time</span><span>12 min</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>Updated</span><span>May 2026</span></div>
+    </div>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-book-open"></i> Related Articles</h4>
+    <ul class="related-list">
+      <li><a href="total-station-resection.html">Total Station Resection Setup</a></li>
+      <li><a href="setting-out-by-coordinates.html">Setting Out by Coordinates</a></li>
+      <li><a href="traverse-bowditch-adjustment.html">Traverse: Bowditch Adjustment</a></li>
+      <li><a href="digital-terrain-models.html">Digital Terrain Models (DTM)</a></li>
+      <li><a href="what-is-surveying.html">What is Surveying? Beginner's Guide</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-tags"></i> Tags</h4>
+    <div class="tag-cloud">
+      <span class="tag-pill">GNSS</span>
+      <span class="tag-pill">RTK</span>
+      <span class="tag-pill">PPK</span>
+      <span class="tag-pill">GPS</span>
+      <span class="tag-pill">Base-Rover</span>
+      <span class="tag-pill">Fixed Solution</span>
+      <span class="tag-pill">NRTK</span>
+      <span class="tag-pill">Satellite</span>
+    </div>
+  </div>
+</aside>
+</div>
+
+<!-- Article Footer -->
+<div class="article-footer">
+  <div class="article-footer-inner">
+    <div class="author-card">
+      <div class="author-avatar"><i class="fas fa-satellite"></i></div>
+      <div class="author-info">
+        <h4>Akhtar Engineering Hub</h4>
+        <p>Written by a professional surveyor with extensive experience using RTK and PPK GNSS systems for construction control, topographic surveys, UAV ground control and national network calibration work.</p>
+        <a href="index.html">Visit the Hub →</a>
+      </div>
+    </div>
+    <div class="nav-articles">
+      <a href="digital-terrain-models.html" class="nav-article-link">
+        <span>← Previous Article</span>
+        <strong>Digital Terrain Models (DTM)</strong>
+      </a>
+      <a href="index.html" class="nav-article-link">
+        <span>Browse All</span>
+        <strong>All Articles on the Blog →</strong>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <p>&copy; 2026 <a href="index.html">Akhtar Engineering Hub</a> &nbsp;|&nbsp; Learn &bull; Build &bull; Solve &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="index.html">Privacy Policy</a></p>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+window.addEventListener('scroll',function(){
+  var doc=document.documentElement;
+  var top=doc.scrollTop||document.body.scrollTop;
+  var hgt=doc.scrollHeight-doc.clientHeight;
+  var bar=document.getElementById('progressBar');
+  if(bar) bar.style.width=(hgt>0?(top/hgt)*100:0)+'%';
+  var btn=document.getElementById('backTop');
+  if(btn) btn.classList.toggle('show',top>400);
+});
+var tocLinks=document.querySelectorAll('.toc-list a');
+var sections=[];
+tocLinks.forEach(function(l){
+  var id=l.getAttribute('href').replace('#','');
+  var el=document.getElementById(id);
+  if(el) sections.push({id:id,el:el,link:l});
+});
+window.addEventListener('scroll',function(){
+  var scrollY=window.scrollY+100;
+  var current='';
+  sections.forEach(function(s){if(s.el.offsetTop<=scrollY)current=s.id;});
+  tocLinks.forEach(function(l){l.style.color='';l.style.background='';});
+  sections.forEach(function(s){
+    if(s.id===current){s.link.style.color='var(--cyan)';s.link.style.background='rgba(6,182,212,0.08)';}
+  });
+});
+</script>
+</body>
+</html>
