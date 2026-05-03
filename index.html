@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akhtar Surveyor | Professional Engineering Portal</title>
+    <meta name="description" content="Professional land surveying calculators — Bearing & Distance, RL, Circular Curve, Area by Coordinate, Traverse, UTM Conversion and more.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
     <header>
         <div class="nav-container">
-            <div class="logo">AKHTAR <span style="-webkit-text-fill-color: inherit; color: inherit;">SURVEYOR</span></div>
+            <div class="logo">AKHTAR <span style="-webkit-text-fill-color:inherit;color:inherit;">SURVEYOR</span></div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#" onclick="show('home')"><i class="fas fa-home"></i> HOME</a></li>
@@ -36,16 +37,20 @@
 
         <!-- HOME SECTION -->
         <section id="home" class="section active">
-            <div class="title-block"><h2>Welcome back, Akhtar</h2></div>
+            <div class="title-block"><h2>Welcome to Akhtar Surveyor</h2></div>
             <div class="grid">
                 <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-bell"></i> Latest Updates</h3>
-                    <p style="color: rgba(255,255,255,0.7); line-height: 1.7;">Area by Coordinate calculator upgraded with polygon drawing & share feature. All calculators now fully functional.</p>
+                    <h3 style="color:var(--primary);margin-bottom:10px;"><i class="fas fa-bell"></i> Latest Updates</h3>
+                    <p style="color:rgba(255,255,255,0.7);line-height:1.7;">Area by Coordinate calculator upgraded with interactive polygon drawing, side lengths, angles, and PDF report export. All 13 calculators are fully functional.</p>
                 </div>
                 <div class="card">
-                    <h3 style="color: var(--gold); margin-bottom: 10px;"><i class="fas fa-tools"></i> Quick Access</h3>
-                    <p style="color: rgba(255,255,255,0.7); line-height: 1.7;">13 professional surveying calculators — Bearing, RL, Curves, Area, Traverse and more.</p>
-                    <button class="btn btn-primary" style="margin-top:15px;" onclick="show('tools')">Open Calculators</button>
+                    <h3 style="color:var(--gold);margin-bottom:10px;"><i class="fas fa-tools"></i> Quick Access</h3>
+                    <p style="color:rgba(255,255,255,0.7);line-height:1.7;">13 professional surveying calculators — Bearing, RL, Curves, Area, Traverse, UTM Conversion and more. Accurate results instantly.</p>
+                    <button class="btn btn-primary" style="margin-top:15px;" onclick="show('tools')"><i class="fas fa-calculator"></i> Open Calculators</button>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--accent);margin-bottom:10px;"><i class="fas fa-star"></i> Features</h3>
+                    <p style="color:rgba(255,255,255,0.7);line-height:1.7;">• Polygon drawing with measurements<br>• PDF report generation<br>• WhatsApp sharing<br>• DMS bearing output<br>• Works on all devices</p>
                 </div>
             </div>
         </section>
@@ -55,15 +60,15 @@
             <div class="title-block"><h2>Professional Android Apps</h2></div>
             <div class="grid">
                 <div class="app-card">
-                    <i class="fas fa-mobile-alt" style="font-size: 48px; color: var(--primary); margin-bottom: 15px; display: block;"></i>
-                    <h3 style="color: var(--gold); margin-bottom: 10px;">Surveyor Pro App</h3>
-                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">Offline calculations for field work — no internet needed on site.</p>
+                    <i class="fas fa-mobile-alt" style="font-size:48px;color:var(--primary);margin-bottom:15px;display:block;"></i>
+                    <h3 style="color:var(--gold);margin-bottom:10px;">Surveyor Pro App</h3>
+                    <p style="color:rgba(255,255,255,0.6);margin-bottom:20px;">Complete offline surveying toolkit for field work. No internet required on site.</p>
                     <a href="#" class="btn btn-download"><i class="fas fa-download"></i> Download APK v1.0</a>
                 </div>
                 <div class="app-card">
-                    <i class="fas fa-map-marked-alt" style="font-size: 48px; color: var(--accent); margin-bottom: 15px; display: block;"></i>
-                    <h3 style="color: var(--gold); margin-bottom: 10px;">Surveyor Pro v2</h3>
-                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">Advanced edition with XML support and coordinate export.</p>
+                    <i class="fas fa-map-marked-alt" style="font-size:48px;color:var(--accent);margin-bottom:15px;display:block;"></i>
+                    <h3 style="color:var(--gold);margin-bottom:10px;">Surveyor Pro v2</h3>
+                    <p style="color:rgba(255,255,255,0.6);margin-bottom:20px;">Advanced edition with LandXML support, coordinate export and alignment tools.</p>
                     <a href="#" class="btn btn-download"><i class="fas fa-download"></i> Download APK v2.0</a>
                 </div>
             </div>
@@ -71,16 +76,16 @@
 
         <!-- TOOLS SECTION -->
         <section id="tools" class="section">
-            <div class="title-block"><h2>Calculators</h2></div>
+            <div class="title-block"><h2>Surveying Calculators</h2></div>
 
-            <!-- RL CALCULATOR CARD -->
-            <div class="grid" style="margin-bottom: 30px;">
+            <!-- RL CALCULATOR -->
+            <div class="grid" style="margin-bottom:30px;">
                 <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-level-up-alt"></i> RL Calculator</h3>
-                    <p class="hint" style="font-size:12px; color:rgba(255,255,255,0.4); border-left: 2px solid var(--primary); padding-left: 8px; margin-bottom:15px;">Height of Instrument Method</p>
+                    <h3 style="color:var(--primary);margin-bottom:15px;"><i class="fas fa-level-up-alt"></i> RL Calculator</h3>
+                    <p style="font-size:12px;color:rgba(255,255,255,0.4);border-left:2px solid var(--primary);padding-left:8px;margin-bottom:15px;">Height of Instrument (HI) Method</p>
                     <input type="number" id="bm_input" placeholder="Bench Mark RL (m)">
-                    <input type="number" id="bs_input" placeholder="Back Sight (BS)">
-                    <input type="number" id="fs_input" placeholder="Fore Sight (FS)">
+                    <input type="number" id="bs_input" placeholder="Back Sight — BS (m)">
+                    <input type="number" id="fs_input" placeholder="Fore Sight — FS (m)">
                     <button class="btn btn-primary" onclick="calcRL()"><i class="fas fa-calculator"></i> Calculate RL</button>
                     <div id="rl_result" class="result-box" style="display:none;"></div>
                 </div>
@@ -98,19 +103,19 @@
                     <button class="accordion">
                         <span class="accordion-num">1</span>
                         BEARING &amp; DISTANCE
-                        <span class="accordion-arrow">▼</span>
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Do points ka bearing aur distance nikalein</p>
+                        <p class="hint">Calculate bearing (WCB &amp; DMS) and distance between two coordinate points</p>
                         <div class="input-row">
-                            <input type="number" id="e1" placeholder="E1 (Easting)">
-                            <input type="number" id="n1" placeholder="N1 (Northing)">
+                            <input type="number" id="e1" placeholder="E1 — Easting (m)">
+                            <input type="number" id="n1" placeholder="N1 — Northing (m)">
                         </div>
                         <div class="input-row">
-                            <input type="number" id="e2" placeholder="E2 (Easting)">
-                            <input type="number" id="n2" placeholder="N2 (Northing)">
+                            <input type="number" id="e2" placeholder="E2 — Easting (m)">
+                            <input type="number" id="n2" placeholder="N2 — Northing (m)">
                         </div>
-                        <button class="action-btn" onclick="calcBearing()"><i class="fas fa-compass"></i> Calculate Bearing & Distance</button>
+                        <button class="action-btn" onclick="calcBearing()"><i class="fas fa-compass"></i> Calculate Bearing &amp; Distance</button>
                         <div id="res1" class="tool-result"></div>
                     </div>
                 </div>
@@ -119,24 +124,24 @@
                 <div class="tool-section">
                     <button class="accordion">
                         <span class="accordion-num">2</span>
-                        REFERENCE LINE (Offset/Chainage)
-                        <span class="accordion-arrow">▼</span>
+                        REFERENCE LINE (Offset / Chainage)
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Road ya Line se kisi point ka offset aur chainage</p>
+                        <p class="hint">Find chainage and perpendicular offset of a point from a reference line</p>
                         <div class="input-row">
-                            <input type="number" id="rl_e1" placeholder="Line Start E">
-                            <input type="number" id="rl_n1" placeholder="Line Start N">
+                            <input type="number" id="rl_e1" placeholder="Line Start E (m)">
+                            <input type="number" id="rl_n1" placeholder="Line Start N (m)">
                         </div>
                         <div class="input-row">
-                            <input type="number" id="rl_e2" placeholder="Line End E">
-                            <input type="number" id="rl_n2" placeholder="Line End N">
+                            <input type="number" id="rl_e2" placeholder="Line End E (m)">
+                            <input type="number" id="rl_n2" placeholder="Line End N (m)">
                         </div>
                         <div class="input-row">
-                            <input type="number" id="rl_pe" placeholder="Point E">
-                            <input type="number" id="rl_pn" placeholder="Point N">
+                            <input type="number" id="rl_pe" placeholder="Point E (m)">
+                            <input type="number" id="rl_pn" placeholder="Point N (m)">
                         </div>
-                        <button class="action-btn" onclick="calcRefLine()"><i class="fas fa-ruler"></i> Calculate Offset</button>
+                        <button class="action-btn" onclick="calcRefLine()"><i class="fas fa-ruler"></i> Calculate Offset &amp; Chainage</button>
                         <div id="res2" class="tool-result"></div>
                     </div>
                 </div>
@@ -146,11 +151,11 @@
                     <button class="accordion">
                         <span class="accordion-num">3</span>
                         XML ALIGNMENT REFERENCE LINE
-                        <span class="accordion-arrow">▼</span>
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Upload LandXML file for Road Alignment</p>
-                        <input type="file" accept=".xml" style="color: rgba(255,255,255,0.6);">
+                        <p class="hint">Upload a LandXML file to process road alignment data</p>
+                        <input type="file" accept=".xml" style="color:rgba(255,255,255,0.6);">
                         <button class="action-btn pro-btn" style="margin-top:10px;"><i class="fas fa-file-code"></i> Process XML (PRO+)</button>
                     </div>
                 </div>
@@ -160,13 +165,13 @@
                     <button class="accordion">
                         <span class="accordion-num">4</span>
                         CIRCULAR CURVE
-                        <span class="accordion-arrow">▼</span>
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Radius aur Delta angle dal kar curve elements nikalein</p>
-                        <input type="number" id="cc_r" placeholder="Radius (R) in meters">
-                        <input type="number" id="cc_a" placeholder="Delta Angle (Δ) in degrees">
-                        <button class="action-btn" onclick="calcCircular()"><i class="fas fa-circle-notch"></i> Calculate Curve</button>
+                        <p class="hint">Enter Radius and Delta angle to get all curve setting-out elements</p>
+                        <input type="number" id="cc_r" placeholder="Radius — R (meters)">
+                        <input type="number" id="cc_a" placeholder="Delta Angle — &#916; (degrees)">
+                        <button class="action-btn" onclick="calcCircular()"><i class="fas fa-circle-notch"></i> Calculate Curve Elements</button>
                         <div id="res4" class="tool-result"></div>
                     </div>
                 </div>
@@ -175,14 +180,14 @@
                 <div class="tool-section">
                     <button class="accordion">
                         <span class="accordion-num">5</span>
-                        SPIRAL CURVE
-                        <span class="accordion-arrow">▼</span>
+                        SPIRAL / TRANSITION CURVE
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Transition curve elements</p>
-                        <input type="number" id="sp_r" placeholder="Radius (R) in meters">
-                        <input type="number" id="sp_ls" placeholder="Spiral Length (Ls) in meters">
-                        <button class="action-btn" onclick="calcSpiral()"><i class="fas fa-wave-square"></i> Calculate Spiral</button>
+                        <p class="hint">Calculate transition curve elements from Radius and Spiral Length</p>
+                        <input type="number" id="sp_r" placeholder="Radius — R (meters)">
+                        <input type="number" id="sp_ls" placeholder="Spiral Length — Ls (meters)">
+                        <button class="action-btn" onclick="calcSpiral()"><i class="fas fa-wave-square"></i> Calculate Spiral Elements</button>
                         <div id="res5" class="tool-result"></div>
                     </div>
                 </div>
@@ -192,13 +197,13 @@
                     <button class="accordion">
                         <span class="accordion-num">6</span>
                         VERTICAL CURVE
-                        <span class="accordion-arrow">▼</span>
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Grade in/out aur length dal kar K-value nikalein</p>
-                        <input type="number" id="vc_g1" placeholder="Grade In (G1) %">
-                        <input type="number" id="vc_g2" placeholder="Grade Out (G2) %">
-                        <input type="number" id="vc_l" placeholder="Curve Length (L) in meters">
+                        <p class="hint">Enter grade in/out and curve length to calculate K-value and curve type</p>
+                        <input type="number" id="vc_g1" placeholder="Grade In — G1 (%)">
+                        <input type="number" id="vc_g2" placeholder="Grade Out — G2 (%)">
+                        <input type="number" id="vc_l" placeholder="Curve Length — L (meters)">
                         <button class="action-btn" onclick="calcVerticalCurve()"><i class="fas fa-chart-line"></i> Calculate K-Value</button>
                         <div id="res6" class="tool-result"></div>
                     </div>
@@ -208,58 +213,58 @@
                 <div class="tool-section">
                     <button class="accordion">
                         <span class="accordion-num">7</span>
-                        2D TRANSFORMATION
-                        <span class="accordion-arrow">▼</span>
+                        2D COORDINATE TRANSFORMATION
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Local coordinates ko Grid system mein convert karein</p>
+                        <p class="hint">Apply translation, rotation and scaling to shift local coordinates to grid system</p>
                         <div class="input-row">
-                            <input type="number" id="transE" placeholder="Shift Easting (dE)">
-                            <input type="number" id="transN" placeholder="Shift Northing (dN)">
+                            <input type="number" id="transE" placeholder="Shift Easting — dE (m)">
+                            <input type="number" id="transN" placeholder="Shift Northing — dN (m)">
                         </div>
                         <input type="number" id="transRot" placeholder="Rotation Angle (degrees)">
-                        <input type="number" id="transScale" placeholder="Scale Factor (e.g. 1.0)">
+                        <input type="number" id="transScale" placeholder="Scale Factor (e.g. 1.000000)">
                         <button class="action-btn" onclick="calc2DTrans()"><i class="fas fa-arrows-alt"></i> Apply Transformation</button>
                         <div id="res7" class="tool-result"></div>
                     </div>
                 </div>
 
-                <!-- 8. TRAVERSE CALCULATION -->
+                <!-- 8. TRAVERSE -->
                 <div class="tool-section">
                     <button class="accordion">
                         <span class="accordion-num">8</span>
                         TRAVERSE CALCULATION
-                        <span class="accordion-arrow">▼</span>
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Bowditch Method se traverse adjust karein</p>
+                        <p class="hint">Calculate traverse accuracy ratio and survey grade using Bowditch method</p>
                         <input type="number" id="trav_dist" placeholder="Total Traverse Length (m)">
                         <input type="number" id="trav_err" placeholder="Linear Misclosure (m)">
-                        <button class="action-btn" onclick="calcTraverse()"><i class="fas fa-route"></i> Adjust Traverse</button>
+                        <button class="action-btn" onclick="calcTraverse()"><i class="fas fa-route"></i> Calculate Accuracy</button>
                         <div id="res8" class="tool-result"></div>
                     </div>
                 </div>
 
-                <!-- 9. COORDINATE BY TRIANGULATION -->
+                <!-- 9. TRILATERATION -->
                 <div class="tool-section">
                     <button class="accordion">
                         <span class="accordion-num">9</span>
                         COORDINATE BY TRILATERATION
-                        <span class="accordion-arrow">▼</span>
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">3 known points aur distances se unknown point find karein</p>
+                        <p class="hint">Find an unknown point coordinate using distances from two known control points</p>
                         <div class="input-row">
-                            <input type="number" id="tri_e1" placeholder="P1 Easting">
-                            <input type="number" id="tri_n1" placeholder="P1 Northing">
+                            <input type="number" id="tri_e1" placeholder="P1 Easting (m)">
+                            <input type="number" id="tri_n1" placeholder="P1 Northing (m)">
                         </div>
-                        <input type="number" id="tri_d1" placeholder="Distance to P1 (m)">
+                        <input type="number" id="tri_d1" placeholder="Distance from P1 (m)">
                         <div class="input-row">
-                            <input type="number" id="tri_e2" placeholder="P2 Easting">
-                            <input type="number" id="tri_n2" placeholder="P2 Northing">
+                            <input type="number" id="tri_e2" placeholder="P2 Easting (m)">
+                            <input type="number" id="tri_n2" placeholder="P2 Northing (m)">
                         </div>
-                        <input type="number" id="tri_d2" placeholder="Distance to P2 (m)">
-                        <button class="action-btn" onclick="calcTrilateration()"><i class="fas fa-draw-polygon"></i> Find Point</button>
+                        <input type="number" id="tri_d2" placeholder="Distance from P2 (m)">
+                        <button class="action-btn" onclick="calcTrilateration()"><i class="fas fa-draw-polygon"></i> Find Unknown Point</button>
                         <div id="res9" class="tool-result"></div>
                     </div>
                 </div>
@@ -268,22 +273,22 @@
                 <div class="tool-section">
                     <button class="accordion">
                         <span class="accordion-num">10</span>
-                        INTERSECTION (Brg–Brg)
-                        <span class="accordion-arrow">▼</span>
+                        INTERSECTION (Bearing&#8211;Bearing)
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Do known points aur bearings se intersection point nikalein</p>
+                        <p class="hint">Find the intersection point of two lines defined by known points and bearings</p>
                         <div class="input-row">
-                            <input type="number" id="int_e1" placeholder="P1 Easting">
-                            <input type="number" id="int_n1" placeholder="P1 Northing">
+                            <input type="number" id="int_e1" placeholder="P1 Easting (m)">
+                            <input type="number" id="int_n1" placeholder="P1 Northing (m)">
                         </div>
                         <input type="number" id="int_b1" placeholder="Bearing from P1 (decimal degrees)">
                         <div class="input-row">
-                            <input type="number" id="int_e2" placeholder="P2 Easting">
-                            <input type="number" id="int_n2" placeholder="P2 Northing">
+                            <input type="number" id="int_e2" placeholder="P2 Easting (m)">
+                            <input type="number" id="int_n2" placeholder="P2 Northing (m)">
                         </div>
                         <input type="number" id="int_b2" placeholder="Bearing from P2 (decimal degrees)">
-                        <button class="action-btn" onclick="calcIntersection()"><i class="fas fa-crosshairs"></i> Find Intersection</button>
+                        <button class="action-btn" onclick="calcIntersection()"><i class="fas fa-crosshairs"></i> Find Intersection Point</button>
                         <div id="res10" class="tool-result"></div>
                     </div>
                 </div>
@@ -293,23 +298,23 @@
                     <button class="accordion">
                         <span class="accordion-num">11</span>
                         3-POINT CIRCLE
-                        <span class="accordion-arrow">▼</span>
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">3 known points se circle ka center aur radius nikalein</p>
+                        <p class="hint">Find the center and radius of a circle passing through three known coordinate points</p>
                         <div class="input-row">
-                            <input type="number" id="cir_e1" placeholder="P1 E">
-                            <input type="number" id="cir_n1" placeholder="P1 N">
+                            <input type="number" id="cir_e1" placeholder="P1 Easting">
+                            <input type="number" id="cir_n1" placeholder="P1 Northing">
                         </div>
                         <div class="input-row">
-                            <input type="number" id="cir_e2" placeholder="P2 E">
-                            <input type="number" id="cir_n2" placeholder="P2 N">
+                            <input type="number" id="cir_e2" placeholder="P2 Easting">
+                            <input type="number" id="cir_n2" placeholder="P2 Northing">
                         </div>
                         <div class="input-row">
-                            <input type="number" id="cir_e3" placeholder="P3 E">
-                            <input type="number" id="cir_n3" placeholder="P3 N">
+                            <input type="number" id="cir_e3" placeholder="P3 Easting">
+                            <input type="number" id="cir_n3" placeholder="P3 Northing">
                         </div>
-                        <button class="action-btn" onclick="calc3PointCircle()"><i class="fas fa-circle"></i> Get Circle Data</button>
+                        <button class="action-btn" onclick="calc3PointCircle()"><i class="fas fa-circle"></i> Calculate Circle Data</button>
                         <div id="res11" class="tool-result"></div>
                     </div>
                 </div>
@@ -318,11 +323,11 @@
                 <div class="tool-section">
                     <button class="accordion">
                         <span class="accordion-num">12</span>
-                        LAT/LONG TO UTM
-                        <span class="accordion-arrow">▼</span>
+                        LAT / LONG TO UTM
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">WGS84 Lat/Long ko UTM mein convert karein</p>
+                        <p class="hint">Convert WGS84 geographic coordinates (Lat/Long) to UTM Easting and Northing</p>
                         <input type="number" id="lat_val" placeholder="Latitude (e.g. 33.7294)" step="any">
                         <input type="number" id="lon_val" placeholder="Longitude (e.g. 73.0931)" step="any">
                         <button class="action-btn" onclick="calcLatLonToUTM()"><i class="fas fa-globe"></i> Convert to UTM</button>
@@ -335,28 +340,31 @@
                     <button class="accordion">
                         <span class="accordion-num">13</span>
                         AREA BY CO-ORDINATE
-                        <span class="accordion-arrow">▼</span>
+                        <span class="accordion-arrow">&#9660;</span>
                     </button>
                     <div class="panel">
-                        <p class="hint">Har line mein E,N likhein — e.g. 100,200 (Enter daba kar agla point)</p>
-                        <textarea id="areaInput" placeholder="100,200&#10;150,250&#10;200,200&#10;150,150"></textarea>
-                        <button class="action-btn" onclick="calcArea()"><i class="fas fa-vector-square"></i> Calculate Area & Draw</button>
+                        <p class="hint">Enter one coordinate per line as <strong>E,N</strong> (e.g. 100,200). Minimum 3 points required.</p>
+                        <textarea id="areaInput" placeholder="100,200&#10;150,280&#10;220,250&#10;180,150"></textarea>
+                        <button class="action-btn" onclick="calcArea()"><i class="fas fa-vector-square"></i> Calculate Area &amp; Draw Polygon</button>
 
                         <!-- Canvas Drawing -->
                         <div class="canvas-container" id="canvasContainer">
                             <canvas id="areaCanvas"></canvas>
                         </div>
 
-                        <!-- Result -->
+                        <!-- Result Box -->
                         <div id="res13" class="tool-result"></div>
 
-                        <!-- Share Buttons -->
+                        <!-- Action Buttons -->
                         <div class="share-row" id="shareRow">
+                            <button class="share-btn pdf" onclick="printAreaReport()">
+                                <i class="fas fa-file-pdf"></i> PDF Report
+                            </button>
                             <button class="share-btn copy" onclick="copyAreaResult()">
-                                <i class="fas fa-copy"></i> Copy Result
+                                <i class="fas fa-copy"></i> Copy
                             </button>
                             <button class="share-btn whatsapp" onclick="shareOnWhatsApp()">
-                                <i class="fab fa-whatsapp"></i> WhatsApp
+                                <i class="fab fa-whatsapp"></i> Share
                             </button>
                         </div>
                     </div>
@@ -371,14 +379,15 @@
                     <div class="modal-content">
                         <h3><i class="fas fa-book-open"></i> Akhtar Surveyor — Quick Guide</h3>
                         <p>
-                            <b>1. Bearing & Distance:</b> Do points ke E,N dalein → bearing (DMS) aur distance milega.<br>
-                            <b>2. Reference Line:</b> Line start/end aur point ke E,N dalein → offset/chainage milega.<br>
-                            <b>4. Circular Curve:</b> Radius aur Delta angle dalein → T, L, E, M, LC milega.<br>
-                            <b>6. Vertical Curve:</b> Grade in/out aur length dalein → K-value milega.<br>
-                            <b>8. Traverse:</b> Total length aur misclosure dalein → accuracy ratio milega.<br>
-                            <b>13. Area:</b> Har line mein E,N likhein → polygon draw hoga + area Marla/Kanal/Acre mein milega → Share bhi kar saktey hain!
+                            <b>1. Bearing &amp; Distance:</b> Enter E,N of two points — get bearing in WCB &amp; DMS format plus distance.<br>
+                            <b>2. Reference Line:</b> Enter line start/end and a point — get chainage and perpendicular offset (Left/Right).<br>
+                            <b>4. Circular Curve:</b> Enter Radius and Delta angle — get T, L, E, M, Long Chord, Degree of Curve.<br>
+                            <b>6. Vertical Curve:</b> Enter Grade in/out and curve length — get K-value and curve type.<br>
+                            <b>8. Traverse:</b> Enter total length and misclosure — get accuracy ratio and survey grade.<br>
+                            <b>12. UTM:</b> Enter Latitude and Longitude — get UTM Zone, Easting and Northing.<br>
+                            <b>13. Area:</b> Enter E,N coordinates (one per line) — get polygon drawing, side lengths, angles, area in multiple units. Export as PDF report or share on WhatsApp.
                         </p>
-                        <button class="close-btn" onclick="toggleHelp()">Close Guide</button>
+                        <button class="close-btn" onclick="toggleHelp()"><i class="fas fa-times"></i> Close Guide</button>
                     </div>
                 </div>
             </div>
@@ -388,8 +397,8 @@
         <section id="articles" class="section">
             <div class="title-block"><h2>Engineering Articles</h2></div>
             <article class="article-content">
-                <h3 style="color: var(--primary); margin-bottom: 10px;">Introduction to Land Surveying</h3>
-                <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">Technical articles about professional surveying methods will be published here soon. Topics will include: Total Station operations, GPS/GNSS techniques, Coordinate Geometry, and Road Design.</p>
+                <h3 style="color:var(--primary);margin-bottom:10px;">Introduction to Land Surveying</h3>
+                <p style="color:rgba(255,255,255,0.7);line-height:1.8;">Technical articles covering professional surveying methods will be published here. Upcoming topics include: Total Station operations, GPS/GNSS techniques, Coordinate Geometry, Road Design, and Setting-Out procedures for civil engineering projects.</p>
             </article>
         </section>
 
@@ -397,20 +406,19 @@
         <section id="privacy" class="section">
             <div class="title-block"><h2>Privacy &amp; Terms</h2></div>
             <div class="privacy-card">
-                <h3 style="color: var(--primary); margin-bottom: 12px;"><i class="fas fa-shield-alt"></i> Privacy Policy</h3>
-                <p>Yeh website purely educational purposes ke liye banai gayi hai. Hum koi personal data collect nahi karte. Sab calculations browser mein local run hoti hain — koi data server par nahi jata.</p>
-                <h3 style="color: var(--primary); margin: 20px 0 12px;"><i class="fas fa-file-contract"></i> Terms of Use</h3>
-                <p>Yahan diye gaye calculators professional guidance ke liye hain. Field work mein hamesha licensed surveyor se confirm karein. Kisi bhi nuksaan ke liye website zimmedar nahi hogi.</p>
+                <h3 style="color:var(--primary);margin-bottom:12px;"><i class="fas fa-shield-alt"></i> Privacy Policy</h3>
+                <p>This website is built purely for educational and professional purposes. We do not collect any personal data. All calculations run locally in your browser — no data is sent to any server.</p>
+                <h3 style="color:var(--primary);margin:20px 0 12px;"><i class="fas fa-file-contract"></i> Terms of Use</h3>
+                <p>The calculators provided here are intended as professional reference tools. Always verify critical field measurements with a licensed surveyor. The website accepts no liability for any loss or damage resulting from the use of these tools.</p>
             </div>
         </section>
 
     </div>
 
-    <div class="scroll-down" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})">↓</div>
+    <div class="scroll-down" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">&#8595;</div>
 
-    <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>
