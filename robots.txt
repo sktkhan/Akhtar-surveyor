@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://akhtarsurveyor.com/sitemap.xml
+Sitemap: https://akhtarengineeringhub.com/sitemap.xml
