@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Total Station Resection: Free Station Setup Explained | Akhtar Engineering Hub</title>
+<meta name="description" content="Complete guide to total station free station setup using resection — two-point and three-point methods, geometry rules, field procedure, calculation checks and common mistakes. Written by a professional surveyor.">
+<meta name="keywords" content="total station resection, free station setup, resection surveying, two point resection, three point resection, Collins point, Tienstra formula, total station setup, unknown point, surveying field procedure">
+<meta name="author" content="Akhtar Engineering Hub">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://akhtarengineeringhub.com/total-station-resection.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://akhtarengineeringhub.com/total-station-resection.html">
+<meta property="og:title" content="Total Station Resection: Free Station Setup Explained">
+<meta property="og:description" content="Two-point and three-point resection — field procedure, geometry rules, calculation checks and common mistakes explained by a professional surveyor.">
+<meta property="og:site_name" content="Akhtar Engineering Hub">
+<meta property="article:published_time" content="2026-05-03">
+<meta property="article:section" content="Surveying">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Total Station Resection: Free Station Setup Explained">
+<meta name="twitter:description" content="Complete guide to free station resection — field procedure, geometry, calculation and common mistakes.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Total Station Resection: Free Station Setup Explained",
+  "description":"Complete guide to total station free station setup using resection — two and three-point methods, geometry rules, field procedure and common mistakes.",
+  "author":{"@type":"Person","name":"Akhtar Engineering Hub"},
+  "publisher":{"@type":"Organization","name":"Akhtar Engineering Hub"},
+  "datePublished":"2026-05-03",
+  "dateModified":"2026-05-03",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://akhtarengineeringhub.com/total-station-resection.html"},
+  "articleSection":"Surveying",
+  "keywords":"resection, free station, total station setup, two point resection, three point resection, surveying"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#050d1a;--bg2:#0a1628;--bg3:#0e1f38;
+  --card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);--text:#f1f5f9;--text-sub:#94a3b8;
+  --red:#ef4444;--orange:#f97316;--cyan:#06b6d4;--green:#10b981;--gold:#f59e0b;--purple:#8b5cf6;
+  --accent:#ef4444;
+  --nav-bg:rgba(5,13,26,0.95);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:10px;}
+
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--red),var(--orange));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;}
+.nav-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--text);}
+.nav-title span{display:block;font-size:10px;color:var(--accent);font-weight:500;}
+.nav-right{display:flex;gap:12px;align-items:center;}
+.nav-link-btn{padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600;background:var(--card);border:1px solid var(--border2);color:var(--text-sub);transition:all .2s;}
+.nav-link-btn:hover{text-decoration:none;color:var(--text);}
+.nav-link-btn.primary{background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;border-color:transparent;}
+.nav-link-btn.primary:hover{opacity:.9;text-decoration:none;}
+
+.article-hero{margin-top:60px;padding:60px 24px 50px;background:linear-gradient(135deg,#050d1a 0%,#0a1628 60%,#050d1a 100%);border-bottom:1px solid var(--border);text-align:center;position:relative;overflow:hidden;}
+.article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(239,68,68,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(239,68,68,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.article-hero-inner{position:relative;z-index:1;max-width:820px;margin:0 auto;}
+.article-cat{display:inline-flex;align-items:center;gap:8px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:var(--red);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:5px 14px;border-radius:100px;margin-bottom:20px;text-transform:uppercase;}
+.article-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,46px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:16px;}
+.article-hero h1 span{color:var(--red);}
+.article-hero .intro{font-size:17px;color:var(--text-sub);max-width:660px;margin:0 auto 24px;line-height:1.7;}
+.article-meta{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--text-sub);}
+.article-meta span{display:flex;align-items:center;gap:6px;}
+.article-meta i{color:var(--red);}
+
+.article-layout{max-width:1100px;margin:0 auto;padding:60px 24px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+.article-body{min-width:0;}
+.article-sidebar{position:sticky;top:80px;}
+
+.article-body h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:800;margin:44px 0 14px;color:var(--text);letter-spacing:-0.5px;border-left:4px solid var(--red);padding-left:16px;}
+.article-body h3{font-size:18px;font-weight:700;margin:28px 0 10px;color:var(--red);}
+.article-body p{font-size:16px;color:var(--text-sub);margin-bottom:18px;line-height:1.85;}
+.article-body strong{color:var(--text);font-weight:700;}
+.article-body ul,.article-body ol{margin:12px 0 20px 0;padding-left:0;list-style:none;}
+.article-body ul li,.article-body ol li{font-size:15px;color:var(--text-sub);padding:7px 0 7px 30px;border-bottom:1px solid var(--border);position:relative;line-height:1.6;}
+.article-body ul li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--red);font-size:11px;position:absolute;left:6px;top:10px;}
+.article-body ol{counter-reset:olc;}
+.article-body ol li{counter-increment:olc;}
+.article-body ol li::before{content:counter(olc);background:var(--red);color:#fff;font-size:11px;font-weight:800;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;left:0;top:9px;}
+.article-body li:last-child{border-bottom:none;}
+
+.callout{border-radius:12px;padding:20px 22px;margin:24px 0;display:flex;gap:16px;align-items:flex-start;}
+.callout.info{background:rgba(6,182,212,0.07);border-left:4px solid var(--cyan);}
+.callout.tip{background:rgba(16,185,129,0.07);border-left:4px solid var(--green);}
+.callout.warn{background:rgba(245,158,11,0.07);border-left:4px solid var(--gold);}
+.callout.danger{background:rgba(239,68,68,0.07);border-left:4px solid var(--red);}
+.callout i{font-size:18px;margin-top:2px;flex-shrink:0;}
+.callout.info i{color:var(--cyan);}
+.callout.tip i{color:var(--green);}
+.callout.warn i{color:var(--gold);}
+.callout.danger i{color:var(--red);}
+.callout-body strong{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.callout-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+.pull-quote{border-left:3px solid var(--red);background:rgba(239,68,68,0.05);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0;font-size:18px;font-style:italic;font-weight:600;color:var(--text);line-height:1.6;}
+
+.kr{display:inline;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--red);}
+.kg{display:inline;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--green);}
+.kc{display:inline;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--cyan);}
+.ko{display:inline;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--gold);}
+.kp{display:inline;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);border-radius:5px;padding:1px 8px;font-size:14px;font-weight:700;color:var(--purple);}
+
+.formula-block{background:var(--bg3);border:1px solid rgba(239,68,68,0.22);border-radius:14px;padding:24px 28px;margin:24px 0;border-left:4px solid var(--red);}
+.formula-block .fl{font-size:11px;font-weight:700;color:var(--red);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
+.formula-block code{font-family:'Courier New',monospace;font-size:14px;font-weight:700;color:var(--text);background:rgba(255,255,255,0.04);border:1px solid var(--border2);border-radius:8px;padding:10px 16px;margin-bottom:8px;display:block;line-height:1.6;}
+.formula-block .fn{font-size:13px;color:var(--text-sub);margin-top:6px;}
+
+/* Comparison grid */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:28px 0;}
+.method-card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:22px;transition:all .2s;}
+.method-card:hover{transform:translateY(-3px);border-color:rgba(239,68,68,0.3);}
+.method-card .mc-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:12px;}
+.method-card.classic .mc-badge{background:rgba(6,182,212,0.12);color:var(--cyan);}
+.method-card.free .mc-badge{background:rgba(239,68,68,0.12);color:var(--red);}
+.method-card h4{font-size:16px;font-weight:800;color:var(--text);margin-bottom:8px;}
+.method-card p{font-size:13px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;}
+.method-card ul{margin:0;}
+.method-card ul li{font-size:13px;padding:5px 0 5px 24px;border-bottom:1px solid var(--border);}
+.method-card ul li:last-child{border-bottom:none;}
+.method-card ul li::before{font-size:10px;top:8px;}
+.method-card.classic ul li::before{color:var(--cyan);}
+.method-card.free ul li::before{color:var(--red);}
+
+/* SVG Diagram */
+.diagram-wrap{background:var(--bg3);border:1px solid rgba(239,68,68,0.18);border-radius:16px;padding:24px;margin:28px 0;text-align:center;}
+.diagram-wrap .dc{font-size:12px;color:var(--text-sub);margin-top:14px;font-style:italic;}
+
+/* Geometry danger zone */
+.danger-zone{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.2);border-radius:16px;padding:24px;margin:28px 0;}
+.danger-zone h3{color:var(--red);font-size:17px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.danger-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.danger-item{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:10px;padding:14px;}
+.danger-item .di-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.danger-item p{font-size:13px;color:var(--text-sub);margin:0;line-height:1.5;}
+
+/* Good geometry card */
+.good-zone{background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.2);border-radius:16px;padding:24px;margin:28px 0;}
+.good-zone h3{color:var(--green);font-size:17px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.good-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.good-item{background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);border-radius:10px;padding:14px;}
+.good-item .gi-label{font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.good-item p{font-size:13px;color:var(--text-sub);margin:0;line-height:1.5;}
+
+/* Steps */
+.steps{margin:24px 0;}
+.step{display:flex;gap:18px;margin-bottom:14px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;transition:all .2s;}
+.step:hover{border-color:var(--border2);}
+.step-num{min-width:36px;height:36px;background:linear-gradient(135deg,var(--red),var(--orange));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff;flex-shrink:0;}
+.step-body strong{display:block;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.step-body p{font-size:14px;color:var(--text-sub);margin:0;line-height:1.6;}
+
+/* Mistake grid */
+.mistake-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+.mc-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;}
+.mc-card .mch{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.mc-card .mci{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.mc-wrong .mci{background:rgba(239,68,68,0.12);color:var(--red);}
+.mc-right .mci{background:rgba(16,185,129,0.12);color:var(--green);}
+.mc-card .mcl{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.mc-wrong .mcl{color:var(--red);}
+.mc-right .mcl{color:var(--green);}
+.mc-card p{font-size:13px;color:var(--text-sub);line-height:1.6;margin:0;}
+
+/* Sidebar */
+.sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:20px;}
+.sidebar-card h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.sidebar-card h4 i{color:var(--red);}
+.toc-list{list-style:none;}
+.toc-list li{padding:0;border:none;}
+.toc-list li::before{display:none;}
+.toc-list li a{display:block;font-size:13px;color:var(--text-sub);padding:7px 10px;border-radius:6px;transition:all .2s;}
+.toc-list li a:hover{background:rgba(239,68,68,0.08);color:var(--red);text-decoration:none;}
+.related-list{list-style:none;}
+.related-list li{padding:0;border:none;}
+.related-list li::before{display:none;}
+.related-list li a{display:block;font-size:13px;color:var(--text-sub);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.4;transition:color .2s;}
+.related-list li:last-child a{border-bottom:none;}
+.related-list li a:hover{color:var(--red);text-decoration:none;}
+.sidebar-cta{background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(249,115,22,0.05));border:1px solid rgba(239,68,68,0.2);border-radius:14px;padding:22px;margin-bottom:20px;text-align:center;}
+.sidebar-cta h4{font-size:15px;font-weight:700;margin-bottom:8px;}
+.sidebar-cta p{font-size:13px;color:var(--text-sub);margin-bottom:16px;line-height:1.5;}
+.sidebar-cta a{display:block;background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;font-size:13px;font-weight:700;padding:11px;border-radius:8px;text-decoration:none;}
+.sidebar-cta a:hover{opacity:.9;}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+.tag-pill{padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;background:var(--bg3);border:1px solid var(--border2);color:var(--text-sub);}
+
+.progress-bar{position:fixed;top:60px;left:0;height:3px;background:linear-gradient(90deg,var(--red),var(--orange));z-index:200;transition:width .1s;}
+.back-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer;box-shadow:0 4px 20px rgba(239,68,68,0.4);opacity:0;transition:all .3s;z-index:200;border:none;}
+.back-top.show{opacity:1;}
+
+.article-footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 24px;}
+.article-footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+.author-card{display:flex;gap:16px;align-items:flex-start;}
+.author-avatar{width:60px;height:60px;background:linear-gradient(135deg,var(--red),var(--orange));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;flex-shrink:0;}
+.author-info h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.author-info p{font-size:13px;color:var(--text-sub);line-height:1.6;}
+.author-info a{font-size:13px;font-weight:600;margin-top:10px;display:inline-block;color:var(--red);}
+.nav-articles{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
+.nav-article-link{display:flex;flex-direction:column;align-items:flex-end;text-align:right;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;transition:all .2s;}
+.nav-article-link:hover{border-color:var(--red);text-decoration:none;}
+.nav-article-link span{font-size:11px;color:var(--text-sub);}
+.nav-article-link strong{font-size:13px;color:var(--text);margin-top:2px;}
+
+.page-footer{background:var(--bg);border-top:1px solid var(--border);padding:24px;text-align:center;font-size:13px;color:var(--text-sub);}
+.page-footer a{color:var(--red);}
+
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;}
+  .article-sidebar{display:none;}
+  .article-footer-inner{grid-template-columns:1fr;}
+  .nav-articles{align-items:flex-start;}
+  .nav-article-link{align-items:flex-start;text-align:left;}
+  .method-grid,.danger-list,.good-list,.mistake-grid{grid-template-columns:1fr;}
+}
+@media(max-width:580px){.article-meta{gap:12px;}}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-icon"><i class="fas fa-crosshairs"></i></div>
+    <div class="nav-title">Akhtar<span>Engineering Hub</span></div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link-btn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+    <a href="index.html" class="nav-link-btn primary"><i class="fas fa-calculator"></i> Calculators</a>
+  </div>
+</header>
+
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat"><i class="fas fa-crosshairs"></i> Surveying &nbsp;|&nbsp; Field Practice</div>
+    <h1>Total Station Resection:<br><span>Free Station Setup Explained</span></h1>
+    <p class="intro">You arrive at a site, you cannot set up on any of your control points, and you need to start working immediately. The free station resection is how professional surveyors solve this problem every day — and it is one of the most powerful techniques in practical field surveying.</p>
+    <div class="article-meta">
+      <span><i class="fas fa-user-tie"></i> Akhtar Engineering Hub</span>
+      <span><i class="fas fa-calendar-alt"></i> 3 May 2026</span>
+      <span><i class="fas fa-clock"></i> 11 min read</span>
+      <span><i class="fas fa-hard-hat"></i> Field Practice</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-layout">
+<article class="article-body">
+
+  <p>On a typical construction site, your total station control points are pegs and bolts driven into the ground — often in positions chosen months ago for traverse purposes, not for daily convenience. On a given day, you may find a peg has been disturbed, is behind a temporary fence, buried under fill, or simply in an inconvenient position that requires carrying equipment up a slope. The question is: can you still work, and work accurately?</p>
+
+  <p>The answer is yes — using <strong>resection</strong>, also known as free station setup. Instead of setting up on a known point and aiming at known reference directions, you set up <em>anywhere convenient</em> and observe known control points. The total station (or you, manually) calculates where the instrument is located. Once you know the instrument position, you can set out or survey normally.</p>
+
+  <div class="callout info">
+    <i class="fas fa-info-circle"></i>
+    <div class="callout-body">
+      <strong>What This Article Covers</strong>
+      <p>Classic backsight setup vs free station &mdash; when to use resection &mdash; the two-point method &mdash; the three-point method for redundancy &mdash; the geometry rules that determine resection quality &mdash; the calculation process &mdash; the dangerous circle problem &mdash; common field mistakes &mdash; and practical tips from real site experience.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2 id="classic-vs-free">Classic Setup vs Free Station — A Direct Comparison</h2>
+
+  <div class="method-grid">
+    <div class="method-card classic">
+      <div class="mc-badge">Classic Backsight Setup</div>
+      <h4>Set Up on a Known Point</h4>
+      <p>The total station is centred and levelled exactly over a known control point (a peg or bolt with known E,N coordinates). You then aim at a second known point to establish your orientation (the backsight). All subsequent measurements are referenced to this orientation.</p>
+      <ul>
+        <li>Simple and fast when you can access the control point</li>
+        <li>Requires precise centring over the peg</li>
+        <li>Limited to positions that have known control</li>
+        <li>If the peg is disturbed, you have a serious problem</li>
+      </ul>
+    </div>
+    <div class="method-card free">
+      <div class="mc-badge">Free Station (Resection)</div>
+      <h4>Set Up Anywhere</h4>
+      <p>The total station is set up at any convenient position — on stable ground, with a clear view of at least two (preferably three) known control points. You measure angles and distances to those known points, and the software calculates where the instrument is.</p>
+      <ul>
+        <li>Setup position is totally flexible — go where the work is</li>
+        <li>No centring over a peg required</li>
+        <li>Requires visibility to 2+ known control points</li>
+        <li>Three points gives a redundancy check on quality</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    "Resection does not just give you flexibility — it is often more accurate than a classic setup, because you can choose the instrument position that gives the best line of sight to the work area."
+  </div>
+
+  <!-- SECTION 2 -->
+  <h2 id="when-to-use">When to Use Resection</h2>
+
+  <p>Resection is the right choice in many situations that are common on active construction sites:</p>
+
+  <ul>
+    <li>Your nearest control peg has been disturbed, buried or removed by site works</li>
+    <li>The control points are at the wrong end of the site — setting out requires long distances with poor accuracy</li>
+    <li>You need to set up inside a structure (a building frame, an underground excavation) where no existing control is located</li>
+    <li>You need a high instrument position (on scaffolding, on top of a wall) for line of sight reasons</li>
+    <li>You want to work quickly without setting up a tripod precisely over a peg in rough terrain</li>
+    <li>You need to monitor a structure from a stable position that is not a survey peg</li>
+  </ul>
+
+  <div class="callout tip">
+    <i class="fas fa-lightbulb"></i>
+    <div class="callout-body">
+      <strong>Resection is the Standard on Modern Sites</strong>
+      <p>Most modern total station work on engineering construction sites uses resection as the primary setup method. The classic backsight-from-a-peg method is still used for traverse work and control establishment — but for day-to-day setting out, free station is faster, more flexible, and often more reliable.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <h2 id="the-geometry">The Geometry — How the Calculation Works</h2>
+
+  <p>The mathematics of resection is elegant. Given the coordinates of two or three known points and the measured horizontal angles between them (as seen from the unknown instrument station), you can solve for the position of the instrument. Modern total stations do this calculation internally — but understanding the geometry helps you choose good setup positions and recognise when results are unreliable.</p>
+
+  <h3>Two-Point Resection</h3>
+
+  <p>With two known points, you measure the <strong>horizontal angle</strong> between them and the <strong>distance to each</strong> (using EDM). From these, you get two distance equations and the geometry is solvable — one unique solution exists as long as the geometry is not degenerate (see the dangerous circle, below).</p>
+
+  <div class="formula-block">
+    <div class="fl">Two-Point Resection — Core Relations</div>
+    <code>Distance to A: DA = measured EDM distance to control point A</code>
+    <code>Distance to B: DB = measured EDM distance to control point B</code>
+    <code>E_P = E_A + DA × sin(bearing A→P)  [from each known point]</code>
+    <code>N_P = N_A + DA × cos(bearing A→P)</code>
+    <div class="fn">The total station computes the bearing from A to P using the measured angle and the known bearing A→B. The two equations from points A and B are solved simultaneously. In practice the total station does this internally — you just observe the points and read the result.</div>
+  </div>
+
+  <h3>Three-Point Resection — With Redundancy</h3>
+
+  <p>With three known points, you have three observations — more than the minimum needed (two). This gives you a <strong>redundant observation</strong>, which means you can detect and quantify errors. The total station uses a least-squares solution to find the best-fit instrument position, and it can report a residual (the mismatch between the computed positions from each pair of points). If the residual is small, confidence is high. If it is large, something is wrong — the wrong coordinates, a wrong prism position, or poor geometry.</p>
+
+  <!-- SVG Diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 310" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;">
+      <rect width="520" height="310" fill="#0e1f38" rx="10"/>
+
+      <!-- Known control points -->
+      <!-- A top-left -->
+      <circle cx="100" cy="80" r="10" fill="none" stroke="#10b981" stroke-width="2"/>
+      <circle cx="100" cy="80" r="4" fill="#10b981"/>
+      <text x="86" y="68" fill="#10b981" font-size="13" font-weight="bold" font-family="Space Grotesk">A</text>
+      <text x="78" y="96" fill="#10b981" font-size="10" font-family="Inter" opacity="0.7">known</text>
+
+      <!-- B top-right -->
+      <circle cx="420" cy="70" r="10" fill="none" stroke="#10b981" stroke-width="2"/>
+      <circle cx="420" cy="70" r="4" fill="#10b981"/>
+      <text x="428" y="68" fill="#10b981" font-size="13" font-weight="bold" font-family="Space Grotesk">B</text>
+      <text x="426" y="84" fill="#10b981" font-size="10" font-family="Inter" opacity="0.7">known</text>
+
+      <!-- C bottom-right -->
+      <circle cx="390" cy="230" r="10" fill="none" stroke="#10b981" stroke-width="2"/>
+      <circle cx="390" cy="230" r="4" fill="#10b981"/>
+      <text x="400" y="228" fill="#10b981" font-size="13" font-weight="bold" font-family="Space Grotesk">C</text>
+      <text x="398" y="244" fill="#10b981" font-size="10" font-family="Inter" opacity="0.7">known</text>
+
+      <!-- Instrument P (unknown) -->
+      <circle cx="220" cy="185" r="12" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="2"/>
+      <circle cx="220" cy="185" r="5" fill="#ef4444"/>
+      <text x="228" y="178" fill="#ef4444" font-size="13" font-weight="bold" font-family="Space Grotesk">P</text>
+      <text x="228" y="192" fill="#ef4444" font-size="10" font-family="Inter">(unknown)</text>
+
+      <!-- Lines from P to each control point -->
+      <line x1="220" y1="185" x2="100" y2="80" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.7"/>
+      <line x1="220" y1="185" x2="420" y2="70" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.7"/>
+      <line x1="220" y1="185" x2="390" y2="230" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.7"/>
+
+      <!-- Distance labels -->
+      <text x="148" y="120" fill="#ef4444" font-size="11" font-family="Courier New" opacity="0.8" transform="rotate(-40 148 120)">DA</text>
+      <text x="305" y="108" fill="#ef4444" font-size="11" font-family="Courier New" opacity="0.8" transform="rotate(-15 305 108)">DB</text>
+      <text x="315" y="215" fill="#ef4444" font-size="11" font-family="Courier New" opacity="0.8" transform="rotate(8 315 215)">DC</text>
+
+      <!-- Angle arcs at P -->
+      <path d="M 205 172 A 20 20 0 0 1 208 170" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.7"/>
+      <text x="195" y="160" fill="#f59e0b" font-size="10" font-family="Courier New" opacity="0.8">α</text>
+
+      <!-- Known point triangle -->
+      <line x1="100" y1="80" x2="420" y2="70" stroke="rgba(16,185,129,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="420" y1="70" x2="390" y2="230" stroke="rgba(16,185,129,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="100" y1="80" x2="390" y2="230" stroke="rgba(16,185,129,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+
+      <!-- Labels -->
+      <text x="200" y="40" fill="#10b981" font-size="12" font-weight="bold" font-family="Space Grotesk" text-anchor="middle">Known Control Network</text>
+      <text x="200" y="56" fill="#10b981" font-size="10" font-family="Inter" opacity="0.6" text-anchor="middle">(3 points, all with E,N coordinates)</text>
+
+      <!-- Legend -->
+      <rect x="20" y="255" width="12" height="3" fill="#10b981" rx="1"/>
+      <text x="36" y="261" fill="#10b981" font-size="11" font-family="Inter">Known control points (A, B, C)</text>
+      <rect x="20" y="272" width="12" height="3" fill="#ef4444" rx="1"/>
+      <text x="36" y="278" fill="#ef4444" font-size="11" font-family="Inter">Unknown instrument station (P)</text>
+      <text x="36" y="294" fill="#f59e0b" font-size="11" font-family="Inter">α = measured horizontal angle</text>
+    </svg>
+    <div class="dc">Fig 1. Free station resection geometry. The total station at P observes three known control points A, B and C. From the measured distances DA, DB, DC and the horizontal angles between them, P's coordinates are computed. Three points gives redundancy and a quality check.</div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <h2 id="dangerous-circle">The Dangerous Circle — Critical Geometry Warning</h2>
+
+  <p>There is one geometric configuration that makes a resection unreliable or even impossible: when the instrument station and all observed control points lie on the same circle. This is called the <strong>dangerous circle</strong> (or degenerate case).</p>
+
+  <p>When this happens, there are infinitely many positions on the circle that would produce the same observed angles — the solution becomes non-unique and the total station software may give a wrong result, or a large residual, or refuse to solve. Many total stations warn of this automatically — but not all do, and the warning may be easy to miss.</p>
+
+  <div class="danger-zone">
+    <h3><i class="fas fa-radiation"></i> Configurations to Avoid</h3>
+    <div class="danger-list">
+      <div class="danger-item">
+        <div class="di-label">⚠️ All Points Collinear</div>
+        <p>If all known points and the instrument are approximately on a straight line, the geometry is very poor. Small errors cause large position errors.</p>
+      </div>
+      <div class="danger-item">
+        <div class="di-label">⚠️ Very Small Angles</div>
+        <p>If the angle subtended at the instrument between two control points is less than 15–20°, the geometry is weak. Observe a third, more widely spaced point.</p>
+      </div>
+      <div class="danger-item">
+        <div class="di-label">⚠️ P on the Dangerous Circle</div>
+        <p>If the instrument, both control points, and the circle through them are co-circular, the solution is singular. A third point outside the circle resolves this.</p>
+      </div>
+      <div class="danger-item">
+        <div class="di-label">⚠️ Residual Too Large</div>
+        <p>A three-point residual over 5–10 mm (for engineering work) indicates poor observations, wrong coordinates, or poor geometry. Do not accept the result.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="good-zone">
+    <h3><i class="fas fa-check-circle"></i> Geometry Rules for a Good Resection</h3>
+    <div class="good-list">
+      <div class="good-item">
+        <div class="gi-label">✓ 30°–150° Angle Spread</div>
+        <p>Angles between control points as seen from the instrument should be between 30° and 150°. This gives the most stable solution geometry.</p>
+      </div>
+      <div class="good-item">
+        <div class="gi-label">✓ Use Three Points</div>
+        <p>Always use three known points when possible. The redundant observation detects errors and gives you a quantified quality indicator (residual).</p>
+      </div>
+      <div class="good-item">
+        <div class="gi-label">✓ Points Around the Station</div>
+        <p>Ideally, control points should surround the instrument position rather than all being in one direction. Spread of at least 120° is ideal.</p>
+      </div>
+      <div class="good-item">
+        <div class="gi-label">✓ Check Residual &lt; 5 mm</div>
+        <p>For engineering setting out, accept a three-point resection only if the position residual is within 5 mm. Repeat the setup if it exceeds this.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <h2 id="field-procedure">Field Procedure — Step by Step</h2>
+
+  <p>Here is the exact procedure for a three-point free station resection with a modern total station. The steps are the same regardless of instrument brand — the menus differ, but the sequence is identical.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <strong>Choose your instrument position</strong>
+        <p>Pick a stable position on firm ground with clear lines of sight to at least three control points. Check the geometry mentally — are the known points spread around you? Are angles between them at least 30°? Avoid positions on or near the dangerous circle.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <strong>Set up and level the instrument</strong>
+        <p>Tripod on firm ground, spread legs wide for stability. Rough level with the tripod legs, fine level with the instrument foot screws. The instrument does not need to be centred over any peg — just stable and level. Check level bubble after each tripod leg adjustment.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <strong>Enter the known control point coordinates</strong>
+        <p>In the total station's resection menu, enter the E,N (and H if doing 3D) coordinates of each control point you plan to observe. Double-check each entry — a coordinate entry error is the single most common cause of a bad resection.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <strong>Aim and measure to the first control point</strong>
+        <p>Centre the crosshairs precisely on the prism at control point A. Take the EDM distance measurement. The total station records the horizontal angle and distance. Repeat in face left and face right if high accuracy is needed.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <strong>Observe the second and third control points</strong>
+        <p>Without disturbing the instrument, aim at prisms at B and C in sequence. Take EDM distances at each. The total station now has enough data to compute the solution.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <strong>Accept the solution — check the residual</strong>
+        <p>The instrument displays the computed E,N coordinates of the free station and the residual (the disagreement between the solution from each pair of points). If residual is within your tolerance (typically 5–10 mm for construction), accept. If not, re-observe or add a fourth control point.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">07</div>
+      <div class="step-body">
+        <strong>Do a final check observation</strong>
+        <p>Before starting work, aim at one of your control points and read its displayed distance and bearing. Independently calculate what those values should be from the computed station coordinates. If they agree within 5 mm and 5 arc seconds, you are good to proceed.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <h2 id="calculation">What the Instrument Calculates</h2>
+
+  <p>Most engineers using resection let the total station handle the calculation. But understanding the method behind it helps you troubleshoot and verify results. The two most common mathematical approaches are:</p>
+
+  <h3>Collins Point Method (Two-Point Resection)</h3>
+  <p>A classic analytical method used for hand calculation and historical instruments. It uses the angles at the instrument station to construct a helper point (the Collins Point) on the circumscribed circle of the three points, then solves the triangle. It is elegant and exact but requires careful arithmetic — best handled by a calculator or spreadsheet.</p>
+
+  <h3>Least Squares (Three or More Points)</h3>
+  <p>Modern total stations use a least-squares iterative solution for three or more control points. Starting from an approximate station position, the algorithm adjusts the E,N coordinates until the residuals between observed and computed angles and distances are minimised. This is fast (typically converging in 3–5 iterations) and produces both the best-fit position and a quality indicator (residual).</p>
+
+  <div class="formula-block">
+    <div class="fl">The Core Resection Check</div>
+    <code>Computed bearing P→A  =  atan2(E_A − E_P, N_A − N_P)</code>
+    <code>Computed distance P→A =  √((E_A−E_P)² + (N_A−N_P)²)</code>
+    <code>Residual = observed value − computed value   (should be near zero)</code>
+    <div class="fn">After the instrument computes E_P and N_P, it recalculates the expected bearing and distance to each control point and compares with the observed values. The difference is the residual. For a two-point resection, residual is zero by definition — this is why three points (with redundancy) is always preferred.</div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <h2 id="common-mistakes">Common Mistakes — And How to Avoid Them</h2>
+
+  <div class="mistake-grid">
+    <div class="mc-card mc-wrong">
+      <div class="mch"><div class="mci"><i class="fas fa-times"></i></div><div class="mcl">❌ Wrong</div></div>
+      <p>Entering coordinates in the wrong order — transposing Easting and Northing, or using the wrong control point number. This is the most frequent cause of a completely wrong resection result.</p>
+    </div>
+    <div class="mc-card mc-right">
+      <div class="mch"><div class="mci"><i class="fas fa-check"></i></div><div class="mcl">✓ Correct</div></div>
+      <p>Read coordinates aloud from the control point schedule, have another person check the entry, and always verify the coordinate entry by re-reading from the instrument screen before observing.</p>
+    </div>
+    <div class="mc-card mc-wrong">
+      <div class="mch"><div class="mci"><i class="fas fa-times"></i></div><div class="mcl">❌ Wrong</div></div>
+      <p>Accepting a large residual because you are in a hurry. A 25 mm residual on a 200 m setup means your setting-out could be off by 25 mm or more — unacceptable on structural or precise engineering work.</p>
+    </div>
+    <div class="mc-card mc-right">
+      <div class="mch"><div class="mci"><i class="fas fa-check"></i></div><div class="mcl">✓ Correct</div></div>
+      <p>Define your maximum acceptable residual before going to site (5 mm for precise work, 10 mm for earthworks). If the result exceeds it, repeat the setup or use a different station position.</p>
+    </div>
+    <div class="mc-card mc-wrong">
+      <div class="mch"><div class="mci"><i class="fas fa-times"></i></div><div class="mcl">❌ Wrong</div></div>
+      <p>Not checking the instrument height (HI) when doing 3D resection. The HI affects all reduced levels computed from the free station — a 10 mm HI error propagates to every staked level.</p>
+    </div>
+    <div class="mc-card mc-right">
+      <div class="mch"><div class="mci"><i class="fas fa-check"></i></div><div class="mcl">✓ Correct</div></div>
+      <p>Measure instrument height twice, from opposite sides of the instrument, with a steel tape to the survey mark on the tripod head. Average both measurements and enter carefully.</p>
+    </div>
+    <div class="mc-card mc-wrong">
+      <div class="mch"><div class="mci"><i class="fas fa-times"></i></div><div class="mcl">❌ Wrong</div></div>
+      <p>Using only two control points with poor geometry — both far away in the same direction, giving a very small angle between them at the instrument. The resulting position can be metres wrong.</p>
+    </div>
+    <div class="mc-card mc-right">
+      <div class="mch"><div class="mci"><i class="fas fa-check"></i></div><div class="mcl">✓ Correct</div></div>
+      <p>Always use three control points. If only two are visible, ensure the angle between them at the instrument is at least 30° — and verify the result with an independent check observation to a third known point.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <h2 id="verification">Always Verify Your Free Station</h2>
+
+  <p>No matter how good your residual looks, always do an independent verification before starting setting-out work. The most reliable verification is to set out a known coordinate point that you <em>did not use</em> in the resection — then physically check whether the prism lands on the existing peg.</p>
+
+  <ol>
+    <li>After the resection is accepted, choose a known control point you did not observe during the setup</li>
+    <li>Set out that point by coordinates from the free station</li>
+    <li>Check whether the instrument's calculated direction and distance match where the actual peg is</li>
+    <li>If the discrepancy is within your tolerance, proceed with confidence</li>
+    <li>If not — repeat the resection, check coordinates, and investigate before any setting-out work begins</li>
+  </ol>
+
+  <div class="callout warn">
+    <i class="fas fa-exclamation-triangle"></i>
+    <div class="callout-body">
+      <strong>Never Trust a Single Unverified Resection</strong>
+      <p>A resection that uses only the points you observed in its own solution cannot detect errors in those reference coordinates, or a prism on the wrong peg, or a coordinate entry error. The independent check using a point outside the resection solution is what catches these problems. This step takes two minutes and can save days of rework.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 9 -->
+  <h2 id="resection-vs-gnss">Resection vs GNSS — When Each Is Better</h2>
+
+  <p>GNSS (GPS/GLONASS/Galileo) receivers can also give you a position anywhere on site without setting up on a known peg. So why use resection at all? The answer is precision, reliability in obstructed areas, and traceability to the site control network:</p>
+
+  <ul>
+    <li><strong>Resection accuracy:</strong> 2–5 mm with a good total station in good conditions. GNSS RTK: typically 10–20 mm horizontal, 20–30 mm vertical</li>
+    <li><strong>Obstructed skies:</strong> Inside buildings, under bridges, near walls — GNSS fails completely. Resection with a total station works perfectly</li>
+    <li><strong>Network traceability:</strong> Resection uses the same site control network as all other survey work — everything is in the same coordinate system without transformation. GNSS requires a site calibration to relate GPS to site coordinates</li>
+    <li><strong>Vertical precision:</strong> GNSS height accuracy is typically 2–3× worse than horizontal. For precise level setting, total station resection with a good height measurement is superior</li>
+  </ul>
+
+  <!-- SECTION 10 -->
+  <h2 id="use-calculator">Use the Free Calculators</h2>
+
+  <p>While resection calculation is handled internally by the total station on site, you can verify results manually using the <a href="index.html">Akhtar Engineering Hub coordinate calculators</a> — compute bearings and distances between known points and your computed station position to independently confirm the instrument's solution.</p>
+
+  <div style="background:linear-gradient(135deg,rgba(239,68,68,0.08),rgba(249,115,22,0.04));border:1px solid rgba(239,68,68,0.2);border-radius:16px;padding:28px;text-align:center;margin:32px 0;">
+    <div style="font-size:36px;margin-bottom:12px;">🎯</div>
+    <h3 style="font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;">Coordinate Calculators</h3>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:20px;max-width:460px;margin-left:auto;margin-right:auto;">Compute bearing and distance between any two points, join calculation, coordinate transformation and more — free on Akhtar Engineering Hub.</p>
+    <a href="index.html" style="display:inline-block;background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;font-size:15px;font-weight:700;padding:14px 28px;border-radius:100px;text-decoration:none;">Open Calculators <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
+  </div>
+
+  <!-- Conclusion -->
+  <h2 id="conclusion">Summary</h2>
+
+  <p>The free station resection is one of the most practical and powerful techniques in modern field surveying. It gives you total flexibility over where you set up, removes the requirement to occupy specific pegs, and — when done correctly with three known points — provides a built-in quality check through the residual.</p>
+
+  <p>The keys to a reliable resection are: good geometry (angles spread, not all in one direction), three control points for redundancy, careful coordinate entry, a residual check within your project tolerance, and an independent verification observation before starting any work.</p>
+
+  <p>Avoid the dangerous circle, always check your residual, always verify with a point outside your resection, and always measure instrument height carefully when levels are involved. Follow these rules and the free station setup will serve you reliably on every site you work on.</p>
+
+</article>
+
+<!-- Sidebar -->
+<aside class="article-sidebar">
+  <div class="sidebar-card">
+    <h4><i class="fas fa-list"></i> Table of Contents</h4>
+    <ul class="toc-list">
+      <li><a href="#classic-vs-free">Classic vs Free Station</a></li>
+      <li><a href="#when-to-use">When to Use Resection</a></li>
+      <li><a href="#the-geometry">The Geometry</a></li>
+      <li><a href="#dangerous-circle">The Dangerous Circle</a></li>
+      <li><a href="#field-procedure">Field Procedure (7 Steps)</a></li>
+      <li><a href="#calculation">What the Instrument Calculates</a></li>
+      <li><a href="#common-mistakes">Common Mistakes</a></li>
+      <li><a href="#verification">Verification — Critical Step</a></li>
+      <li><a href="#resection-vs-gnss">Resection vs GNSS</a></li>
+      <li><a href="#conclusion">Summary</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-cta">
+    <h4>🎯 Coordinate Calculators</h4>
+    <p>Bearing, distance, join — verify your resection results independently.</p>
+    <a href="index.html">Open Calculators →</a>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-info-circle"></i> Article Details</h4>
+    <div style="font-size:13px;color:var(--text-sub);">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Category</span><span style="color:var(--red);font-weight:600;">Field Practice</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Level</span><span style="color:var(--gold);font-weight:600;">Intermediate</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span>Read Time</span><span>11 min</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;"><span>Updated</span><span>May 2026</span></div>
+    </div>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-book-open"></i> Related Articles</h4>
+    <ul class="related-list">
+      <li><a href="traverse-bowditch-adjustment.html">Traverse: Bowditch Adjustment</a></li>
+      <li><a href="what-is-surveying.html">What is Surveying? Beginner's Guide</a></li>
+      <li><a href="rl-calculation-hi-method.html">RL Calculation: The HI Method</a></li>
+      <li><a href="circular-curve-elements.html">Circular Curve: All Elements</a></li>
+      <li><a href="vertical-curves-k-value.html">Vertical Curves: K-Value Explained</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card">
+    <h4><i class="fas fa-tags"></i> Tags</h4>
+    <div class="tag-cloud">
+      <span class="tag-pill">Resection</span>
+      <span class="tag-pill">Free Station</span>
+      <span class="tag-pill">Total Station</span>
+      <span class="tag-pill">Control Survey</span>
+      <span class="tag-pill">Dangerous Circle</span>
+      <span class="tag-pill">Field Practice</span>
+      <span class="tag-pill">Setting Out</span>
+    </div>
+  </div>
+</aside>
+</div>
+
+<!-- Article Footer -->
+<div class="article-footer">
+  <div class="article-footer-inner">
+    <div class="author-card">
+      <div class="author-avatar"><i class="fas fa-crosshairs"></i></div>
+      <div class="author-info">
+        <h4>Akhtar Engineering Hub</h4>
+        <p>Written by a professional surveyor with extensive field experience in total station resection, free station setups, construction control networks and daily setting-out on civil engineering projects.</p>
+        <a href="index.html">Visit the Hub →</a>
+      </div>
+    </div>
+    <div class="nav-articles">
+      <a href="traverse-bowditch-adjustment.html" class="nav-article-link">
+        <span>← Previous Article</span>
+        <strong>Traverse: Bowditch Adjustment</strong>
+      </a>
+      <a href="index.html" class="nav-article-link">
+        <span>Browse All</span>
+        <strong>All Articles on the Blog →</strong>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <p>&copy; 2026 <a href="index.html">Akhtar Engineering Hub</a> &nbsp;|&nbsp; Learn &bull; Build &bull; Solve &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="index.html">Privacy Policy</a></p>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+window.addEventListener('scroll',function(){
+  var doc=document.documentElement;
+  var top=doc.scrollTop||document.body.scrollTop;
+  var hgt=doc.scrollHeight-doc.clientHeight;
+  var bar=document.getElementById('progressBar');
+  if(bar) bar.style.width=(hgt>0?(top/hgt)*100:0)+'%';
+  var btn=document.getElementById('backTop');
+  if(btn) btn.classList.toggle('show',top>400);
+});
+var tocLinks=document.querySelectorAll('.toc-list a');
+var sections=[];
+tocLinks.forEach(function(l){
+  var id=l.getAttribute('href').replace('#','');
+  var el=document.getElementById(id);
+  if(el) sections.push({id:id,el:el,link:l});
+});
+window.addEventListener('scroll',function(){
+  var scrollY=window.scrollY+100;
+  var current='';
+  sections.forEach(function(s){if(s.el.offsetTop<=scrollY)current=s.id;});
+  tocLinks.forEach(function(l){l.style.color='';l.style.background='';});
+  sections.forEach(function(s){
+    if(s.id===current){s.link.style.color='var(--red)';s.link.style.background='rgba(239,68,68,0.08)';}
+  });
+});
+</script>
+</body>
+</html>
