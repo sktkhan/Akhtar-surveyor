@@ -1,0 +1,17 @@
+{
+  "background_color": "#ffffff",
+  "description": "Akhtar Surveyor Tools is a complete toolkit designed for surveyors, engineers, and students who need quick and accurate calculations in the field.\nThis app provides multiple essential tools in one place, helping you save time and improve productivity without switching between apps.\n🔹 Key Features: • Area Calculator\n• Measurement Tools\n• Simple and Clean Interface\n• Fast and Lightweight\n• Works on Mobile Easily\nWhether you are working on-site or learning surveying, this app gives you reliable tools right in your pocket.\n🚀 No complicated setup — just open and use!",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Akhtar Engineering Hub",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Engineering Hub",
+  "start_url": "https://sktkhan.github.io/Akhtar-surveyor/",
+  "theme_color": "#050d1a",
+  "id": "com.akhtar.surveyor",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ]
+}
